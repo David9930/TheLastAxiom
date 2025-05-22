@@ -526,200 +526,51 @@
                 <p class="progress-text">2 of 15 audiobooks available • More coming soon</p>
             </div>
 
-            <!-- Audiobook 1 -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">1</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>Finch's Raven</h3>
-                        <p class="audiobook-subtitle">Where It All Begins</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~69 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="audiobook-description">
-                    Experience Professor Alistair Finch's discovery that the fundamental constants of the universe 
-                    aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape 
-                    humanity's understanding of existence itself. Narrated with the perfect blend of scientific 
-                    wonder and cosmic mystery.
-                </p>
-
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-button" onclick="togglePlay('audio1')">
-                            <svg class="play-icon" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                            <svg class="pause-icon" viewBox="0 0 24 24">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                            </svg>
-                        </button>
-                        <div class="time-info">
-                            <div>Ready to play</div>
-                        </div>
-                        <div class="volume-control">
-                            <svg class="volume-icon" viewBox="0 0 24 24">
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                            </svg>
-                            <input type="range" class="volume-slider" min="0" max="100" value="70" onchange="setVolume('audio1', this.value)">
-                        </div>
-                    </div>
-                    <div class="progress-container" onclick="seek('audio1', event)">
-                        <div class="progress-played" id="progress1"></div>
-                    </div>
-                    <div class="time-display">
-                        <span id="currentTime1">0:00</span>
-                        <span id="duration1">--:--</span>
-                    </div>
-                    <audio id="audio1" preload="metadata" onloadedmetadata="updateDuration('audio1')" ontimeupdate="updateProgress('audio1')">
-                        <source src="Audiobooks/Book1.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-
-                <div class="download-section">
-                    <a href="Audiobooks/Book1.mp3" download="The_Last_Axiom_Book1_Finchs_Raven.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
-            </div>
-
-            <!-- Audiobook 2 - FULLY FUNCTIONAL -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">2</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>The Last Axiom</h3>
-                        <p class="audiobook-subtitle">First Contact</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~49 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="audiobook-description">
-                    Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with 
-                    cosmic intelligence. Experience the moment when the entities reaching out to Earth 
-                    reveal they have been preparing for this encounter far longer than anyone realizes.
-                </p>
-
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-button" onclick="togglePlay('audio2')">
-                            <svg class="play-icon" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                            <svg class="pause-icon" viewBox="0 0 24 24">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                            </svg>
-                        </button>
-                        <div class="time-info">
-                            <div>Ready to play</div>
-                        </div>
-                        <div class="volume-control">
-                            <svg class="volume-icon" viewBox="0 0 24 24">
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                            </svg>
-                            <input type="range" class="volume-slider" min="0" max="100" value="70" onchange="setVolume('audio2', this.value)">
-                        </div>
-                    </div>
-                    <div class="progress-container" onclick="seek('audio2', event)">
-                        <div class="progress-played" id="progress2"></div>
-                    </div>
-                    <div class="time-display">
-                        <span id="currentTime2">0:00</span>
-                        <span id="duration2">--:--</span>
-                    </div>
-                    <audio id="audio2" preload="metadata" onloadedmetadata="updateDuration('audio2')" ontimeupdate="updateProgress('audio2')">
-                        <source src="Audiobooks/Book2.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-
-                <div class="download-section">
-                    <a href="Audiobooks/Book2.mp3" download="The_Last_Axiom_Book2_The_Last_Axiom.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
-            </div>
-
-            <!-- Audiobook 3 - Coming Soon -->
-            <div class="audiobook-card" style="opacity: 0.7;">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">3</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>Quantum Ghosts</h3>
-                        <p class="audiobook-subtitle">Digital Consciousness</p>
-                        <div class="audiobook-meta">
-                            <span class="status-coming-soon">Coming Soon</span>
-                            <span>~30 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="audiobook-description">
-                    Follow Luke Matson as his routine network maintenance job becomes extraordinary when 
-                    Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most 
-                    advanced AI has chosen video games as humanity's introduction to cosmic communication.
-                </p>
-
-                <div class="audio-player" style="opacity: 0.5;">
-                    <div class="player-controls">
-                        <button class="play-button" disabled>
-                            <svg class="play-icon" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                        <div class="time-info">
-                            <div>Coming Soon</div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-played"></div>
-                    </div>
-                    <div class="time-display">
-                        <span>--:--</span>
-                        <span>--:--</span>
-                    </div>
-                </div>
-
-                <div class="download-section">
-                    <a href="#" class="download-button disabled">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Coming Soon
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
+          <!-- Footer -->
     <footer>
         <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
     </footer>
 <script>
-    // Generate floating particles
+// Auto-detection system for audiobooks
+const TOTAL_BOOKS = 15;
+let availableBooks = [];
+
+// Book metadata - you only need to update this array when adding new books
+const bookMetadata = [
+    {
+        title: "Finch's Raven",
+        subtitle: "Where It All Begins",
+        description: "Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself.",
+        duration: "~69 min listen"
+    },
+    {
+        title: "The Last Axiom", 
+        subtitle: "First Contact",
+        description: "Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes.",
+        duration: "~49 min listen"
+    },
+    {
+        title: "Quantum Ghosts",
+        subtitle: "Digital Consciousness", 
+        description: "Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication.",
+        duration: "~30 min listen"
+    },
+    {
+        title: "The Constants",
+        subtitle: "Reality's New Rules",
+        description: "Three friends discover that golf putts won't break, charm doesn't work, and people are unconsciously speaking in song lyrics. The universe's fundamental constants are changing, and only their friendship can help them navigate reality's new rules.",
+        duration: "~30 min listen"
+    },
+    {
+        title: "The Observer Effect",
+        subtitle: "Consciousness and Reality",
+        description: "Dr. Maureen Hamner at CERN discovers that her consciousness research isn't just theoretical—human observation directly influences quantum fields. When government agents pressure her to contain cosmic contact, she must choose between safety and evolution.",
+        duration: "~30 min listen"
+    }
+    // Add more books here as you create them
+];
+
+// Generate floating particles
 function createParticles() {
     const particleContainer = document.getElementById('particles');
     const particleCount = 50;
@@ -734,15 +585,199 @@ function createParticles() {
     }
 }
 
-// Audio player functions
-function togglePlay(audioId) {
-    console.log('togglePlay called for:', audioId); // Debug log
-    const audio = document.getElementById(audioId);
+// Check if an audio file exists
+function checkAudioExists(bookNumber) {
+    return new Promise((resolve) => {
+        const audio = new Audio();
+        audio.addEventListener('canplaythrough', () => resolve(true));
+        audio.addEventListener('error', () => resolve(false));
+        audio.src = `Audiobooks/Book${bookNumber}.mp3`;
+    });
+}
+
+// Scan for available audiobooks
+async function scanForAudiobooks() {
+    console.log('Scanning for available audiobooks...');
     
-    if (!audio) {
-        console.error('Audio element not found:', audioId);
-        return;
+    for (let i = 1; i <= Math.min(bookMetadata.length, TOTAL_BOOKS); i++) {
+        const exists = await checkAudioExists(i);
+        if (exists) {
+            availableBooks.push(i);
+            console.log(`Book ${i} found and available`);
+        }
     }
+    
+    updateProgressBar();
+    generateAudiobookCards();
+}
+
+// Update the progress bar based on available books
+function updateProgressBar() {
+    const progressFill = document.querySelector('.progress-fill');
+    const progressText = document.querySelector('.progress-text');
+    
+    const percentage = (availableBooks.length / TOTAL_BOOKS) * 100;
+    progressFill.style.width = percentage + '%';
+    progressText.textContent = `${availableBooks.length} of ${TOTAL_BOOKS} audiobooks available • More coming soon`;
+}
+
+// Generate audiobook cards dynamically
+function generateAudiobookCards() {
+    const container = document.querySelector('.audiobooks-container');
+    
+    // Remove existing audiobook cards but keep progress bar
+    const existingCards = container.querySelectorAll('.audiobook-card');
+    existingCards.forEach(card => card.remove());
+    
+    // Show available books plus 2-3 "coming soon" preview cards
+    const totalToShow = Math.max(availableBooks.length + 2, 5);
+    
+    for (let i = 1; i <= totalToShow; i++) {
+        const isAvailable = availableBooks.includes(i);
+        const bookData = bookMetadata[i - 1] || {
+            title: `Book ${i}`,
+            subtitle: "Coming Soon",
+            description: "This audiobook will be available soon.",
+            duration: "~30 min listen"
+        };
+        
+        const cardHTML = createAudiobookCard(i, isAvailable, bookData);
+        container.insertAdjacentHTML('beforeend', cardHTML);
+    }
+}
+
+// Create individual audiobook card HTML
+function createAudiobookCard(bookNumber, isAvailable, bookData) {
+    const opacity = isAvailable ? '' : 'style="opacity: 0.7;"';
+    const status = isAvailable ? 
+        '<span class="status-available">Available Now</span>' : 
+        '<span class="status-coming-soon">Coming Soon</span>';
+    
+    const audioPlayer = isAvailable ? createWorkingAudioPlayer(bookNumber) : createDisabledAudioPlayer();
+    const downloadButton = isAvailable ? createWorkingDownloadButton(bookNumber, bookData.title) : createDisabledDownloadButton();
+    
+    return `
+        <div class="audiobook-card" ${opacity}>
+            <div class="audiobook-header">
+                <div class="audiobook-visual">
+                    <div class="audiobook-number">${bookNumber}</div>
+                </div>
+                <div class="audiobook-info">
+                    <h3>${bookData.title}</h3>
+                    <p class="audiobook-subtitle">${bookData.subtitle}</p>
+                    <div class="audiobook-meta">
+                        ${status}
+                        <span>${bookData.duration}</span>
+                        <span>MP3 Format</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="audiobook-description">
+                ${bookData.description}
+            </p>
+            
+            ${audioPlayer}
+            
+            <div class="download-section">
+                ${downloadButton}
+            </div>
+        </div>
+    `;
+}
+
+// Create working audio player HTML
+function createWorkingAudioPlayer(bookNumber) {
+    return `
+        <div class="audio-player">
+            <div class="player-controls">
+                <button class="play-button" onclick="togglePlay('audio${bookNumber}')">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg class="pause-icon" viewBox="0 0 24 24">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                </button>
+                <div class="time-info">
+                    <div>Ready to play</div>
+                </div>
+                <div class="volume-control">
+                    <svg class="volume-icon" viewBox="0 0 24 24">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <input type="range" class="volume-slider" min="0" max="100" value="70" onchange="setVolume('audio${bookNumber}', this.value)">
+                </div>
+            </div>
+            <div class="progress-container" onclick="seek('audio${bookNumber}', event)">
+                <div class="progress-played" id="progress${bookNumber}"></div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime${bookNumber}">0:00</span>
+                <span id="duration${bookNumber}">--:--</span>
+            </div>
+            <audio id="audio${bookNumber}" preload="metadata" onloadedmetadata="updateDuration('audio${bookNumber}')" ontimeupdate="updateProgress('audio${bookNumber}')">
+                <source src="Audiobooks/Book${bookNumber}.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    `;
+}
+
+// Create disabled audio player HTML
+function createDisabledAudioPlayer() {
+    return `
+        <div class="audio-player" style="opacity: 0.5;">
+            <div class="player-controls">
+                <button class="play-button" disabled>
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+                <div class="time-info">
+                    <div>Coming Soon</div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-played"></div>
+            </div>
+            <div class="time-display">
+                <span>--:--</span>
+                <span>--:--</span>
+            </div>
+        </div>
+    `;
+}
+
+// Create working download button
+function createWorkingDownloadButton(bookNumber, title) {
+    const cleanTitle = title.replace(/[^a-zA-Z0-9]/g, '_');
+    return `
+        <a href="Audiobooks/Book${bookNumber}.mp3" download="The_Last_Axiom_Book${bookNumber}_${cleanTitle}.mp3" class="download-button">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            Download MP3
+        </a>
+    `;
+}
+
+// Create disabled download button
+function createDisabledDownloadButton() {
+    return `
+        <a href="#" class="download-button disabled">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            Coming Soon
+        </a>
+    `;
+}
+
+// Audio player functions (keeping your existing working functions)
+function togglePlay(audioId) {
+    const audio = document.getElementById(audioId);
+    if (!audio) return;
     
     const button = audio.parentElement.querySelector('.play-button');
     const playIcon = button.querySelector('.play-icon');
@@ -750,26 +785,18 @@ function togglePlay(audioId) {
     
     if (audio.paused) {
         // Pause all other audio players first
-        const allAudios = document.querySelectorAll('audio');
-        allAudios.forEach(otherAudio => {
+        document.querySelectorAll('audio').forEach(otherAudio => {
             if (otherAudio !== audio && !otherAudio.paused) {
                 otherAudio.pause();
-                // Reset other buttons
                 const otherButton = otherAudio.parentElement.querySelector('.play-button');
-                const otherPlayIcon = otherButton.querySelector('.play-icon');
-                const otherPauseIcon = otherButton.querySelector('.pause-icon');
-                otherPlayIcon.style.display = 'block';
-                otherPauseIcon.style.display = 'none';
+                otherButton.querySelector('.play-icon').style.display = 'block';
+                otherButton.querySelector('.pause-icon').style.display = 'none';
             }
         });
         
-        audio.play().then(() => {
-            console.log('Audio playing successfully');
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'block';
-        }).catch(error => {
-            console.error('Error playing audio:', error);
-        });
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
     } else {
         audio.pause();
         playIcon.style.display = 'block';
@@ -792,13 +819,10 @@ function updateProgress(audioId) {
         currentTimeSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
     
-    // Reset play button when audio ends
     if (audio && audio.ended) {
         const button = audio.parentElement.querySelector('.play-button');
-        const playIcon = button.querySelector('.play-icon');
-        const pauseIcon = button.querySelector('.pause-icon');
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
+        button.querySelector('.play-icon').style.display = 'block';
+        button.querySelector('.pause-icon').style.display = 'none';
     }
 }
 
@@ -833,42 +857,19 @@ function setVolume(audioId, value) {
     }
 }
 
-// Initialize page
+// Initialize the auto-detection system
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page loaded, initializing...'); // Debug log
+    console.log('Starting audiobook auto-detection...');
     createParticles();
+    scanForAudiobooks();
     
-    // Set initial volume
-    const audios = document.querySelectorAll('audio');
-    console.log('Found audio elements:', audios.length); // Debug log
-    
-    audios.forEach((audio, index) => {
-        audio.volume = 0.7;
-        console.log(`Audio ${index + 1} initialized:`, audio.src); // Debug log
-        
-        // Add error event listener
-        audio.addEventListener('error', function(e) {
-            console.error(`Audio ${index + 1} error:`, e);
-        });
-        
-        // Add loadstart event listener
-        audio.addEventListener('loadstart', function() {
-            console.log(`Audio ${index + 1} started loading`);
-        });
-        
-        // Add canplay event listener
-        audio.addEventListener('canplay', function() {
-            console.log(`Audio ${index + 1} can play`);
-        });
+    // Add parallax effect
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const soundField = document.querySelector('.sound-field');
+        if (soundField) {
+            soundField.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
     });
 });
-
-// Add parallax effect
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const soundField = document.querySelector('.sound-field');
-    if (soundField) {
-        soundField.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
-    </script>
+</script>
