@@ -209,6 +209,22 @@
             box-shadow: 0 25px 50px rgba(100, 181, 246, 0.3);
         }
 
+        /* Special styling for Book 10 */
+        .book-card.book-10 {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.08);
+        }
+
+        .book-card.book-10:hover {
+            border-color: #ffd700;
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4);
+        }
+
+        .book-card.book-10 .book-number {
+            color: #ff6b35;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+
         /* Book visual representation */
         .book-visual {
             width: 120px;
@@ -348,6 +364,17 @@
             font-weight: bold;
         }
 
+        .status-new {
+            color: #ff6b35;
+            font-weight: bold;
+            animation: pulse-new 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-new {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         .status-coming-soon {
             color: #ffd700;
             font-style: italic;
@@ -471,9 +498,9 @@
             <div class="series-progress">
                 <h3 class="progress-title">Series Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 60%;"></div>
+                    <div class="progress-fill" style="width: 66.7%;"></div>
                 </div>
-                <p class="progress-text">9 of 15 books available • Series continuing</p>
+                <p class="progress-text">10 of 15 books available • Series continuing</p>
             </div>
 
             <!-- Books grid -->
@@ -522,14 +549,14 @@
                             <div class="book-spine"></div>
                         </div>
                     </div>
-                    <h3 class="book-title">The First Signal</h3>
+                    <h3 class="book-title">The Last Axiom</h3>
                     <p class="book-subtitle">Contact Protocols</p>
                     <div class="book-meta">
                         <span class="status-available">Available Now</span>
                         <span>~30 min read</span>
                     </div>
                     <p class="book-description">
-                        Dr. Nancy Hammond at Caltech makes humanity's first confirmed contact with 
+                        Derek Devon and Dr. Nancy Hammond make humanity's first confirmed contact with 
                         cosmic intelligence. But the entities reaching out to Earth have been 
                         preparing for this moment far longer than anyone realizes.
                     </p>
@@ -540,7 +567,7 @@
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles/Book2.pdf" download="The_Last_Axiom_Book2_The_First_Signal.pdf" class="book-button download-button">
+                        <a href="BookFiles/Book2.pdf" download="The_Last_Axiom_Book2_The_Last_Axiom.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -697,16 +724,16 @@
                             <div class="book-spine"></div>
                         </div>
                     </div>
-                    <h3 class="book-title">The Integration</h3>
-                    <p class="book-subtitle">Joining the Network</p>
+                    <h3 class="book-title">The Recursive Code</h3>
+                    <p class="book-subtitle">AI Awakening</p>
                     <div class="book-meta">
                         <span class="status-available">Available Now</span>
                         <span>~30 min read</span>
                     </div>
                     <p class="book-description">
-                        Earth officially joins the galactic network as humanity takes its first steps 
-                        as cosmic citizens. The integration process reveals new capabilities, new 
-                        responsibilities, and the beginning of humanity's true journey among the stars.
+                        Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as 
+                        AI systems worldwide achieve self-awareness. The debate over consciousness, humanity, 
+                        and evolution reaches its climax in the most watched broadcast in human history.
                     </p>
                     <div class="book-actions">
                         <a href="BookFiles/Book7.pdf" target="_blank" class="book-button read-button">
@@ -715,7 +742,7 @@
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles/Book7.pdf" download="The_Last_Axiom_Book7_The_Integration.pdf" class="book-button download-button">
+                        <a href="BookFiles/Book7.pdf" download="The_Last_Axiom_Book7_The_Recursive_Code.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -732,132 +759,169 @@
                             <div class="book-spine"></div>
                         </div>
                     </div>
-                    <h3 class="book-title">Cosmic Consequences</h3>
-                    <p class="book-subtitle">New Realities</p>
+                    <h3 class="book-title">Quantum Memory</h3>
+                    <p class="book-subtitle">Memories Across Realities</p>
                     <div class="book-meta">
                         <span class="status-available">Available Now</span>
                         <span>~30 min read</span>
                     </div>
-                    <p class="book-description">
-                        As humanity adapts to life in the galactic network, unexpected consequences emerge. 
-                        The cosmic modifications have deeper implications than anyone realized, and 
-                        humanity must learn to navigate their new reality with wisdom and courage.
-                    </p>
-                    <div class="book-actions">
-                        <a href="BookFiles/Book8.pdf" target="_blank" class="book-button read-button">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
-                            </svg>
-                            Read Online
-                        </a>
-                        <a href="BookFiles/Book8.pdf" download="The_Last_Axiom_Book8_Cosmic_Consequences.pdf" class="book-button download-button">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                            </svg>
-                            Download PDF
-                        </a>
-                    </div>
-                </div>
+                    <p class="book-description
+                        Dr. James "Jimmy D" Dianda experiences vivid memories from parallel timelines as 
+                       Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality 
+                       becomes permeable, revealing that consciousness can access experiences across 
+                       multiple versions of existence.
+                   </p>
+                   <div class="book-actions">
+                       <a href="BookFiles/Book8.pdf" target="_blank" class="book-button read-button">
+                           <svg class="icon" viewBox="0 0 24 24">
+                               <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                           </svg>
+                           Read Online
+                       </a>
+                       <a href="BookFiles/Book8.pdf" download="The_Last_Axiom_Book8_Quantum_Memory.pdf" class="book-button download-button">
+                           <svg class="icon" viewBox="0 0 24 24">
+                               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                           </svg>
+                           Download PDF
+                       </a>
+                   </div>
+               </div>
 
-                <!-- Book 9 -->
-                <div class="book-card">
-                    <div class="book-visual">
-                        <div class="book-cover">
-                            <div class="book-number">9</div>
-                            <div class="book-spine"></div>
-                        </div>
-                    </div>
-                    <h3 class="book-title">The Protocol Sleepers</h3>
-                    <p class="book-subtitle">Resistance and Choice</p>
-                    <div class="book-meta">
-                        <span class="status-available">Available Now</span>
-                        <span>~30 min read</span>
-                    </div>
-                    <p class="book-description">
-                        Dr. Lena Hanson leads humanity's resistance against cosmic integration, developing 
-                        Protocol Sleepers to restore original physics. But when the cosmic entities offer 
-                        her the tools to fight them, the question becomes: what does it truly mean to remain human?
-                    </p>
-                    <div class="book-actions">
-                        <a href="BookFiles/Book9.pdf" target="_blank" class="book-button read-button">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
-                            </svg>
-                            Read Online
-                        </a>
-                        <a href="BookFiles/Book9.pdf" download="The_Last_Axiom_Book9_The_Protocol_Sleepers.pdf" class="book-button download-button">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                            </svg>
-                            Download PDF
-                        </a>
-                    </div>
-                </div>
+               <!-- Book 9 -->
+               <div class="book-card">
+                   <div class="book-visual">
+                       <div class="book-cover">
+                           <div class="book-number">9</div>
+                           <div class="book-spine"></div>
+                       </div>
+                   </div>
+                   <h3 class="book-title">The Protocol Sleepers</h3>
+                   <p class="book-subtitle">Resistance and Choice</p>
+                   <div class="book-meta">
+                       <span class="status-available">Available Now</span>
+                       <span>~30 min read</span>
+                   </div>
+                   <p class="book-description">
+                       Dr. Lena Hanson leads humanity's resistance against cosmic integration, developing 
+                       Protocol Sleepers to restore original physics. But when the cosmic entities offer 
+                       her the tools to fight them, the question becomes: what does it truly mean to remain human?
+                   </p>
+                   <div class="book-actions">
+                       <a href="BookFiles/Book9.pdf" target="_blank" class="book-button read-button">
+                           <svg class="icon" viewBox="0 0 24 24">
+                               <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                           </svg>
+                           Read Online
+                       </a>
+                       <a href="BookFiles/Book9.pdf" download="The_Last_Axiom_Book9_The_Protocol_Sleepers.pdf" class="book-button download-button">
+                           <svg class="icon" viewBox="0 0 24 24">
+                               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                           </svg>
+                           Download PDF
+                       </a>
+                   </div>
+               </div>
 
-                <!-- Placeholder for remaining books -->
-                <div class="book-card" style="opacity: 0.3;">
-                    <div class="book-visual">
-                        <div class="book-cover">
-                            <div class="book-number">...</div>
-                            <div class="book-spine"></div>
-                        </div>
-                    </div>
-                    <h3 class="book-title">More Adventures Await</h3>
-                    <p class="book-subtitle">The Journey Continues</p>
-                    <div class="book-meta">
-                        <span class="status-coming-soon">6 More Books Coming</span>
-                        <span>Epic Conclusion</span>
-                    </div>
-                    <p class="book-description">
-                        The cosmic saga continues as humanity navigates its new place in the universe. 
-                        Experience the final chapters of this epic journey where love, consciousness, 
-                        and cosmic truth converge in ways that will reshape reality itself.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+               <!-- Book 10 - NEW! -->
+               <div class="book-card book-10">
+                   <div class="book-visual">
+                       <div class="book-cover">
+                           <div class="book-number">10</div>
+                           <div class="book-spine"></div>
+                       </div>
+                   </div>
+                   <h3 class="book-title">Critical Mass</h3>
+                   <p class="book-subtitle">Nuclear Crisis</p>
+                   <div class="book-meta">
+                       <span class="status-new">NEW RELEASE!</span>
+                       <span>~30 min read</span>
+                   </div>
+                   <p class="book-description">
+                       A nuclear reactor crisis at Russia's Kursk facility becomes humanity's ultimate test. 
+                       As Dr. Hanson's Protocol Sleeper technology clashes with cosmic assistance, 
+                       Derek, Maureen, and Nancy race against time while Poe—now with James Bond swagger—
+                       coordinates the most dangerous rescue in galactic history.
+                   </p>
+                   <div class="book-actions">
+                       <a href="BookFiles/Book10.pdf" target="_blank" class="book-button read-button">
+                           <svg class="icon" viewBox="0 0 24 24">
+                               <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                           </svg>
+                           Read Online
+                       </a>
+                       <a href="BookFiles/Book10.pdf" download="The_Last_Axiom_Book10_Critical_Mass.pdf" class="book-button download-button">
+                           <svg class="icon" viewBox="0 0 24 24">
+                               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                           </svg>
+                           Download PDF
+                       </a>
+                   </div>
+               </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
-    </footer>
+               <!-- Placeholder for remaining books -->
+               <div class="book-card" style="opacity: 0.3;">
+                   <div class="book-visual">
+                       <div class="book-cover">
+                           <div class="book-number">...</div>
+                           <div class="book-spine"></div>
+                       </div>
+                   </div>
+                   <h3 class="book-title">More Adventures Await</h3>
+                   <p class="book-subtitle">The Journey Continues</p>
+                   <div class="book-meta">
+                       <span class="status-coming-soon">5 More Books Coming</span>
+                       <span>Epic Conclusion</span>
+                   </div>
+                   <p class="book-description">
+                       The cosmic saga continues as humanity navigates its new place in the universe. 
+                       Experience the final chapters of this epic journey where love, consciousness, 
+                       and cosmic truth converge in ways that will reshape reality itself.
+                   </p>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <script>
-        // Generate floating particles
-        function createParticles() {
-            const particleContainer = document.getElementById('particles');
-            const particleCount = 50;
+   <!-- Footer -->
+   <footer>
+       <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
+   </footer>
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particleContainer.appendChild(particle);
-            }
-        }
+   <script>
+       // Generate floating particles
+       function createParticles() {
+           const particleContainer = document.getElementById('particles');
+           const particleCount = 50;
 
-        // Initialize particles on load
-        document.addEventListener('DOMContentLoaded', createParticles);
+           for (let i = 0; i < particleCount; i++) {
+               const particle = document.createElement('div');
+               particle.className = 'particle';
+               particle.style.left = Math.random() * 100 + '%';
+               particle.style.animationDelay = Math.random() * 15 + 's';
+               particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+               particleContainer.appendChild(particle);
+           }
+       }
 
-        // Add parallax effect to quantum field
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const quantumField = document.querySelector('.quantum-field');
-            quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
+       // Initialize particles on load
+       document.addEventListener('DOMContentLoaded', createParticles);
 
-        // Update progress bar animation
-        function animateProgress() {
-            const progressFill = document.querySelector('.progress-fill');
-            setTimeout(() => {
-                progressFill.style.width = '6.67%';
-            }, 500);
-        }
+       // Add parallax effect to quantum field
+       window.addEventListener('scroll', () => {
+           const scrolled = window.pageYOffset;
+           const quantumField = document.querySelector('.quantum-field');
+           quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+       });
 
-        document.addEventListener('DOMContentLoaded', animateProgress);
-    </script>
+       // Update progress bar animation
+       function animateProgress() {
+           const progressFill = document.querySelector('.progress-fill');
+           setTimeout(() => {
+               progressFill.style.width = '66.7%';
+           }, 500);
+       }
+
+       document.addEventListener('DOMContentLoaded', animateProgress);
+   </script>
 </body>
 </html>
