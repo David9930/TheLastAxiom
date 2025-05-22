@@ -168,10 +168,28 @@
             font-size: 1.2rem;
             line-height: 1.6;
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
             color: #d0d0d0;
             opacity: 0;
             animation: fade-in-up 1s ease-out 1s forwards;
+        }
+
+        .journey-expansion {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fade-in-up 1s ease-out 1.5s forwards;
+        }
+
+        .journey-detail {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #b8b8b8;
+            font-style: italic;
+            padding: 1.5rem;
+            background: rgba(100, 181, 246, 0.05);
+            border-left: 3px solid #64b5f6;
+            border-radius: 0 10px 10px 0;
         }
 
         @keyframes fade-in-up {
@@ -185,7 +203,216 @@
             }
         }
 
-        /* Navigation buttons */
+        /* Characters section */
+        .characters-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .characters-container {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #64b5f6;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #bb86fc;
+            margin-bottom: 3rem;
+            font-style: italic;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .character-card:hover::before {
+            left: 100%;
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+            border-color: #64b5f6;
+            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.2);
+        }
+
+        .character-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #64b5f6, #bb86fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .char-icon {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .character-name {
+            font-size: 1.5rem;
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .character-title {
+            font-size: 1rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .character-description {
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .character-trait {
+            background: rgba(187, 134, 252, 0.1);
+            border-left: 3px solid #bb86fc;
+            padding: 1rem;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.95rem;
+            color: #e8d4f8;
+            text-align: left;
+        }
+
+        /* Cosmic connection tease */
+        .cosmic-connection-tease {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .connection-visual {
+            position: relative;
+            height: 60px;
+            margin-bottom: 2rem;
+        }
+
+        .connection-line {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700, #bb86fc, #64b5f6);
+            background-size: 300% 100%;
+            animation: connection-flow 3s ease-in-out infinite;
+            border-radius: 1px;
+        }
+
+        @keyframes connection-flow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .connection-nodes {
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .node {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .node-1 {
+            background: #64b5f6;
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.6);
+            animation: pulse-node 2s ease-in-out infinite;
+        }
+
+        .node-2 {
+            background: #bb86fc;
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.6);
+            animation: pulse-node 2s ease-in-out infinite 0.7s;
+        }
+
+        .node-3 {
+            background: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            animation: pulse-node 2s ease-in-out infinite 1.4s;
+        }
+
+        @keyframes pulse-node {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .connection-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #e8e8e8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cosmic-wink {
+            display: inline-block;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -361,6 +588,17 @@
                 upon which all science rests—that reality's rules remain constant—may be the greatest 
                 illusion of all.
             </p>
+
+            <!-- Expanded journey description -->
+            <div class="journey-expansion">
+                <p class="journey-detail">
+                    From Professor Finch's final revelation about universal constants to the cosmic network that 
+                    spans galaxies, witness humanity's transformation from isolated observers to active 
+                    participants in the universe's grand design. Each 30-minute story builds upon the last, 
+                    weaving together quantum consciousness, temporal anomalies, and the discovery that love 
+                    itself may be one of the cosmos' most elegant integration protocols.
+                </p>
+            </div>
             
             <div class="nav-buttons">
                 <a href="#books" class="nav-button">
@@ -377,6 +615,97 @@
                 </a>
             </div>
         </section>
+
+        <!-- Characters section -->
+        <section class="characters-section">
+            <div class="characters-container">
+                <h2 class="section-title">Meet the Architects of Discovery</h2>
+                <p class="section-subtitle">
+                    Three brilliant minds whose separate journeys toward cosmic truth will converge 
+                    in ways that transcend both science and the heart.
+                </p>
+                
+                <div class="characters-grid">
+                    <div class="character-card">
+                        <div class="character-icon">
+                            <svg class="char-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                <circle cx="12" cy="8" r="2"/>
+                                <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="character-name">Dr. Derek Devon</h3>
+                        <p class="character-title">Astrophysicist & Cosmic Observer</p>
+                        <p class="character-description">
+                            Inheriting Professor Finch's revolutionary Protocol, Derek becomes humanity's first 
+                            witness to universal constant modifications. From his observatory in Chile's Atacama 
+                            Desert, he discovers that the cosmos itself is being rewritten—and that the 
+                            programmers have noticed him noticing.
+                        </p>
+                        <div class="character-trait">
+                            <em>"The universe's source code is being updated. The question is: by whom?"</em>
+                        </div>
+                    </div>
+
+                    <div class="character-card">
+                        <div class="character-icon">
+                            <svg class="char-icon" viewBox="0 0 24 24">
+                                <path d="M9.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.12.23-2.18.64-3.15L6.5 10.5c-.28-.28-.28-.72 0-1s.72-.28 1 0L9.15 11.36c.97-.41 2.03-.64 3.15-.64s2.18.23 3.15.64L17.5 9.5c.28-.28.72-.28 1 0s.28.72 0 1L16.64 12.36c.41.97.64 2.03.64 3.15 0 4.41-3.59 8-8 8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="character-name">Dr. Nancy Hammond</h3>
+                        <p class="character-title">Quantum Integration Specialist</p>
+                        <p class="character-description">
+                            At Caltech's advanced physics lab, Nancy pioneers quantum consciousness research 
+                            while facilitating humanity's first successful contact with cosmic intelligence. 
+                            Her work reveals that consciousness itself may be the key to navigating reality's 
+                            new, fluid rules.
+                        </p>
+                        <div class="character-trait">
+                            <em>"We're not losing our humanity. We're discovering what humanity can become."</em>
+                        </div>
+                    </div>
+
+                    <div class="character-card">
+                        <div class="character-icon">
+                            <svg class="char-icon" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="character-name">Dr. Maureen Hamner</h3>
+                        <p class="character-title">Quantum Consciousness Researcher</p>
+                        <p class="character-description">
+                            Working at CERN's cutting-edge facilities, Maureen discovers that human observation 
+                            can directly influence quantum field states. Her research becomes crucial when she 
+                            realizes that consciousness and cosmic modification may be more intimately connected 
+                            than anyone imagined.
+                        </p>
+                        <div class="character-trait">
+                            <em>"Reality is collaborative. Conscious minds shape probability fields through focused intention."</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cosmic-connection-tease">
+                    <div class="connection-visual">
+                        <div class="connection-line"></div>
+                        <div class="connection-nodes">
+                            <div class="node node-1"></div>
+                            <div class="node node-2"></div>
+                            <div class="node node-3"></div>
+                        </div>
+                    </div>
+                    <p class="connection-text">
+                        As the cosmic modifications accelerate, these three brilliant minds will discover that their 
+                        separate research paths are converging toward something extraordinary—a connection that transcends 
+                        professional collaboration and ventures into realms where quantum entanglement meets matters of the heart. 
+                        For in a universe where consciousness shapes reality itself, perhaps love is the most powerful 
+                        force of all... <span class="cosmic-wink">✨</span>
+                    </p>
+                </div>
+            </div>
 
         <!-- Series info -->
         <section class="series-info">
