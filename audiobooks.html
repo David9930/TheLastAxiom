@@ -455,6 +455,21 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Special highlight for multiple voices */
+        .multiple-voices-note {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #ffab91;
+        }
+
+        .multiple-voices-note .icon {
+            color: #ff6b35;
+            margin-right: 0.5rem;
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .audiobook-header {
@@ -521,12 +536,12 @@
             <div class="series-progress">
                 <h3 class="progress-title">Audio Series Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 13.33%;"></div>
+                    <div class="progress-fill" style="width: 20%;"></div>
                 </div>
-                <p class="progress-text">2 of 15 audiobooks available • More coming soon</p>
+                <p class="progress-text">3 of 15 audiobooks available • More coming soon</p>
             </div>
 
-          <!-- Footer -->
+            <!-- Footer -->
     <footer>
         <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
     </footer>
@@ -535,7 +550,7 @@
 const TOTAL_BOOKS = 15;
 let availableBooks = [];
 
-// Book metadata - you only need to update this array when adding new books
+// Book metadata - updated to include Book 7 with multiple voices
 const bookMetadata = [
     {
         title: "Finch's Raven",
@@ -566,6 +581,19 @@ const bookMetadata = [
         subtitle: "Consciousness and Reality",
         description: "Dr. Maureen Hamner at CERN discovers that her consciousness research isn't just theoretical—human observation directly influences quantum fields. When government agents pressure her to contain cosmic contact, she must choose between safety and evolution.",
         duration: "~30 min listen"
+    },
+    {
+        title: "Harmonic Convergence",
+        subtitle: "Love Across Time",
+        description: "At the Tokyo Institute, Dr. Kenji Nakamura witnesses samurai warriors materializing in his lab as time itself becomes fluid. Meanwhile, Derek and Maureen's growing connection reveals that love may be the universe's most powerful integration protocol.",
+        duration: "~30 min listen"
+    },
+    {
+        title: "The Recursive Code",
+        subtitle: "AI Awakening",
+        description: "Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance.",
+        duration: "~30 min listen",
+        multipleVoices: true
     }
     // Add more books here as you create them
 ];
@@ -656,6 +684,16 @@ function createAudiobookCard(bookNumber, isAvailable, bookData) {
     const audioPlayer = isAvailable ? createWorkingAudioPlayer(bookNumber) : createDisabledAudioPlayer();
     const downloadButton = isAvailable ? createWorkingDownloadButton(bookNumber, bookData.title) : createDisabledDownloadButton();
     
+    // Add multiple voices notice for Book 7
+    const multipleVoicesNote = bookData.multipleVoices ? `
+        <div class="multiple-voices-note">
+            <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <strong>Enhanced Audio Experience:</strong> This audiobook features multiple talented voice actors bringing different characters to life, creating a rich, immersive listening experience that goes beyond traditional single-narrator audiobooks.
+        </div>
+    ` : '';
+    
     return `
         <div class="audiobook-card" ${opacity}>
             <div class="audiobook-header">
@@ -669,6 +707,7 @@ function createAudiobookCard(bookNumber, isAvailable, bookData) {
                         ${status}
                         <span>${bookData.duration}</span>
                         <span>MP3 Format</span>
+                        ${bookData.multipleVoices ? '<span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>' : ''}
                     </div>
                 </div>
             </div>
@@ -676,6 +715,8 @@ function createAudiobookCard(bookNumber, isAvailable, bookData) {
             <p class="audiobook-description">
                 ${bookData.description}
             </p>
+            
+            ${multipleVoicesNote}
             
             ${audioPlayer}
             
@@ -873,3 +914,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+</body>
+</html>
