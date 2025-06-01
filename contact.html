@@ -334,6 +334,88 @@
             margin-bottom: 1rem;
         }
 
+        /* Contact form styles */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #64b5f6;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 10px;
+            color: #e8e8e8;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #64b5f6;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        .submit-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(45deg, rgba(100, 181, 246, 0.3), rgba(187, 134, 252, 0.3));
+            border: 2px solid #64b5f6;
+            border-radius: 10px;
+            color: #e8e8e8;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, rgba(100, 181, 246, 0.6), rgba(187, 134, 252, 0.6));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .contact-grid {
@@ -495,16 +577,62 @@
                 </div>
             </div>
 
-            <!-- Final note -->
-            <div class="contact-section" style="background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3);">
+            <!-- Contact form and email options -->
+            <div class="contact-section" style="background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); margin-top: 3rem;">
                 <div class="section-icon">🚀</div>
                 <h2 class="section-title" style="color: #ffd700;">Ready to Connect?</h2>
                 <div class="section-content">
                     <p>Whether you want to dive deep into the mysteries of cosmic consciousness, share your thoughts on the latest book, or just say hello from wherever you are in the universe, I'm looking forward to hearing from you.</p>
                     <p><em>After all, meaningful connections are what make any adventure—literary or otherwise—truly worthwhile.</em></p>
-                    <a href="mailto:derekdevon17@gmail.com?subject=Hello from a Last Axiom Reader" class="email-link" style="border-color: #ffd700; background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));">
-                        Send Your Message
-                    </a>
+                    
+                    <!-- Contact Form -->
+                    <form action="https://formspree.io/f/xwpbkeqj" method="POST" class="contact-form" style="margin-top: 2rem;">
+                        <div class="form-group">
+                            <label for="name">Your Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Choose a topic...</option>
+                                <option value="Book Discussion">Book Discussion</option>
+                                <option value="Reader Feedback">Reader Feedback</option>
+                                <option value="Media Inquiry">Media Inquiry</option>
+                                <option value="Collaboration">Collaboration</option>
+                                <option value="Science & Tech">Science & Tech</option>
+                                <option value="Life Beyond Books">Life Beyond Books</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message:</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Share your thoughts, questions, or cosmic theories..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; margin-right: 0.5rem;">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
+                            Send Your Message
+                        </button>
+                    </form>
+                    
+                    <!-- Alternative email link -->
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 215, 0, 0.3);">
+                        <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #b0b0b0;">
+                            <em>Prefer email? No problem!</em>
+                        </p>
+                        <a href="mailto:derekdevon17@gmail.com?subject=Hello from a Last Axiom Reader" class="email-link" style="border-color: #ffd700; background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));">
+                            📧 Email Me Directly
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
