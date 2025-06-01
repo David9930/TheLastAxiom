@@ -540,11 +540,14 @@
                 </div>
                 <p class="progress-text">3 of 15 audiobooks available • More coming soon</p>
             </div>
+        </div>
+    </div>
 
-            <!-- Footer -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
     </footer>
+
 <script>
 // Auto-detection system for audiobooks
 const TOTAL_BOOKS = 15;
@@ -595,7 +598,6 @@ const bookMetadata = [
         duration: "~30 min listen",
         multipleVoices: true
     }
-    // Add more books here as you create them
 ];
 
 // Generate floating particles
@@ -657,21 +659,33 @@ function generateAudiobookCards() {
     const existingCards = container.querySelectorAll('.audiobook-card');
     existingCards.forEach(card => card.remove());
     
-    // Show available books plus 2-3 "coming soon" preview cards
-    const totalToShow = Math.max(availableBooks.length + 2, 5);
+    // Create a list of all books to show - available books plus some preview books
+    const booksToShow = new Set();
     
-    for (let i = 1; i <= totalToShow; i++) {
-        const isAvailable = availableBooks.includes(i);
-        const bookData = bookMetadata[i - 1] || {
-            title: `Book ${i}`,
+    // Add all available books
+    availableBooks.forEach(bookNum => booksToShow.add(bookNum));
+    
+    // Add preview books (fill gaps and add a few more)
+    for (let i = 1; i <= Math.max(availableBooks.length + 3, 8); i++) {
+        booksToShow.add(i);
+    }
+    
+    // Convert to sorted array
+    const sortedBooks = Array.from(booksToShow).sort((a, b) => a - b);
+    
+    // Generate cards for all books in the list
+    sortedBooks.forEach(bookNumber => {
+        const isAvailable = availableBooks.includes(bookNumber);
+        const bookData = bookMetadata[bookNumber - 1] || {
+            title: `Book ${bookNumber}`,
             subtitle: "Coming Soon",
             description: "This audiobook will be available soon.",
             duration: "~30 min listen"
         };
         
-        const cardHTML = createAudiobookCard(i, isAvailable, bookData);
+        const cardHTML = createAudiobookCard(bookNumber, isAvailable, bookData);
         container.insertAdjacentHTML('beforeend', cardHTML);
-    }
+    });
 }
 
 // Create individual audiobook card HTML
@@ -684,7 +698,7 @@ function createAudiobookCard(bookNumber, isAvailable, bookData) {
     const audioPlayer = isAvailable ? createWorkingAudioPlayer(bookNumber) : createDisabledAudioPlayer();
     const downloadButton = isAvailable ? createWorkingDownloadButton(bookNumber, bookData.title) : createDisabledDownloadButton();
     
-    // Add multiple voices notice for Book 7
+    // Add multiple voices notice for books with multiple voices
     const multipleVoicesNote = bookData.multipleVoices ? `
         <div class="multiple-voices-note">
             <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
@@ -815,7 +829,7 @@ function createDisabledDownloadButton() {
     `;
 }
 
-// Audio player functions (keeping your existing working functions)
+// Audio player functions
 function togglePlay(audioId) {
     const audio = document.getElementById(audioId);
     if (!audio) return;
