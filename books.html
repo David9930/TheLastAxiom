@@ -209,20 +209,31 @@
             box-shadow: 0 25px 50px rgba(100, 181, 246, 0.3);
         }
 
-        /* Special styling for Book 10 */
-        .book-card.book-10 {
+        /* Special styling for new releases */
+        .book-card.new-release {
             border: 2px solid rgba(255, 215, 0, 0.5);
             background: rgba(255, 215, 0, 0.08);
         }
 
-        .book-card.book-10:hover {
+        .book-card.new-release:hover {
             border-color: #ffd700;
             box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4);
         }
 
-        .book-card.book-10 .book-number {
+        .book-card.new-release .book-number {
             color: #ff6b35;
             text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Special styling for two-part books */
+        .book-card.two-part {
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            background: rgba(138, 43, 226, 0.08);
+        }
+
+        .book-card.two-part:hover {
+            border-color: #bb86fc;
+            box-shadow: 0 25px 50px rgba(138, 43, 226, 0.4);
         }
 
         /* Book visual representation */
@@ -260,6 +271,12 @@
             color: #ffd700;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             margin-bottom: 0.5rem;
+        }
+
+        /* Two-part book number styling */
+        .book-number.two-part {
+            font-size: 2.2rem;
+            line-height: 1.2;
         }
 
         .book-spine {
@@ -430,6 +447,21 @@
             font-size: 1rem;
         }
 
+        /* Two-part book notice */
+        .two-part-notice {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #d1c4e9;
+        }
+
+        .two-part-notice .icon {
+            color: #bb86fc;
+            margin-right: 0.5rem;
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             nav {
@@ -498,9 +530,9 @@
             <div class="series-progress">
                 <h3 class="progress-title">Series Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 66.7%;"></div>
+                    <div class="progress-fill" style="width: 93.3%;"></div>
                 </div>
-                <p class="progress-text">10 of 15 books available • Series continuing</p>
+                <p class="progress-text">14 of 15 books available • Epic conclusion approaching</p>
             </div>
 
             <!-- Books grid -->
@@ -765,199 +797,310 @@
                         <span class="status-available">Available Now</span>
                         <span>~30 min read</span>
                     </div>
-                    <p class="book-description
+                    <p class="book-description">
                         Dr. James "Jimmy D" Dianda experiences vivid memories from parallel timelines as 
-                       Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality 
-                       becomes permeable, revealing that consciousness can access experiences across 
-                       multiple versions of existence.
-                   </p>
-                   <div class="book-actions">
-                       <a href="BookFiles/Book8.pdf" target="_blank" class="book-button read-button">
-                           <svg class="icon" viewBox="0 0 24 24">
-                               <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
-                           </svg>
-                           Read Online
-                       </a>
-                       <a href="BookFiles/Book8.pdf" download="The_Last_Axiom_Book8_Quantum_Memory.pdf" class="book-button download-button">
-                           <svg class="icon" viewBox="0 0 24 24">
-                               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                           </svg>
-                           Download PDF
-                       </a>
-                   </div>
-               </div>
+                        Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality 
+                        becomes permeable, revealing that consciousness can access experiences across 
+                        multiple versions of existence.
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book8.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book8.pdf" download="The_Last_Axiom_Book8_Quantum_Memory.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
 
-               <!-- Book 9 -->
-               <div class="book-card">
-                   <div class="book-visual">
-                       <div class="book-cover">
-                           <div class="book-number">9</div>
-                           <div class="book-spine"></div>
-                       </div>
-                   </div>
-                   <h3 class="book-title">The Protocol Sleepers</h3>
-                   <p class="book-subtitle">Resistance and Choice</p>
-                   <div class="book-meta">
-                       <span class="status-available">Available Now</span>
-                       <span>~30 min read</span>
-                   </div>
-                   <p class="book-description">
-                       Dr. Lena Hanson leads humanity's resistance against cosmic integration, developing 
-                       Protocol Sleepers to restore original physics. But when the cosmic entities offer 
-                       her the tools to fight them, the question becomes: what does it truly mean to remain human?
-                   </p>
-                   <div class="book-actions">
-                       <a href="BookFiles/Book9.pdf" target="_blank" class="book-button read-button">
-                           <svg class="icon" viewBox="0 0 24 24">
-                               <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
-                           </svg>
-                           Read Online
-                       </a>
-                       <a href="BookFiles/Book9.pdf" download="The_Last_Axiom_Book9_The_Protocol_Sleepers.pdf" class="book-button download-button">
-                           <svg class="icon" viewBox="0 0 24 24">
-                               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                           </svg>
-                           Download PDF
-                       </a>
-                   </div>
-               </div>
+                <!-- Book 9 -->
+                <div class="book-card">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number">9</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">The Protocol Sleepers</h3>
+                    <p class="book-subtitle">Resistance and Choice</p>
+                    <div class="book-meta">
+                        <span class="status-available">Available Now</span>
+                        <span>~30 min read</span>
+                    </div>
+                    <p class="book-description">
+                        Dr. Lena Hanson leads humanity's resistance against cosmic integration, developing 
+                        Protocol Sleepers to restore original physics. But when the cosmic entities offer 
+                        her the tools to fight them, the question becomes: what does it truly mean to remain human?
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book9.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book9.pdf" download="The_Last_Axiom_Book9_The_Protocol_Sleepers.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
 
-               <!-- Book 10 - NEW! -->
-               <div class="book-card book-10">
-                   <div class="book-visual">
-                       <div class="book-cover">
-                           <div class="book-number">10</div>
-                           <div class="book-spine"></div>
-                       </div>
-                   </div>
-                   <h3 class="book-title">Critical Mass</h3>
-                   <p class="book-subtitle">Nuclear Crisis</p>
-                   <div class="book-meta">
-                       <span class="status-new">NEW RELEASE!</span>
-                       <span>~30 min read</span>
-                   </div>
-                   <p class="book-description">
-                       A nuclear reactor crisis at Russia's Kursk facility becomes humanity's ultimate test. 
-                       As Dr. Hanson's Protocol Sleeper technology clashes with cosmic assistance, 
-                       Derek, Maureen, and Nancy race against time while Poe—now with James Bond swagger—
-                       coordinates the most dangerous rescue in galactic history.
-                   </p>
-                   <div class="book-actions">
-                       <a href="BookFiles/Book10.pdf" target="_blank" class="book-button read-button">
-                           <svg class="icon" viewBox="0 0 24 24">
-                               <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
-                           </svg>
-                           Read Online
-                       </a>
-                       <a href="BookFiles/Book10.pdf" download="The_Last_Axiom_Book10_Critical_Mass.pdf" class="book-button download-button">
-                           <svg class="icon" viewBox="0 0 24 24">
-                               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                           </svg>
-                           Download PDF
-                       </a>
-                   </div>
-               </div>
+                <!-- Book 10 - NEW! -->
+                <div class="book-card new-release">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number">10</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">Critical Mass</h3>
+                    <p class="book-subtitle">Nuclear Crisis</p>
+                    <div class="book-meta">
+                        <span class="status-new">NEW RELEASE!</span>
+                        <span>~30 min read</span>
+                    </div>
+                    <p class="book-description">
+                        A nuclear reactor crisis at Russia's Kursk facility becomes humanity's ultimate test. 
+                        As Dr. Hanson's Protocol Sleeper technology clashes with cosmic assistance, 
+                        Derek, Maureen, and Nancy race against time while Poe—now with James Bond swagger—
+                        coordinates the most dangerous rescue in galactic history.
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book10.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book10.pdf" download="The_Last_Axiom_Book10_Critical_Mass.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Book 11 - NEW! -->
-<div class="book-card book-10">
-    <div class="book-visual">
-        <div class="book-cover">
-            <div class="book-number">11</div>
-            <div class="book-spine"></div>
+                <div class="book-card new-release">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number">11</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">Beyond the Axiom</h3>
+                    <p class="book-subtitle">The Final Choice</p>
+                    <div class="book-meta">
+                        <span class="status-new">NEW RELEASE!</span>
+                        <span>~30 min read</span>
+                    </div>
+                    <p class="book-description">
+                        As humanity faces the ultimate choice between cosmic transcendence and remaining biologically human, 
+                        Derek and Maureen's relationship deepens amid species-level decisions. When the Architect reveals 
+                        that most civilizations abandon biological forms entirely, humanity must forge an unprecedented 
+                        experimental path—or face extinction when multiple realities converge in seven years.
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book11.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book11.pdf" download="The_Last_Axiom_Book11_Beyond_the_Axiom.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Book 12 - NEW! (placeholder until content provided) -->
+                <div class="book-card new-release">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number">12</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">Book 12 Title</h3>
+                    <p class="book-subtitle">Placeholder Subtitle</p>
+                    <div class="book-meta">
+                        <span class="status-new">NEW RELEASE!</span>
+                        <span>~30 min read</span>
+                    </div>
+                    <p class="book-description">
+                        [Description will be added once Book 12 content is provided]
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book12.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book12.pdf" download="The_Last_Axiom_Book12.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Book 13A - NEW! Two-Part -->
+                <div class="book-card new-release two-part">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number two-part">13A</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">Book 13A Title</h3>
+                    <p class="book-subtitle">Part One</p>
+                    <div class="book-meta">
+                        <span class="status-new">NEW RELEASE!</span>
+                        <span>~30 min read</span>
+                    </div>
+                    <div class="two-part-notice">
+                        <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <strong>Epic Two-Part Story:</strong> This story was too expansive for a single book and has been divided into two interconnected parts for the optimal reading experience.
+                    </div>
+                    <p class="book-description">
+                        [Description will be added once Book 13A content is provided]
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book13A.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book13A.pdf" download="The_Last_Axiom_Book13A.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Book 13B - NEW! Two-Part -->
+                <div class="book-card new-release two-part">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number two-part">13B</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">Book 13B Title</h3>
+                    <p class="book-subtitle">Part Two</p>
+                    <div class="book-meta">
+                        <span class="status-new">NEW RELEASE!</span>
+                        <span>~30 min read</span>
+                    </div>
+                    <div class="two-part-notice">
+                        <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <strong>Epic Conclusion:</strong> The thrilling second part of this expanded story. Best read after Part One for the complete experience.
+                    </div>
+                    <p class="book-description">
+                        [Description will be added once Book 13B content is provided]
+                    </p>
+                    <div class="book-actions">
+                        <a href="BookFiles/Book13B.pdf" target="_blank" class="book-button read-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
+                            </svg>
+                            Read Online
+                        </a>
+                        <a href="BookFiles/Book13B.pdf" download="The_Last_Axiom_Book13B.pdf" class="book-button download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Placeholder for remaining books -->
+                <div class="book-card" style="opacity: 0.3;">
+                    <div class="book-visual">
+                        <div class="book-cover">
+                            <div class="book-number">...</div>
+                            <div class="book-spine"></div>
+                        </div>
+                    </div>
+                    <h3 class="book-title">The Final Adventure</h3>
+                    <p class="book-subtitle">Epic Conclusion</p>
+                    <div class="book-meta">
+                        <span class="status-coming-soon">1 More Book Coming</span>
+                        <span>Epic Finale</span>
+                    </div>
+                    <p class="book-description">
+                        The cosmic saga reaches its ultimate conclusion as humanity's choice between 
+                        transcendence and tradition determines the fate of consciousness itself across 
+                        multiple realities. The final axiom awaits.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <h3 class="book-title">Beyond the Axiom</h3>
-    <p class="book-subtitle">The Final Choice</p>
-    <div class="book-meta">
-        <span class="status-new">NEW RELEASE!</span>
-        <span>~30 min read</span>
-    </div>
-    <p class="book-description">
-        As humanity faces the ultimate choice between cosmic transcendence and remaining biologically human, 
-        Derek and Maureen's relationship deepens amid species-level decisions. When the Architect reveals 
-        that most civilizations abandon biological forms entirely, humanity must forge an unprecedented 
-        experimental path—or face extinction when multiple realities converge in seven years.
-    </p>
-    <div class="book-actions">
-        <a href="BookFiles/Book11.pdf" target="_blank" class="book-button read-button">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
-            </svg>
-            Read Online
-        </a>
-        <a href="BookFiles/Book11.pdf" download="The_Last_Axiom_Book11_Beyond_the_Axiom.pdf" class="book-button download-button">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Download PDF
-        </a>
-    </div>
-</div>
 
-               <!-- Placeholder for remaining books -->
-               <div class="book-card" style="opacity: 0.3;">
-                   <div class="book-visual">
-                       <div class="book-cover">
-                           <div class="book-number">...</div>
-                           <div class="book-spine"></div>
-                       </div>
-                   </div>
-                   <h3 class="book-title">More Adventures Await</h3>
-                   <p class="book-subtitle">The Journey Continues</p>
-                   <div class="book-meta">
-                       <span class="status-coming-soon">5 More Books Coming</span>
-                       <span>Epic Conclusion</span>
-                   </div>
-                   <p class="book-description">
-                       The cosmic saga continues as humanity navigates its new place in the universe. 
-                       Experience the final chapters of this epic journey where love, consciousness, 
-                       and cosmic truth converge in ways that will reshape reality itself.
-                   </p>
-               </div>
-           </div>
-       </div>
-   </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
+    </footer>
 
-   <!-- Footer -->
-   <footer>
-       <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
-   </footer>
+    <script>
+        // Generate floating particles
+        function createParticles() {
+            const particleContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-   <script>
-       // Generate floating particles
-       function createParticles() {
-           const particleContainer = document.getElementById('particles');
-           const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
 
-           for (let i = 0; i < particleCount; i++) {
-               const particle = document.createElement('div');
-               particle.className = 'particle';
-               particle.style.left = Math.random() * 100 + '%';
-               particle.style.animationDelay = Math.random() * 15 + 's';
-               particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-               particleContainer.appendChild(particle);
-           }
-       }
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', createParticles);
 
-       // Initialize particles on load
-       document.addEventListener('DOMContentLoaded', createParticles);
+        // Add parallax effect to quantum field
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const quantumField = document.querySelector('.quantum-field');
+            quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
 
-       // Add parallax effect to quantum field
-       window.addEventListener('scroll', () => {
-           const scrolled = window.pageYOffset;
-           const quantumField = document.querySelector('.quantum-field');
-           quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
-       });
+        // Update progress bar animation
+        function animateProgress() {
+            const progressFill = document.querySelector('.progress-fill');
+            setTimeout(() => {
+                progressFill.style.width = '93.3%';
+            }, 500);
+        }
 
-       // Update progress bar animation
-       function animateProgress() {
-           const progressFill = document.querySelector('.progress-fill');
-           setTimeout(() => {
-               progressFill.style.width = '66.7%';
-           }, 500);
-       }
-
-       document.addEventListener('DOMContentLoaded', animateProgress);
-   </script>
+        document.addEventListener('DOMContentLoaded', animateProgress);
+    </script>
 </body>
 </html>
