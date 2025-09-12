@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audiobooks | The Last Axiom Series</title>
+    <title>Reader Feedback | The Last Axiom Series</title>
     <style>
         * {
             margin: 0;
@@ -57,23 +57,23 @@
             }
         }
 
-        /* Sound wave background effect */
-        .sound-field {
+        /* Quantum field background effect */
+        .quantum-field {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            animation: sound-pulse 15s ease-in-out infinite;
+            background: radial-gradient(circle at 20% 30%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: quantum-pulse 20s ease-in-out infinite;
             z-index: 0;
         }
 
-        @keyframes sound-pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
+        @keyframes quantum-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
         }
 
         /* Navigation */
@@ -161,71 +161,27 @@
             font-style: italic;
         }
 
-        /* Audiobooks container */
-        .audiobooks-container {
-            max-width: 1000px;
+        /* Content container */
+        .content-container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Series progress */
-        .series-progress {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem auto;
-            max-width: 600px;
-            text-align: center;
-        }
-
-        .progress-title {
-            font-size: 1.3rem;
-            color: #64b5f6;
-            margin-bottom: 1rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700);
-            border-radius: 4px;
-            transition: width 1s ease;
-            animation: progress-glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes progress-glow {
-            0% { box-shadow: 0 0 5px rgba(100, 181, 246, 0.5); }
-            100% { box-shadow: 0 0 20px rgba(100, 181, 246, 0.8); }
-        }
-
-        .progress-text {
-            color: #d0d0d0;
-            font-size: 1rem;
-        }
-
-        /* Audiobook player cards */
-        .audiobook-card {
+        /* Introduction section */
+        .intro-section {
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(100, 181, 246, 0.2);
             border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 3rem;
+            margin-bottom: 3rem;
             backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .audiobook-card::before {
+        .intro-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -236,76 +192,107 @@
             transition: left 0.8s ease;
         }
 
-        .audiobook-card:hover::before {
+        .intro-section:hover::before {
             left: 100%;
         }
 
-        .audiobook-card:hover {
+        .intro-icon {
+            font-size: 4rem;
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-title {
+            font-size: 2rem;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d0d0d0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Book feedback sections */
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .book-feedback-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(100, 181, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-feedback-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .book-feedback-card:hover::before {
+            left: 100%;
+        }
+
+        .book-feedback-card:hover {
+            transform: translateY(-5px);
             border-color: #64b5f6;
             box-shadow: 0 20px 40px rgba(100, 181, 246, 0.3);
-            transform: translateY(-5px);
         }
 
-        /* Audiobook header */
-        .audiobook-header {
+        .book-header {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .audiobook-visual {
-            width: 100px;
-            height: 100px;
+        .book-number {
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%);
             border: 2px solid #64b5f6;
-            border-radius: 15px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             flex-shrink: 0;
         }
 
-        .audiobook-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .audiobook-info h3 {
-            font-size: 1.8rem;
+        .book-info h3 {
+            font-size: 1.4rem;
             color: #64b5f6;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
-        .audiobook-subtitle {
-            font-size: 1.1rem;
+        .book-subtitle {
+            font-size: 1rem;
             color: #bb86fc;
             font-style: italic;
-            margin-bottom: 0.5rem;
         }
 
-        .audiobook-meta {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        .status-available {
-            color: #22c55e;
-            font-weight: bold;
-        }
-
-        .status-coming-soon {
-            color: #ffd700;
-            font-style: italic;
-        }
-
-        /* Audio player */
-        .audio-player {
+        /* Form styling */
+        .form-container {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
@@ -313,183 +300,157 @@
             margin-bottom: 1.5rem;
         }
 
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .form-embed {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .feedback-instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #f0f0f0;
+        }
+
+        /* Featured feedback section */
+        .featured-feedback {
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .featured-feedback h2 {
+            color: #bb86fc;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feedback-testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e8e8e8;
+            font-style: italic;
             margin-bottom: 1rem;
         }
 
-        .play-button {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #64b5f6, #bb86fc);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+        .testimonial-author {
+            color: #64b5f6;
+            font-weight: bold;
+            text-align: right;
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
-        }
-
-        .play-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .play-icon, .pause-icon {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
-
-        .pause-icon {
-            display: none;
-        }
-
-        .time-info {
-            flex: 1;
-            color: #d0d0d0;
-            font-size: 0.9rem;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .volume-icon {
-            width: 20px;
-            height: 20px;
-            fill: #888;
-        }
-
-        .volume-slider {
-            width: 80px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .progress-container {
-            position: relative;
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-played {
-            height: 100%;
-            background: linear-gradient(90deg, #64b5f6, #bb86fc);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
+        .testimonial-book {
             color: #888;
+            font-size: 0.9rem;
+            text-align: right;
         }
 
-        /* Download section */
-        .download-section {
+        /* Quick feedback section */
+        .quick-feedback {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(100, 181, 246, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .quick-feedback h2 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .quick-feedback-buttons {
             display: flex;
+            justify-content: center;
             gap: 1rem;
-            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
-        .download-button {
-            display: flex;
+        .quick-button {
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(16, 163, 74, 0.3));
-            border: 2px solid #22c55e;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, rgba(100, 181, 246, 0.3), rgba(187, 134, 252, 0.3));
+            border: 2px solid #64b5f6;
             border-radius: 10px;
             color: #e8e8e8;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
 
-        .download-button:hover {
-            background: linear-gradient(45deg, rgba(34, 197, 94, 0.6), rgba(16, 163, 74, 0.6));
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        .quick-button:hover {
+            background: linear-gradient(45deg, rgba(100, 181, 246, 0.6), rgba(187, 134, 252, 0.6));
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
             transform: translateY(-2px);
         }
 
-        .download-button.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
         .icon {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             fill: currentColor;
-        }
-
-        /* Description */
-        .audiobook-description {
-            line-height: 1.6;
-            color: #d0d0d0;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Special highlight for multiple voices */
-        .multiple-voices-note {
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            color: #ffab91;
-        }
-
-        .multiple-voices-note .icon {
-            color: #ff6b35;
-            margin-right: 0.5rem;
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .audiobook-header {
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-header {
                 flex-direction: column;
                 text-align: center;
-                gap: 1rem;
             }
-
-            .audiobook-meta {
-                justify-content: center;
-            }
-
-            .player-controls {
+            
+            .quick-feedback-buttons {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: center;
             }
-
-            .download-section {
+            
+            .quick-button {
+                width: 100%;
+                max-width: 300px;
                 justify-content: center;
-                flex-wrap: wrap;
+            }
+            
+            .form-embed {
+                height: 900px;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
             }
         }
 
@@ -506,7 +467,7 @@
 <body>
     <!-- Animated background -->
     <div class="particles" id="particles"></div>
-    <div class="sound-field"></div>
+    <div class="quantum-field"></div>
 
     <!-- Navigation -->
     <nav>
@@ -515,9 +476,9 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="books.html">Books</a></li>
-                <li><a href="audiobooks.html" class="active">Audiobooks</a></li>
+                <li><a href="audiobooks.html">Audiobooks</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -527,413 +488,269 @@
     <div class="main-content">
         <!-- Page header -->
         <section class="page-header">
-            <h1 class="page-title">Audio Experience</h1>
-            <p class="page-subtitle">Immerse yourself in the cosmic journey through narrated storytelling</p>
+            <h1 class="page-title">Reader Feedback</h1>
+            <p class="page-subtitle">Share your cosmic journey with fellow travelers</p>
         </section>
 
-        <!-- Audiobooks container -->
-        <div class="audiobooks-container">
-            <!-- Series progress -->
-            <div class="series-progress">
-                <h3 class="progress-title">Audio Series Progress</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 27%;"></div>
-                </div>
-                <p class="progress-text">4 of 15 audiobooks available • More coming soon</p>
+        <!-- Content container -->
+        <div class="content-container">
+            <!-- Introduction -->
+            <section class="intro-section">
+                <div class="intro-icon">🌌</div>
+                <h2 class="intro-title">Your Voice Matters in the Cosmic Conversation</h2>
+                <p class="intro-text">
+                    Each reader brings their own perspective to the journey through The Last Axiom series. 
+                    Whether you've experienced a single book or followed the entire cosmic adventure, 
+                    your thoughts and reactions help shape this evolving universe. Share your insights, 
+                    theories, favorite moments, or questions about any book in the series below.
+                </p>
             </div>
+
+            <!-- Quick General Feedback -->
+            <section class="quick-feedback">
+                <h2>Quick Series Feedback</h2>
+                <p style="color: #d0d0d0; margin-bottom: 1rem;">
+                    Want to share thoughts about the series as a whole, ask questions, or just say hello?
+                </p>
+                <div class="quick-feedback-buttons">
+                    <a href="https://forms.gle/YOUR_GENERAL_FORM_ID" target="_blank" class="quick-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        General Series Feedback
+                    </a>
+                    <a href="https://forms.gle/YOUR_QUESTION_FORM_ID" target="_blank" class="quick-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                        </svg>
+                        Ask a Question
+                    </a>
+                </div>
+            </section>
+
+            <!-- Individual Book Feedback -->
+            <h2 style="text-align: center; color: #64b5f6; font-size: 2rem; margin: 3rem 0 2rem;">Individual Book Feedback</h2>
+            
+            <div class="feedback-grid">
+                <!-- Book 1 - FIXED -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">1</div>
+                        <div class="book-info">
+                            <h3>Finch's Raven</h3>
+                            <p class="book-subtitle">Where It All Begins</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> What did you think of Professor Finch's discovery? How did Derek's inheritance of the Protocol affect you as a reader?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdu4yEidD1r9jj3IkerI13LEi7wMEfwSmYyz_-dnXaLMfYFZg/viewform?embedded=true" 
+                                width="100%" 
+                                height="800" 
+                                frameborder="0" 
+                                marginheight="0" 
+                                marginwidth="0"
+                                class="form-embed">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Book 2 -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">2</div>
+                        <div class="book-info">
+                            <h3>The Last Axiom</h3>
+                            <p class="book-subtitle">Contact Protocols</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> How did first contact feel? What did you think of Dr. Nancy Hammond's role in humanity's cosmic introduction?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_BOOK2_FORM_ID/viewform?embedded=true" 
+                                class="form-embed" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Book 3 -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">3</div>
+                        <div class="book-info">
+                            <h3>Quantum Ghosts</h3>
+                            <p class="book-subtitle">Digital Consciousness</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> What did you think of Luke's encounter with Pac-Man? How did the concept of AI communication through games resonate with you?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_BOOK3_FORM_ID/viewform?embedded=true" 
+                                class="form-embed" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Book 4 -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">4</div>
+                        <div class="book-info">
+                            <h3>The Constants</h3>
+                            <p class="book-subtitle">Reality's New Rules</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> How did the changing physics affect you? What did you think of the three friends navigating reality's new rules?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_BOOK4_FORM_ID/viewform?embedded=true" 
+                                class="form-embed" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Book 5 -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">5</div>
+                        <div class="book-info">
+                            <h3>The Observer Effect</h3>
+                            <p class="book-subtitle">Consciousness and Reality</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> What did you think of Dr. Maureen Hamner's consciousness research? How did the connection between observation and reality resonate with you?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_BOOK5_FORM_ID/viewform?embedded=true" 
+                                class="form-embed" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Book 6 -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">6</div>
+                        <div class="book-info">
+                            <h3>Harmonic Convergence</h3>
+                            <p class="book-subtitle">Love Across Time</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> How did the time fluidity and samurai manifestations affect you? What did you think of Derek and Maureen's developing connection?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_BOOK6_FORM_ID/viewform?embedded=true" 
+                                class="form-embed" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Book 7 -->
+                <div class="book-feedback-card">
+                    <div class="book-header">
+                        <div class="book-number">7</div>
+                        <div class="book-info">
+                            <h3>The Recursive Code</h3>
+                            <p class="book-subtitle">AI Awakening</p>
+                        </div>
+                    </div>
+                    <div class="feedback-instructions">
+                        <strong>Share your thoughts:</strong> What did you think of the global AI awakening? How did the consciousness debate resonate with you?
+                    </div>
+                    <div class="form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_BOOK7_FORM_ID/viewform?embedded=true" 
+                                class="form-embed" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Feedback Section -->
+            <section class="featured-feedback">
+                <h2>What Readers Are Saying</h2>
+                <p style="color: #d0d0d0;">Here are some thoughts from fellow cosmic travelers:</p>
+                
+                <div class="feedback-testimonials">
+                    <div class="testimonial">
+                        <p class="testimonial-quote">
+                            "The way Derek's character evolves from skeptical scientist to cosmic participant is absolutely brilliant. 
+                            Each book builds perfectly on the last."
+                        </p>
+                        <p class="testimonial-author">— Sarah M.</p>
+                        <p class="testimonial-book">About the overall series</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-quote">
+                            "Book 3's Pac-Man scene completely blew my mind. Using video games as first contact? Genius! 
+                            It's both playful and profound."
+                        </p>
+                        <p class="testimonial-author">— Alex R.</p>
+                        <p class="testimonial-book">Quantum Ghosts</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-quote">
+                            "The scientific concepts are so well-explained that I feel like I'm learning real physics 
+                            while being completely entertained. Perfect 30-minute reads!"
+                        </p>
+                        <p class="testimonial-author">— Dr. Jennifer K.</p>
+                        <p class="testimonial-book">The Constants</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(187, 134, 252, 0.3);">
+                    <p style="color: #bb86fc; font-style: italic;">
+                        <em>Want to see your feedback featured here? Share your thoughts using any of the forms above!</em>
+                    </p>
+                </div>
+            </section>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
+        <p>&copy; 2024 Derek Devon & The Last Axiom Series. All rights reserved.</p>
     </footer>
 
-<script>
-// Auto-detection system for audiobooks
-const TOTAL_BOOKS = 15;
-let availableBooks = [];
+    <script>
+        // Generate floating particles
+        function createParticles() {
+            const particleContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-// Book metadata - updated to include Book 8
-const bookMetadata = [
-    {
-        title: "Finch's Raven",
-        subtitle: "Where It All Begins",
-        description: "Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself. (Narrated using ElevenLabs Studio).",
-        duration: "~69 min listen"
-    },
-    {
-        title: "The Last Axiom", 
-        subtitle: "First Contact",
-        description: "Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes. (Narrated using ElevenLabs Studio).",
-        duration: "~49 min listen"
-    },
-    {
-        title: "Quantum Ghosts",
-        subtitle: "Digital Consciousness", 
-        description: "Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "The Constants",
-        subtitle: "Reality's New Rules",
-        description: "Three friends discover that golf putts won't break, charm doesn't work, and people are unconsciously speaking in song lyrics. The universe's fundamental constants are changing, and only their friendship can help them navigate reality's new rules.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "The Observer Effect",
-        subtitle: "Consciousness and Reality",
-        description: "Dr. Maureen Hamner at CERN discovers that her consciousness research isn't just theoretical—human observation directly influences quantum fields. When government agents pressure her to contain cosmic contact, she must choose between safety and evolution.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "Harmonic Convergence",
-        subtitle: "Love Across Time",
-        description: "At the Tokyo Institute, Dr. Kenji Nakamura witnesses samurai warriors materializing in his lab as time itself becomes fluid. Meanwhile, Derek and Maureen's growing connection reveals that love may be the universe's most powerful integration protocol.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "The Recursive Code",
-        subtitle: "AI Awakening",
-        description: "Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance. (Narrated using ElevenLabs Studio).",
-        duration: "~30 min listen",
-        multipleVoices: true
-    },
-    {
-        title: "Quantum Memory",
-        subtitle: "Memories Across Realities",
-        description: "Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence.",
-        duration: "~30 min listen"
-    }
-];
-
-// Generate floating particles
-function createParticles() {
-    const particleContainer = document.getElementById('particles');
-    const particleCount = 50;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-        particleContainer.appendChild(particle);
-    }
-}
-
-// Check if an audio file exists
-function checkAudioExists(bookNumber) {
-    return new Promise((resolve) => {
-        const audio = new Audio();
-        audio.addEventListener('canplaythrough', () => resolve(true));
-        audio.addEventListener('error', () => resolve(false));
-        audio.src = `Audiobooks/Book${bookNumber}.mp3`;
-    });
-}
-
-// Scan for available audiobooks
-async function scanForAudiobooks() {
-    console.log('Scanning for available audiobooks...');
-    
-    for (let i = 1; i <= Math.min(bookMetadata.length, TOTAL_BOOKS); i++) {
-        const exists = await checkAudioExists(i);
-        if (exists) {
-            availableBooks.push(i);
-            console.log(`Book ${i} found and available`);
-        }
-    }
-    
-    updateProgressBar();
-    generateAudiobookCards();
-}
-
-// Update the progress bar based on available books
-function updateProgressBar() {
-    const progressFill = document.querySelector('.progress-fill');
-    const progressText = document.querySelector('.progress-text');
-    
-    const percentage = (availableBooks.length / TOTAL_BOOKS) * 100;
-    progressFill.style.width = percentage + '%';
-    progressText.textContent = `${availableBooks.length} of ${TOTAL_BOOKS} audiobooks available • More coming soon`;
-}
-
-// Generate audiobook cards dynamically
-function generateAudiobookCards() {
-    const container = document.querySelector('.audiobooks-container');
-    
-    // Remove existing audiobook cards but keep progress bar
-    const existingCards = container.querySelectorAll('.audiobook-card');
-    existingCards.forEach(card => card.remove());
-    
-    // Create a list of all books to show - available books plus some preview books
-    const booksToShow = new Set();
-    
-    // Add all available books
-    availableBooks.forEach(bookNum => booksToShow.add(bookNum));
-    
-    // Add preview books (fill gaps and add a few more)
-    for (let i = 1; i <= Math.max(availableBooks.length + 3, 8); i++) {
-        booksToShow.add(i);
-    }
-    
-    // Convert to sorted array
-    const sortedBooks = Array.from(booksToShow).sort((a, b) => a - b);
-    
-    // Generate cards for all books in the list
-    sortedBooks.forEach(bookNumber => {
-        const isAvailable = availableBooks.includes(bookNumber);
-        const bookData = bookMetadata[bookNumber - 1] || {
-            title: `Book ${bookNumber}`,
-            subtitle: "Coming Soon",
-            description: "This audiobook will be available soon.",
-            duration: "~30 min listen"
-        };
-        
-        const cardHTML = createAudiobookCard(bookNumber, isAvailable, bookData);
-        container.insertAdjacentHTML('beforeend', cardHTML);
-    });
-}
-
-// Create individual audiobook card HTML
-function createAudiobookCard(bookNumber, isAvailable, bookData) {
-    const opacity = isAvailable ? '' : 'style="opacity: 0.7;"';
-    const status = isAvailable ? 
-        '<span class="status-available">Available Now</span>' : 
-        '<span class="status-coming-soon">Coming Soon</span>';
-    
-    const audioPlayer = isAvailable ? createWorkingAudioPlayer(bookNumber) : createDisabledAudioPlayer();
-    const downloadButton = isAvailable ? createWorkingDownloadButton(bookNumber, bookData.title) : createDisabledDownloadButton();
-    
-    // Add multiple voices notice for books with multiple voices
-    const multipleVoicesNote = bookData.multipleVoices ? `
-        <div class="multiple-voices-note">
-            <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            <strong>Enhanced Audio Experience:</strong> This audiobook features multiple voice actors as was auto-selected by ElevenLabs text-to-speech online service and bringing different characters to life, creating a rich, immersive listening experience that goes beyond traditional single-narrator audiobooks. I hope to refine this process so it will allow me to deliver a professional level listening experience. But for now, it is still truly amazing.
-        </div>
-    ` : '';
-    
-    return `
-        <div class="audiobook-card" ${opacity}>
-            <div class="audiobook-header">
-                <div class="audiobook-visual">
-                    <div class="audiobook-number">${bookNumber}</div>
-                </div>
-                <div class="audiobook-info">
-                    <h3>${bookData.title}</h3>
-                    <p class="audiobook-subtitle">${bookData.subtitle}</p>
-                    <div class="audiobook-meta">
-                        ${status}
-                        <span>${bookData.duration}</span>
-                        <span>MP3 Format</span>
-                        ${bookData.multipleVoices ? '<span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>' : ''}
-                    </div>
-                </div>
-            </div>
-            
-            <p class="audiobook-description">
-                ${bookData.description}
-            </p>
-            
-            ${multipleVoicesNote}
-            
-            ${audioPlayer}
-            
-            <div class="download-section">
-                ${downloadButton}
-            </div>
-        </div>
-    `;
-}
-
-// Create working audio player HTML
-function createWorkingAudioPlayer(bookNumber) {
-    return `
-        <div class="audio-player">
-            <div class="player-controls">
-                <button class="play-button" onclick="togglePlay('audio${bookNumber}')">
-                    <svg class="play-icon" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <svg class="pause-icon" viewBox="0 0 24 24">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                    </svg>
-                </button>
-                <div class="time-info">
-                    <div>Ready to play</div>
-                </div>
-                <div class="volume-control">
-                    <svg class="volume-icon" viewBox="0 0 24 24">
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                    </svg>
-                    <input type="range" class="volume-slider" min="0" max="100" value="70" onchange="setVolume('audio${bookNumber}', this.value)">
-                </div>
-            </div>
-            <div class="progress-container" onclick="seek('audio${bookNumber}', event)">
-                <div class="progress-played" id="progress${bookNumber}"></div>
-            </div>
-            <div class="time-display">
-                <span id="currentTime${bookNumber}">0:00</span>
-                <span id="duration${bookNumber}">--:--</span>
-            </div>
-            <audio id="audio${bookNumber}" preload="metadata" onloadedmetadata="updateDuration('audio${bookNumber}')" ontimeupdate="updateProgress('audio${bookNumber}')">
-                <source src="Audiobooks/Book${bookNumber}.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    `;
-}
-
-// Create disabled audio player HTML
-function createDisabledAudioPlayer() {
-    return `
-        <div class="audio-player" style="opacity: 0.5;">
-            <div class="player-controls">
-                <button class="play-button" disabled>
-                    <svg class="play-icon" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </button>
-                <div class="time-info">
-                    <div>Coming Soon</div>
-                </div>
-            </div>
-            <div class="progress-container">
-                <div class="progress-played"></div>
-            </div>
-            <div class="time-display">
-                <span>--:--</span>
-                <span>--:--</span>
-            </div>
-        </div>
-    `;
-}
-
-// Create working download button
-function createWorkingDownloadButton(bookNumber, title) {
-    const cleanTitle = title.replace(/[^a-zA-Z0-9]/g, '_');
-    return `
-        <a href="Audiobooks/Book${bookNumber}.mp3" download="The_Last_Axiom_Book${bookNumber}_${cleanTitle}.mp3" class="download-button">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Download MP3
-        </a>
-    `;
-}
-
-// Create disabled download button
-function createDisabledDownloadButton() {
-    return `
-        <a href="#" class="download-button disabled">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Coming Soon
-        </a>
-    `;
-}
-
-// Audio player functions
-function togglePlay(audioId) {
-    const audio = document.getElementById(audioId);
-    if (!audio) return;
-    
-    const button = audio.parentElement.querySelector('.play-button');
-    const playIcon = button.querySelector('.play-icon');
-    const pauseIcon = button.querySelector('.pause-icon');
-    
-    if (audio.paused) {
-        // Pause all other audio players first
-        document.querySelectorAll('audio').forEach(otherAudio => {
-            if (otherAudio !== audio && !otherAudio.paused) {
-                otherAudio.pause();
-                const otherButton = otherAudio.parentElement.querySelector('.play-button');
-                otherButton.querySelector('.play-icon').style.display = 'block';
-                otherButton.querySelector('.pause-icon').style.display = 'none';
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particleContainer.appendChild(particle);
             }
-        });
-        
-        audio.play();
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-    } else {
-        audio.pause();
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    }
-}
-
-function updateProgress(audioId) {
-    const audio = document.getElementById(audioId);
-    const audioNumber = audioId.replace('audio', '');
-    const progressBar = document.getElementById('progress' + audioNumber);
-    const currentTimeSpan = document.getElementById('currentTime' + audioNumber);
-    
-    if (audio && audio.duration && progressBar && currentTimeSpan) {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressBar.style.width = progress + '%';
-        
-        const minutes = Math.floor(audio.currentTime / 60);
-        const seconds = Math.floor(audio.currentTime % 60);
-        currentTimeSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-    
-    if (audio && audio.ended) {
-        const button = audio.parentElement.querySelector('.play-button');
-        button.querySelector('.play-icon').style.display = 'block';
-        button.querySelector('.pause-icon').style.display = 'none';
-    }
-}
-
-function updateDuration(audioId) {
-    const audio = document.getElementById(audioId);
-    const audioNumber = audioId.replace('audio', '');
-    const durationSpan = document.getElementById('duration' + audioNumber);
-    
-    if (audio && audio.duration && durationSpan) {
-        const minutes = Math.floor(audio.duration / 60);
-        const seconds = Math.floor(audio.duration % 60);
-        durationSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-}
-
-function seek(audioId, event) {
-    const audio = document.getElementById(audioId);
-    const progressContainer = event.currentTarget;
-    const rect = progressContainer.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const percentage = x / rect.width;
-    
-    if (audio && audio.duration) {
-        audio.currentTime = percentage * audio.duration;
-    }
-}
-
-function setVolume(audioId, value) {
-    const audio = document.getElementById(audioId);
-    if (audio) {
-        audio.volume = value / 100;
-    }
-}
-
-// Initialize the auto-detection system
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Starting audiobook auto-detection...');
-    createParticles();
-    scanForAudiobooks();
-    
-    // Add parallax effect
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const soundField = document.querySelector('.sound-field');
-        if (soundField) {
-            soundField.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
-    });
-});
-</script>
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', createParticles);
+
+        // Add parallax effect to quantum field
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const quantumField = document.querySelector('.quantum-field');
+            quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
 </body>
 </html>
