@@ -302,7 +302,7 @@
 
         .form-embed {
             width: 100%;
-            min-height: 400px;
+            height: 800px;
             border: none;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.95);
@@ -441,6 +441,10 @@
                 justify-content: center;
             }
             
+            .form-embed {
+                height: 900px;
+            }
+            
             nav {
                 padding: 1rem;
             }
@@ -528,7 +532,7 @@
             <h2 style="text-align: center; color: #64b5f6; font-size: 2rem; margin: 3rem 0 2rem;">Individual Book Feedback</h2>
             
             <div class="feedback-grid">
-                <!-- Book 1 -->
+                <!-- Book 1 - FIXED -->
                 <div class="book-feedback-card">
                     <div class="book-header">
                         <div class="book-number">1</div>
@@ -541,7 +545,13 @@
                         <strong>Share your thoughts:</strong> What did you think of Professor Finch's discovery? How did Derek's inheritance of the Protocol affect you as a reader?
                     </div>
                     <div class="form-container">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdu4yEidD1r9jj3IkerI13LEi7wMEfwSmYyz_-dnXaLMfYFZg/viewform?embedded=true" width="640" height="2552" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdu4yEidD1r9jj3IkerI13LEi7wMEfwSmYyz_-dnXaLMfYFZg/viewform?embedded=true" 
+                                width="100%" 
+                                height="800" 
+                                frameborder="0" 
+                                marginheight="0" 
+                                marginwidth="0"
+                                class="form-embed">
                             Loading…
                         </iframe>
                     </div>
@@ -647,7 +657,6 @@
                     </div>
                 </div>
 
-                <!-- Continue pattern for remaining books... -->
                 <!-- Book 7 -->
                 <div class="book-feedback-card">
                     <div class="book-header">
@@ -667,8 +676,6 @@
                         </iframe>
                     </div>
                 </div>
-
-                <!-- You can add more books following the same pattern -->
             </div>
 
             <!-- Featured Feedback Section -->
