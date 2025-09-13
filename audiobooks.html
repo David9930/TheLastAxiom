@@ -817,4 +817,123 @@ function createWorkingDownloadButton(bookNumber, title) {
     return `
         <a href="Audiobooks/Book${bookNumber}.mp3" download="The_Last_Axiom_Book${bookNumber}_${cleanTitle}.mp3" class="download-button">
             <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            Download MP3
+        </a>
+    `;
+}
+
+// Create disabled download button
+function createDisabledDownloadButton() {
+    return `
+        <a href="#" class="download-button disabled">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            Coming Soon
+        </a>
+    `;
+}
+
+// Audio player functions
+function togglePlay(audioId) {
+    const audio = document.getElementById(audioId);
+    if (!audio) return;
+    
+    const button = audio.parentElement.querySelector('.play-button');
+    const playIcon = button.querySelector('.play-icon');
+    const pauseIcon = button.querySelector('.pause-icon');
+    
+    if (audio.paused) {
+        // Pause all other audio players first
+        document.querySelectorAll('audio').forEach(otherAudio => {
+            if (otherAudio !== audio && !otherAudio.paused) {
+                otherAudio.pause();
+                const otherButton = otherAudio.parentElement.querySelector('.play-button');
+                otherButton.querySelector('.play-icon').style.display = 'block';
+                otherButton.querySelector('.pause-icon').style.display = 'none';
+            }
+        });
+        
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+    } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+    }
+}
+
+function updateProgress(audioId) {
+    const audio = document.getElementById(audioId);
+    const audioNumber = audioId.replace('audio', '');
+    const progressBar = document.getElementById('progress' + audioNumber);
+    const currentTimeSpan = document.getElementById('currentTime' + audioNumber);
+    
+    if (audio && audio.duration && progressBar && currentTimeSpan) {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = progress + '%';
+        
+        const minutes = Math.floor(audio.currentTime / 60);
+        const seconds = Math.floor(audio.currentTime % 60);
+        currentTimeSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    if (audio && audio.ended) {
+        const button = audio.parentElement.querySelector('.play-button');
+        button.querySelector('.play-icon').style.display = 'block';
+        button.querySelector('.pause-icon').style.display = 'none';
+    }
+}
+
+function updateDuration(audioId) {
+    const audio = document.getElementById(audioId);
+    const audioNumber = audioId.replace('audio', '');
+    const durationSpan = document.getElementById('duration' + audioNumber);
+    
+    if (audio && audio.duration && durationSpan) {
+        const minutes = Math.floor(audio.duration / 60);
+        const seconds = Math.floor(audio.duration % 60);
+        durationSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+}
+
+function seek(audioId, event) {
+    const audio = document.getElementById(audioId);
+    const progressContainer = event.currentTarget;
+    const rect = progressContainer.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const percentage = x / rect.width;
+    
+    if (audio && audio.duration) {
+        audio.currentTime = percentage * audio.duration;
+    }
+}
+
+function setVolume(audioId, value) {
+    const audio = document.getElementById(audioId);
+    if (audio) {
+        audio.volume = value / 100;
+    }
+}
+
+// Initialize the auto-detection system
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Starting audiobook auto-detection...');
+    createParticles();
+    scanForAudiobooks();
+    
+    // Add parallax effect
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const soundField = document.querySelector('.sound-field');
+        if (soundField) {
+            soundField.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+});
+</script>
+</body>
+</html>
