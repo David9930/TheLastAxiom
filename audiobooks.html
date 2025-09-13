@@ -152,7 +152,7 @@
             height: 100%;
             background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700);
             border-radius: 4px;
-            width: 27%;
+            width: 35%;
         }
 
         .progress-text {
@@ -234,7 +234,7 @@
             font-size: 0.95rem;
         }
 
-        /* Simple audio player */
+        /* Audio player */
         .audio-player {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -243,9 +243,76 @@
             margin-bottom: 1.5rem;
         }
 
-        .simple-player {
-            text-align: center;
-            color: #d0d0d0;
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .play-button {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #64b5f6, #bb86fc);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+        }
+
+        .play-icon, .pause-icon {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .pause-icon {
+            display: none;
+        }
+
+        .progress-container {
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-current {
+            height: 100%;
+            background: linear-gradient(90deg, #64b5f6, #bb86fc);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #b0b0b0;
+            margin-top: 0.5rem;
+        }
+
+        .actual-audio {
+            width: 100%;
+            margin-top: 1rem;
         }
 
         /* Download section */
@@ -266,6 +333,11 @@
             font-size: 0.95rem;
             font-weight: 500;
             transition: all 0.3s ease;
+        }
+
+        .download-button:hover {
+            background: linear-gradient(45deg, rgba(34, 197, 94, 0.5), rgba(16, 163, 74, 0.5));
+            transform: translateY(-2px);
         }
 
         .download-button.disabled {
@@ -298,6 +370,16 @@
             
             .nav-links a {
                 font-size: 0.8rem;
+            }
+
+            .player-controls {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .progress-container {
+                margin: 0;
             }
         }
 
@@ -346,7 +428,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-                <p class="progress-text">4 of 15 audiobooks available • More coming soon</p>
+                <p class="progress-text">5 of 15 audiobooks available • More coming soon</p>
             </div>
 
             <!-- Book 1 -->
@@ -369,7 +451,31 @@
                     Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself.
                 </p>
                 <div class="audio-player">
-                    <div class="simple-player">Audio player will load here</div>
+                    <div class="player-controls">
+                        <button class="play-button" onclick="togglePlay('audio1')">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-track" onclick="seek('audio1', event)">
+                                <div class="progress-current" id="progress1"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime1">0:00</span>
+                                <span id="duration1">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="audio1" class="actual-audio" controls preload="metadata" 
+                           ontimeupdate="updateProgress('audio1')" 
+                           onloadedmetadata="updateDuration('audio1')">
+                        <source src="Audiobooks/Book1.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
                 <div class="download-section">
                     <a href="Audiobooks/Book1.mp3" download="The_Last_Axiom_Book1_Finchs_Raven.mp3" class="download-button">
@@ -401,7 +507,31 @@
                     Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes.
                 </p>
                 <div class="audio-player">
-                    <div class="simple-player">Audio player will load here</div>
+                    <div class="player-controls">
+                        <button class="play-button" onclick="togglePlay('audio2')">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-track" onclick="seek('audio2', event)">
+                                <div class="progress-current" id="progress2"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime2">0:00</span>
+                                <span id="duration2">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="audio2" class="actual-audio" controls preload="metadata" 
+                           ontimeupdate="updateProgress('audio2')" 
+                           onloadedmetadata="updateDuration('audio2')">
+                        <source src="Audiobooks/Book2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
                 <div class="download-section">
                     <a href="Audiobooks/Book2.mp3" download="The_Last_Axiom_Book2_The_Last_Axiom.mp3" class="download-button">
@@ -433,7 +563,31 @@
                     Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication.
                 </p>
                 <div class="audio-player">
-                    <div class="simple-player">Audio player will load here</div>
+                    <div class="player-controls">
+                        <button class="play-button" onclick="togglePlay('audio3')">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-track" onclick="seek('audio3', event)">
+                                <div class="progress-current" id="progress3"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime3">0:00</span>
+                                <span id="duration3">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="audio3" class="actual-audio" controls preload="metadata" 
+                           ontimeupdate="updateProgress('audio3')" 
+                           onloadedmetadata="updateDuration('audio3')">
+                        <source src="Audiobooks/Book3.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
                 <div class="download-section">
                     <a href="Audiobooks/Book3.mp3" download="The_Last_Axiom_Book3_Quantum_Ghosts.mp3" class="download-button">
@@ -466,7 +620,31 @@
                     Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance.
                 </p>
                 <div class="audio-player">
-                    <div class="simple-player">Audio player will load here</div>
+                    <div class="player-controls">
+                        <button class="play-button" onclick="togglePlay('audio7')">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-track" onclick="seek('audio7', event)">
+                                <div class="progress-current" id="progress7"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime7">0:00</span>
+                                <span id="duration7">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="audio7" class="actual-audio" controls preload="metadata" 
+                           ontimeupdate="updateProgress('audio7')" 
+                           onloadedmetadata="updateDuration('audio7')">
+                        <source src="Audiobooks/Book7.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
                 <div class="download-section">
                     <a href="Audiobooks/Book7.mp3" download="The_Last_Axiom_Book7_The_Recursive_Code.mp3" class="download-button">
@@ -498,18 +676,32 @@
                     Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence.
                 </p>
                 <div class="audio-player">
-                    <div class="simple-player">Audio player will load here</div>
+                    <div class="player-controls">
+                        <button class="play-button" onclick="togglePlay('audio8')">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-track" onclick="seek('audio8', event)">
+                                <div class="progress-current" id="progress8"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime8">0:00</span>
+                                <span id="duration8">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="audio8" class="actual-audio" controls preload="metadata" 
+                           ontimeupdate="updateProgress('audio8')" 
+                           onloadedmetadata="updateDuration('audio8')">
+                        <source src="Audiobooks/Book8.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
-                <div class="download-section">
-                    <a href="Audiobooks/Book8.mp3" download="The_Last_Axiom_Book8_Quantum_Memory.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
-            </div>
-
                 <div class="download-section">
                     <a href="Audiobooks/Book8.mp3" download="The_Last_Axiom_Book8_Quantum_Memory.mp3" class="download-button">
                         <svg class="icon" viewBox="0 0 24 24">
@@ -539,7 +731,7 @@
                     Additional audiobooks are in production and will be available soon. Check back regularly for updates as we continue to bring the entire cosmic journey to audio format.
                 </p>
                 <div class="audio-player">
-                    <div class="simple-player">Coming Soon</div>
+                    <div style="text-align: center; color: #d0d0d0; padding: 2rem;">Coming Soon</div>
                 </div>
                 <div class="download-section">
                     <a href="#" class="download-button disabled">
@@ -559,86 +751,9 @@
     </footer>
 
     <script>
-        // Simple audio player functions - iOS compatible
+        // Audio player functions - iOS compatible
         function togglePlay(audioId) {
             const audio = document.getElementById(audioId);
             if (!audio) return;
             
-            const button = audio.parentElement.querySelector('.play-button');
-            const playIcon = button.querySelector('.play-icon');
-            const pauseIcon = button.querySelector('.pause-icon');
-            
-            if (audio.paused) {
-                // Pause all other audio players first
-                document.querySelectorAll('audio').forEach(otherAudio => {
-                    if (otherAudio !== audio && !otherAudio.paused) {
-                        otherAudio.pause();
-                        const otherButton = otherAudio.parentElement.querySelector('.play-button');
-                        otherButton.querySelector('.play-icon').style.display = 'block';
-                        otherButton.querySelector('.pause-icon').style.display = 'none';
-                    }
-                });
-                
-                audio.play();
-                playIcon.style.display = 'none';
-                pauseIcon.style.display = 'block';
-            } else {
-                audio.pause();
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
-            }
-        }
-
-        function updateProgress(audioId) {
-            const audio = document.getElementById(audioId);
-            const audioNumber = audioId.replace('audio', '');
-            const progressBar = document.getElementById('progress' + audioNumber);
-            const currentTimeSpan = document.getElementById('currentTime' + audioNumber);
-            
-            if (audio && audio.duration && progressBar && currentTimeSpan) {
-                const progress = (audio.currentTime / audio.duration) * 100;
-                progressBar.style.width = progress + '%';
-                
-                const minutes = Math.floor(audio.currentTime / 60);
-                const seconds = Math.floor(audio.currentTime % 60);
-                currentTimeSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            }
-            
-            if (audio && audio.ended) {
-                const button = audio.parentElement.querySelector('.play-button');
-                button.querySelector('.play-icon').style.display = 'block';
-                button.querySelector('.pause-icon').style.display = 'none';
-            }
-        }
-
-        function updateDuration(audioId) {
-            const audio = document.getElementById(audioId);
-            const audioNumber = audioId.replace('audio', '');
-            const durationSpan = document.getElementById('duration' + audioNumber);
-            
-            if (audio && audio.duration && durationSpan) {
-                const minutes = Math.floor(audio.duration / 60);
-                const seconds = Math.floor(audio.duration % 60);
-                durationSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            }
-        }
-
-        function seek(audioId, event) {
-            const audio = document.getElementById(audioId);
-            const progressContainer = event.currentTarget;
-            const rect = progressContainer.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const percentage = x / rect.width;
-            
-            if (audio && audio.duration) {
-                audio.currentTime = percentage * audio.duration;
-            }
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('iOS-compatible audiobooks page loaded with working audio players');
-        });
-    </script>
-</body>
-</html>
+            const button
