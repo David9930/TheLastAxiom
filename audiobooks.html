@@ -516,7 +516,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="books.html">Books</a></li>
                 <li><a href="audiobooks.html" class="active">Audiobooks</a></li>
-                <li><a href="about,html">About</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -536,9 +537,9 @@
             <div class="series-progress">
                 <h3 class="progress-title">Audio Series Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 20%;"></div>
+                    <div class="progress-fill" style="width: 27%;"></div>
                 </div>
-                <p class="progress-text">3 of 15 audiobooks available • More coming soon</p>
+                <p class="progress-text">4 of 15 audiobooks available • More coming soon</p>
             </div>
         </div>
     </div>
@@ -553,7 +554,7 @@
 const TOTAL_BOOKS = 15;
 let availableBooks = [];
 
-// Book metadata - updated to include Book 7 with multiple voices
+// Book metadata - updated to include Book 8
 const bookMetadata = [
     {
         title: "Finch's Raven",
@@ -597,6 +598,12 @@ const bookMetadata = [
         description: "Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance. (Narrated using ElevenLabs Studio).",
         duration: "~30 min listen",
         multipleVoices: true
+    },
+    {
+        title: "Quantum Memory",
+        subtitle: "Memories Across Realities",
+        description: "Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence.",
+        duration: "~30 min listen"
     }
 ];
 
@@ -810,123 +817,4 @@ function createWorkingDownloadButton(bookNumber, title) {
     return `
         <a href="Audiobooks/Book${bookNumber}.mp3" download="The_Last_Axiom_Book${bookNumber}_${cleanTitle}.mp3" class="download-button">
             <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Download MP3
-        </a>
-    `;
-}
-
-// Create disabled download button
-function createDisabledDownloadButton() {
-    return `
-        <a href="#" class="download-button disabled">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Coming Soon
-        </a>
-    `;
-}
-
-// Audio player functions
-function togglePlay(audioId) {
-    const audio = document.getElementById(audioId);
-    if (!audio) return;
-    
-    const button = audio.parentElement.querySelector('.play-button');
-    const playIcon = button.querySelector('.play-icon');
-    const pauseIcon = button.querySelector('.pause-icon');
-    
-    if (audio.paused) {
-        // Pause all other audio players first
-        document.querySelectorAll('audio').forEach(otherAudio => {
-            if (otherAudio !== audio && !otherAudio.paused) {
-                otherAudio.pause();
-                const otherButton = otherAudio.parentElement.querySelector('.play-button');
-                otherButton.querySelector('.play-icon').style.display = 'block';
-                otherButton.querySelector('.pause-icon').style.display = 'none';
-            }
-        });
-        
-        audio.play();
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-    } else {
-        audio.pause();
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    }
-}
-
-function updateProgress(audioId) {
-    const audio = document.getElementById(audioId);
-    const audioNumber = audioId.replace('audio', '');
-    const progressBar = document.getElementById('progress' + audioNumber);
-    const currentTimeSpan = document.getElementById('currentTime' + audioNumber);
-    
-    if (audio && audio.duration && progressBar && currentTimeSpan) {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressBar.style.width = progress + '%';
-        
-        const minutes = Math.floor(audio.currentTime / 60);
-        const seconds = Math.floor(audio.currentTime % 60);
-        currentTimeSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-    
-    if (audio && audio.ended) {
-        const button = audio.parentElement.querySelector('.play-button');
-        button.querySelector('.play-icon').style.display = 'block';
-        button.querySelector('.pause-icon').style.display = 'none';
-    }
-}
-
-function updateDuration(audioId) {
-    const audio = document.getElementById(audioId);
-    const audioNumber = audioId.replace('audio', '');
-    const durationSpan = document.getElementById('duration' + audioNumber);
-    
-    if (audio && audio.duration && durationSpan) {
-        const minutes = Math.floor(audio.duration / 60);
-        const seconds = Math.floor(audio.duration % 60);
-        durationSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-}
-
-function seek(audioId, event) {
-    const audio = document.getElementById(audioId);
-    const progressContainer = event.currentTarget;
-    const rect = progressContainer.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const percentage = x / rect.width;
-    
-    if (audio && audio.duration) {
-        audio.currentTime = percentage * audio.duration;
-    }
-}
-
-function setVolume(audioId, value) {
-    const audio = document.getElementById(audioId);
-    if (audio) {
-        audio.volume = value / 100;
-    }
-}
-
-// Initialize the auto-detection system
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Starting audiobook auto-detection...');
-    createParticles();
-    scanForAudiobooks();
-    
-    // Add parallax effect
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const soundField = document.querySelector('.sound-field');
-        if (soundField) {
-            soundField.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
-});
-</script>
-</body>
-</html>
+                <path d="M19
