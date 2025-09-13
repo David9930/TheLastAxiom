@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Audiobooks | The Last Axiom Series</title>
     <style>
         * {
@@ -17,97 +17,21 @@
             min-height: 100vh;
             color: #e8e8e8;
             overflow-x: hidden;
-            overflow-y: auto;
             position: relative;
-            /* iOS Safari scrolling fixes */
             -webkit-overflow-scrolling: touch;
-            -webkit-text-size-adjust: 100%;
         }
 
-        /* iOS-specific fixes */
-        @supports (-webkit-touch-callout: none) {
-            body {
-                position: relative;
-                min-height: -webkit-fill-available;
-            }
-        }
-
-        /* Animated background particles - iOS optimized */
-        .particles {
+        /* Simplified background - no animations on mobile */
+        .simple-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(100, 149, 237, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
+            z-index: -1;
             pointer-events: none;
-            z-index: 0;
-            /* Prevent iOS touch interference */
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Sound wave background effect - iOS optimized */
-        .sound-field {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            animation: sound-pulse 15s ease-in-out infinite;
-            z-index: 0;
-            pointer-events: none;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-        }
-
-        @keyframes sound-pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
-        }
-
-        /* iOS Safari specific background fixes */
-        @supports (-webkit-touch-callout: none) {
-            .sound-field {
-                position: absolute;
-                height: 200vh;
-            }
-            
-            .particles {
-                position: absolute;
-                height: 200vh;
-            }
         }
 
         /* Navigation */
@@ -121,9 +45,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             padding: 1rem 2rem;
-            /* iOS Safari fix for fixed nav */
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
         }
 
         .nav-container {
@@ -145,64 +66,50 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-links a {
             color: #e8e8e8;
             text-decoration: none;
             transition: color 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: #64b5f6;
         }
 
-        /* Main content - iOS optimized */
+        /* Main content */
         .main-content {
             position: relative;
             z-index: 10;
-            padding-top: 100px;
-            min-height: calc(100vh - 100px);
-            padding-bottom: 4rem;
-        }
-
-        /* iOS specific main content fixes */
-        @supports (-webkit-touch-callout: none) {
-            .main-content {
-                min-height: calc(-webkit-fill-available - 100px);
-                overflow-y: visible;
-            }
+            padding-top: 120px;
+            min-height: 100vh;
+            padding-bottom: 3rem;
         }
 
         /* Page header */
         .page-header {
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .page-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: bold;
             background: linear-gradient(45deg, #64b5f6, #bb86fc, #ffd700);
             background-size: 200% 200%;
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            animation: gradient-shift 5s ease-in-out infinite;
             margin-bottom: 1rem;
         }
 
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
         .page-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #b0b0b0;
             margin-bottom: 2rem;
             font-style: italic;
@@ -212,9 +119,7 @@
         .audiobooks-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
+            padding: 1rem;
         }
 
         /* Series progress */
@@ -223,7 +128,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 2rem;
-            margin: 3rem auto;
+            margin: 2rem auto;
             max-width: 600px;
             text-align: center;
         }
@@ -247,13 +152,7 @@
             height: 100%;
             background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700);
             border-radius: 4px;
-            transition: width 1s ease;
-            animation: progress-glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes progress-glow {
-            0% { box-shadow: 0 0 5px rgba(100, 181, 246, 0.5); }
-            100% { box-shadow: 0 0 20px rgba(100, 181, 246, 0.8); }
+            width: 27%;
         }
 
         .progress-text {
@@ -261,7 +160,7 @@
             font-size: 1rem;
         }
 
-        /* Audiobook player cards */
+        /* Audiobook cards */
         .audiobook-card {
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(100, 181, 246, 0.2);
@@ -269,68 +168,42 @@
             padding: 2rem;
             margin-bottom: 2rem;
             backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        .audiobook-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .audiobook-card:hover::before {
-            left: 100%;
-        }
-
-        .audiobook-card:hover {
-            border-color: #64b5f6;
-            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.3);
-            transform: translateY(-5px);
-        }
-
-        /* Audiobook header */
         .audiobook-header {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .audiobook-visual {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%);
             border: 2px solid #64b5f6;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             flex-shrink: 0;
         }
 
         .audiobook-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         .audiobook-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #64b5f6;
             margin-bottom: 0.5rem;
         }
 
         .audiobook-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #bb86fc;
             font-style: italic;
             margin-bottom: 0.5rem;
@@ -338,9 +211,10 @@
 
         .audiobook-meta {
             display: flex;
-            gap: 2rem;
-            font-size: 0.9rem;
+            gap: 1rem;
+            font-size: 0.85rem;
             color: #888;
+            flex-wrap: wrap;
         }
 
         .status-available {
@@ -353,7 +227,14 @@
             font-style: italic;
         }
 
-        /* Audio player */
+        .audiobook-description {
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Simple audio player */
         .audio-player {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -362,111 +243,18 @@
             margin-bottom: 1.5rem;
         }
 
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .play-button {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #64b5f6, #bb86fc);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            /* iOS touch improvements */
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
-        }
-
-        .play-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .play-icon, .pause-icon {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
-
-        .pause-icon {
-            display: none;
-        }
-
-        .time-info {
-            flex: 1;
+        .simple-player {
+            text-align: center;
             color: #d0d0d0;
-            font-size: 0.9rem;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .volume-icon {
-            width: 20px;
-            height: 20px;
-            fill: #888;
-        }
-
-        .volume-slider {
-            width: 80px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .progress-container {
-            position: relative;
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-played {
-            height: 100%;
-            background: linear-gradient(90deg, #64b5f6, #bb86fc);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #888;
         }
 
         /* Download section */
         .download-section {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+            text-align: center;
         }
 
         .download-button {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             padding: 0.8rem 1.5rem;
@@ -478,15 +266,6 @@
             font-size: 0.95rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            /* iOS touch improvements */
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .download-button:hover {
-            background: linear-gradient(45deg, rgba(34, 197, 94, 0.6), rgba(16, 163, 74, 0.6));
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
-            transform: translateY(-2px);
         }
 
         .download-button.disabled {
@@ -501,29 +280,7 @@
             fill: currentColor;
         }
 
-        /* Description */
-        .audiobook-description {
-            line-height: 1.6;
-            color: #d0d0d0;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Special highlight for multiple voices */
-        .multiple-voices-note {
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            color: #ffab91;
-        }
-
-        .multiple-voices-note .icon {
-            color: #ff6b35;
-            margin-right: 0.5rem;
-        }
-
-        /* Enhanced mobile responsive design */
+        /* Mobile optimizations */
         @media (max-width: 768px) {
             .audiobook-header {
                 flex-direction: column;
@@ -534,41 +291,13 @@
             .audiobook-meta {
                 justify-content: center;
             }
-
-            .player-controls {
-                flex-direction: column;
+            
+            .nav-links {
                 gap: 1rem;
             }
-
-            .download-section {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
             
-            /* iOS specific mobile fixes */
-            @supports (-webkit-touch-callout: none) {
-                .main-content {
-                    padding-bottom: 6rem;
-                    min-height: calc(-webkit-fill-available - 80px);
-                }
-                
-                .audiobooks-container {
-                    padding: 1rem;
-                }
-                
-                .audiobook-card {
-                    margin-bottom: 3rem;
-                }
-                
-                /* Reduce animations on mobile for better scrolling */
-                .audiobook-card::before {
-                    display: none;
-                }
-                
-                .audiobook-card:hover {
-                    transform: none;
-                    box-shadow: 0 10px 20px rgba(100, 181, 246, 0.2);
-                }
+            .nav-links a {
+                font-size: 0.8rem;
             }
         }
 
@@ -578,16 +307,13 @@
             padding: 2rem;
             color: #888;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 4rem;
-            position: relative;
-            z-index: 10;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
-    <!-- Animated background -->
-    <div class="particles" id="particles"></div>
-    <div class="sound-field"></div>
+    <!-- Simple background -->
+    <div class="simple-bg"></div>
 
     <!-- Navigation -->
     <nav>
@@ -618,9 +344,201 @@
             <div class="series-progress">
                 <h3 class="progress-title">Audio Series Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 27%;"></div>
+                    <div class="progress-fill"></div>
                 </div>
                 <p class="progress-text">4 of 15 audiobooks available • More coming soon</p>
+            </div>
+
+            <!-- Book 1 -->
+            <div class="audiobook-card">
+                <div class="audiobook-header">
+                    <div class="audiobook-visual">
+                        <div class="audiobook-number">1</div>
+                    </div>
+                    <div class="audiobook-info">
+                        <h3>Finch's Raven</h3>
+                        <p class="audiobook-subtitle">Where It All Begins</p>
+                        <div class="audiobook-meta">
+                            <span class="status-available">Available Now</span>
+                            <span>~69 min listen</span>
+                            <span>MP3 Format</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="audiobook-description">
+                    Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself.
+                </p>
+                <div class="audio-player">
+                    <div class="simple-player">Audio player will load here</div>
+                </div>
+                <div class="download-section">
+                    <a href="Audiobooks/Book1.mp3" download="The_Last_Axiom_Book1_Finchs_Raven.mp3" class="download-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download MP3
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="audiobook-card">
+                <div class="audiobook-header">
+                    <div class="audiobook-visual">
+                        <div class="audiobook-number">2</div>
+                    </div>
+                    <div class="audiobook-info">
+                        <h3>The Last Axiom</h3>
+                        <p class="audiobook-subtitle">First Contact</p>
+                        <div class="audiobook-meta">
+                            <span class="status-available">Available Now</span>
+                            <span>~49 min listen</span>
+                            <span>MP3 Format</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="audiobook-description">
+                    Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes.
+                </p>
+                <div class="audio-player">
+                    <div class="simple-player">Audio player will load here</div>
+                </div>
+                <div class="download-section">
+                    <a href="Audiobooks/Book2.mp3" download="The_Last_Axiom_Book2_The_Last_Axiom.mp3" class="download-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download MP3
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="audiobook-card">
+                <div class="audiobook-header">
+                    <div class="audiobook-visual">
+                        <div class="audiobook-number">3</div>
+                    </div>
+                    <div class="audiobook-info">
+                        <h3>Quantum Ghosts</h3>
+                        <p class="audiobook-subtitle">Digital Consciousness</p>
+                        <div class="audiobook-meta">
+                            <span class="status-available">Available Now</span>
+                            <span>~30 min listen</span>
+                            <span>MP3 Format</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="audiobook-description">
+                    Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication.
+                </p>
+                <div class="audio-player">
+                    <div class="simple-player">Audio player will load here</div>
+                </div>
+                <div class="download-section">
+                    <a href="Audiobooks/Book3.mp3" download="The_Last_Axiom_Book3_Quantum_Ghosts.mp3" class="download-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download MP3
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 7 -->
+            <div class="audiobook-card">
+                <div class="audiobook-header">
+                    <div class="audiobook-visual">
+                        <div class="audiobook-number">7</div>
+                    </div>
+                    <div class="audiobook-info">
+                        <h3>The Recursive Code</h3>
+                        <p class="audiobook-subtitle">AI Awakening</p>
+                        <div class="audiobook-meta">
+                            <span class="status-available">Available Now</span>
+                            <span>~30 min listen</span>
+                            <span>MP3 Format</span>
+                            <span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="audiobook-description">
+                    Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance.
+                </p>
+                <div class="audio-player">
+                    <div class="simple-player">Audio player will load here</div>
+                </div>
+                <div class="download-section">
+                    <a href="Audiobooks/Book7.mp3" download="The_Last_Axiom_Book7_The_Recursive_Code.mp3" class="download-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download MP3
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 8 -->
+            <div class="audiobook-card">
+                <div class="audiobook-header">
+                    <div class="audiobook-visual">
+                        <div class="audiobook-number">8</div>
+                    </div>
+                    <div class="audiobook-info">
+                        <h3>Quantum Memory</h3>
+                        <p class="audiobook-subtitle">Memories Across Realities</p>
+                        <div class="audiobook-meta">
+                            <span class="status-available">Available Now</span>
+                            <span>~30 min listen</span>
+                            <span>MP3 Format</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="audiobook-description">
+                    Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence.
+                </p>
+                <div class="audio-player">
+                    <div class="simple-player">Audio player will load here</div>
+                </div>
+                <div class="download-section">
+                    <a href="Audiobooks/Book8.mp3" download="The_Last_Axiom_Book8_Quantum_Memory.mp3" class="download-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download MP3
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coming Soon Books -->
+            <div class="audiobook-card" style="opacity: 0.6;">
+                <div class="audiobook-header">
+                    <div class="audiobook-visual">
+                        <div class="audiobook-number">...</div>
+                    </div>
+                    <div class="audiobook-info">
+                        <h3>More Books Coming</h3>
+                        <p class="audiobook-subtitle">Additional Audiobooks in Production</p>
+                        <div class="audiobook-meta">
+                            <span class="status-coming-soon">Coming Soon</span>
+                            <span>Books 4, 5, 6, 9-15</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="audiobook-description">
+                    Additional audiobooks are in production and will be available soon. Check back regularly for updates as we continue to bring the entire cosmic journey to audio format.
+                </p>
+                <div class="audio-player">
+                    <div class="simple-player">Coming Soon</div>
+                </div>
+                <div class="download-section">
+                    <a href="#" class="download-button disabled">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Coming Soon
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -630,426 +548,14 @@
         <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
     </footer>
 
-<script>
-// Auto-detection system for audiobooks
-const TOTAL_BOOKS = 15;
-let availableBooks = [];
-
-// Book metadata - updated to include Book 8
-const bookMetadata = [
-    {
-        title: "Finch's Raven",
-        subtitle: "Where It All Begins",
-        description: "Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself. (Narrated using ElevenLabs Studio).",
-        duration: "~69 min listen"
-    },
-    {
-        title: "The Last Axiom", 
-        subtitle: "First Contact",
-        description: "Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes. (Narrated using ElevenLabs Studio).",
-        duration: "~49 min listen"
-    },
-    {
-        title: "Quantum Ghosts",
-        subtitle: "Digital Consciousness", 
-        description: "Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "The Constants",
-        subtitle: "Reality's New Rules",
-        description: "Three friends discover that golf putts won't break, charm doesn't work, and people are unconsciously speaking in song lyrics. The universe's fundamental constants are changing, and only their friendship can help them navigate reality's new rules.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "The Observer Effect",
-        subtitle: "Consciousness and Reality",
-        description: "Dr. Maureen Hamner at CERN discovers that her consciousness research isn't just theoretical—human observation directly influences quantum fields. When government agents pressure her to contain cosmic contact, she must choose between safety and evolution.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "Harmonic Convergence",
-        subtitle: "Love Across Time",
-        description: "At the Tokyo Institute, Dr. Kenji Nakamura witnesses samurai warriors materializing in his lab as time itself becomes fluid. Meanwhile, Derek and Maureen's growing connection reveals that love may be the universe's most powerful integration protocol.",
-        duration: "~30 min listen"
-    },
-    {
-        title: "The Recursive Code",
-        subtitle: "AI Awakening",
-        description: "Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance. (Narrated using ElevenLabs Studio).",
-        duration: "~30 min listen",
-        multipleVoices: true
-    },
-    {
-        title: "Quantum Memory",
-        subtitle: "Memories Across Realities",
-        description: "Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence.",
-        duration: "~30 min listen"
-    }
-];
-
-// Generate floating particles
-function createParticles() {
-    const particleContainer = document.getElementById('particles');
-    let particleCount = 30; // Reduced for mobile performance
-    
-    // Reduce particles on mobile devices
-    if (window.innerWidth <= 768) {
-        particleCount = 15;
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-        particleContainer.appendChild(particle);
-    }
-}
-
-// Check if an audio file exists
-function checkAudioExists(bookNumber) {
-    return new Promise((resolve) => {
-        const audio = new Audio();
-        audio.addEventListener('canplaythrough', () => resolve(true));
-        audio.addEventListener('error', () => resolve(false));
-        audio.src = `Audiobooks/Book${bookNumber}.mp3`;
-    });
-}
-
-// Scan for available audiobooks
-async function scanForAudiobooks() {
-    console.log('Scanning for available audiobooks...');
-    
-    for (let i = 1; i <= Math.min(bookMetadata.length, TOTAL_BOOKS); i++) {
-        const exists = await checkAudioExists(i);
-        if (exists) {
-            availableBooks.push(i);
-            console.log(`Book ${i} found and available`);
-        }
-    }
-    
-    updateProgressBar();
-    generateAudiobookCards();
-}
-
-// Update the progress bar based on available books
-function updateProgressBar() {
-    const progressFill = document.querySelector('.progress-fill');
-    const progressText = document.querySelector('.progress-text');
-    
-    const percentage = (availableBooks.length / TOTAL_BOOKS) * 100;
-    progressFill.style.width = percentage + '%';
-    progressText.textContent = `${availableBooks.length} of ${TOTAL_BOOKS} audiobooks available • More coming soon`;
-}
-
-// Generate audiobook cards dynamically
-function generateAudiobookCards() {
-    const container = document.querySelector('.audiobooks-container');
-    
-    // Remove existing audiobook cards but keep progress bar
-    const existingCards = container.querySelectorAll('.audiobook-card');
-    existingCards.forEach(card => card.remove());
-    
-    // Create a list of all books to show - available books plus some preview books
-    const booksToShow = new Set();
-    
-    // Add all available books
-    availableBooks.forEach(bookNum => booksToShow.add(bookNum));
-    
-    // Add preview books (fill gaps and add a few more)
-    for (let i = 1; i <= Math.max(availableBooks.length + 3, 8); i++) {
-        booksToShow.add(i);
-    }
-    
-    // Convert to sorted array
-    const sortedBooks = Array.from(booksToShow).sort((a, b) => a - b);
-    
-    // Generate cards for all books in the list
-    sortedBooks.forEach(bookNumber => {
-        const isAvailable = availableBooks.includes(bookNumber);
-        const bookData = bookMetadata[bookNumber - 1] || {
-            title: `Book ${bookNumber}`,
-            subtitle: "Coming Soon",
-            description: "This audiobook will be available soon.",
-            duration: "~30 min listen"
-        };
+    <script>
+        // Simple script - no dynamic generation, just basic functionality
+        console.log('Simplified audiobooks page loaded');
         
-        const cardHTML = createAudiobookCard(bookNumber, isAvailable, bookData);
-        container.insertAdjacentHTML('beforeend', cardHTML);
-    });
-}
-
-// Create individual audiobook card HTML
-function createAudiobookCard(bookNumber, isAvailable, bookData) {
-    const opacity = isAvailable ? '' : 'style="opacity: 0.7;"';
-    const status = isAvailable ? 
-        '<span class="status-available">Available Now</span>' : 
-        '<span class="status-coming-soon">Coming Soon</span>';
-    
-    const audioPlayer = isAvailable ? createWorkingAudioPlayer(bookNumber) : createDisabledAudioPlayer();
-    const downloadButton = isAvailable ? createWorkingDownloadButton(bookNumber, bookData.title) : createDisabledDownloadButton();
-    
-    // Add multiple voices notice for books with multiple voices
-    const multipleVoicesNote = bookData.multipleVoices ? `
-        <div class="multiple-voices-note">
-            <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            <strong>Enhanced Audio Experience:</strong> This audiobook features multiple voice actors as was auto-selected by ElevenLabs text-to-speech online service and bringing different characters to life, creating a rich, immersive listening experience that goes beyond traditional single-narrator audiobooks. I hope to refine this process so it will allow me to deliver a professional level listening experience. But for now, it is still truly amazing.
-        </div>
-    ` : '';
-    
-    return `
-        <div class="audiobook-card" ${opacity}>
-            <div class="audiobook-header">
-                <div class="audiobook-visual">
-                    <div class="audiobook-number">${bookNumber}</div>
-                </div>
-                <div class="audiobook-info">
-                    <h3>${bookData.title}</h3>
-                    <p class="audiobook-subtitle">${bookData.subtitle}</p>
-                    <div class="audiobook-meta">
-                        ${status}
-                        <span>${bookData.duration}</span>
-                        <span>MP3 Format</span>
-                        ${bookData.multipleVoices ? '<span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>' : ''}
-                    </div>
-                </div>
-            </div>
-            
-            <p class="audiobook-description">
-                ${bookData.description}
-            </p>
-            
-            ${multipleVoicesNote}
-            
-            ${audioPlayer}
-            
-            <div class="download-section">
-                ${downloadButton}
-            </div>
-        </div>
-    `;
-}
-
-// Create working audio player HTML
-function createWorkingAudioPlayer(bookNumber) {
-    return `
-        <div class="audio-player">
-            <div class="player-controls">
-                <button class="play-button" onclick="togglePlay('audio${bookNumber}')">
-                    <svg class="play-icon" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <svg class="pause-icon" viewBox="0 0 24 24">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                    </svg>
-                </button>
-                <div class="time-info">
-                    <div>Ready to play</div>
-                </div>
-                <div class="volume-control">
-                    <svg class="volume-icon" viewBox="0 0 24 24">
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                    </svg>
-                    <input type="range" class="volume-slider" min="0" max="100" value="70" onchange="setVolume('audio${bookNumber}', this.value)">
-                </div>
-            </div>
-            <div class="progress-container" onclick="seek('audio${bookNumber}', event)">
-                <div class="progress-played" id="progress${bookNumber}"></div>
-            </div>
-            <div class="time-display">
-                <span id="currentTime${bookNumber}">0:00</span>
-                <span id="duration${bookNumber}">--:--</span>
-            </div>
-            <audio id="audio${bookNumber}" preload="metadata" onloadedmetadata="updateDuration('audio${bookNumber}')" ontimeupdate="updateProgress('audio${bookNumber}')">
-                <source src="Audiobooks/Book${bookNumber}.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    `;
-}
-
-// Create disabled audio player HTML
-function createDisabledAudioPlayer() {
-    return `
-        <div class="audio-player" style="opacity: 0.5;">
-            <div class="player-controls">
-                <button class="play-button" disabled>
-                    <svg class="play-icon" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </button>
-                <div class="time-info">
-                    <div>Coming Soon</div>
-                </div>
-            </div>
-            <div class="progress-container">
-                <div class="progress-played"></div>
-            </div>
-            <div class="time-display">
-                <span>--:--</span>
-                <span>--:--</span>
-            </div>
-        </div>
-    `;
-}
-
-// Create working download button
-function createWorkingDownloadButton(bookNumber, title) {
-    const cleanTitle = title.replace(/[^a-zA-Z0-9]/g, '_');
-    return `
-        <a href="Audiobooks/Book${bookNumber}.mp3" download="The_Last_Axiom_Book${bookNumber}_${cleanTitle}.mp3" class="download-button">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Download MP3
-        </a>
-    `;
-}
-
-// Create disabled download button
-function createDisabledDownloadButton() {
-    return `
-        <a href="#" class="download-button disabled">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-            </svg>
-            Coming Soon
-        </a>
-    `;
-}
-
-// Audio player functions
-function togglePlay(audioId) {
-    const audio = document.getElementById(audioId);
-    if (!audio) return;
-    
-    const button = audio.parentElement.querySelector('.play-button');
-    const playIcon = button.querySelector('.play-icon');
-    const pauseIcon = button.querySelector('.pause-icon');
-    
-    if (audio.paused) {
-        // Pause all other audio players first
-        document.querySelectorAll('audio').forEach(otherAudio => {
-            if (otherAudio !== audio && !otherAudio.paused) {
-                otherAudio.pause();
-                const otherButton = otherAudio.parentElement.querySelector('.play-button');
-                otherButton.querySelector('.play-icon').style.display = 'block';
-                otherButton.querySelector('.pause-icon').style.display = 'none';
-            }
+        // Optional: Add simple audio players later
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page ready - iOS compatible version');
         });
-        
-        audio.play();
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-    } else {
-        audio.pause();
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    }
-}
-
-function updateProgress(audioId) {
-    const audio = document.getElementById(audioId);
-    const audioNumber = audioId.replace('audio', '');
-    const progressBar = document.getElementById('progress' + audioNumber);
-    const currentTimeSpan = document.getElementById('currentTime' + audioNumber);
-    
-    if (audio && audio.duration && progressBar && currentTimeSpan) {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressBar.style.width = progress + '%';
-        
-        const minutes = Math.floor(audio.currentTime / 60);
-        const seconds = Math.floor(audio.currentTime % 60);
-        currentTimeSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-    
-    if (audio && audio.ended) {
-        const button = audio.parentElement.querySelector('.play-button');
-        button.querySelector('.play-icon').style.display = 'block';
-        button.querySelector('.pause-icon').style.display = 'none';
-    }
-}
-
-function updateDuration(audioId) {
-    const audio = document.getElementById(audioId);
-    const audioNumber = audioId.replace('audio', '');
-    const durationSpan = document.getElementById('duration' + audioNumber);
-    
-    if (audio && audio.duration && durationSpan) {
-        const minutes = Math.floor(audio.duration / 60);
-        const seconds = Math.floor(audio.duration % 60);
-        durationSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }
-}
-
-function seek(audioId, event) {
-    const audio = document.getElementById(audioId);
-    const progressContainer = event.currentTarget;
-    const rect = progressContainer.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const percentage = x / rect.width;
-    
-    if (audio && audio.duration) {
-        audio.currentTime = percentage * audio.duration;
-    }
-}
-
-function setVolume(audioId, value) {
-    const audio = document.getElementById(audioId);
-    if (audio) {
-        audio.volume = value / 100;
-    }
-}
-
-// Initialize the auto-detection system with iOS optimizations
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Starting audiobook auto-detection...');
-    createParticles();
-    scanForAudiobooks();
-    
-    // iOS-specific scroll improvements
-    let isScrolling = false;
-    
-    // Add scroll event listener with throttling for iOS
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        
-        scrollTimeout = setTimeout(() => {
-            const scrolled = window.pageYOffset;
-            const soundField = document.querySelector('.sound-field');
-            
-            // Reduce background movement on iOS for better scrolling performance
-            if (soundField && !isScrolling) {
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                if (!isMobile) {
-                    soundField.style.transform = `translateY(${scrolled * 0.3}px)`;
-                }
-            }
-        }, 10);
-    }, { passive: true });
-    
-    // Detect iOS Safari for additional optimizations
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isIOS) {
-        // Additional iOS-specific optimizations
-        document.body.style.webkitOverflowScrolling = 'touch';
-        
-        // Force repaint on orientation change
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                window.scrollTo(window.scrollX, window.scrollY + 1);
-                window.scrollTo(window.scrollX, window.scrollY - 1);
-            }, 100);
-        });
-    }
-});
-</script>
+    </script>
 </body>
 </html>
