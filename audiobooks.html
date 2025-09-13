@@ -17,10 +17,22 @@
             min-height: 100vh;
             color: #e8e8e8;
             overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
+            /* iOS Safari scrolling fixes */
+            -webkit-overflow-scrolling: touch;
+            -webkit-text-size-adjust: 100%;
         }
 
-        /* Animated background particles */
+        /* iOS-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                position: relative;
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Animated background particles - iOS optimized */
         .particles {
             position: fixed;
             top: 0;
@@ -29,6 +41,12 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
+            /* Prevent iOS touch interference */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .particle {
@@ -57,7 +75,7 @@
             }
         }
 
-        /* Sound wave background effect */
+        /* Sound wave background effect - iOS optimized */
         .sound-field {
             position: fixed;
             top: 0;
@@ -69,11 +87,27 @@
                         radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
             animation: sound-pulse 15s ease-in-out infinite;
             z-index: 0;
+            pointer-events: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
         }
 
         @keyframes sound-pulse {
             0%, 100% { opacity: 0.3; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        /* iOS Safari specific background fixes */
+        @supports (-webkit-touch-callout: none) {
+            .sound-field {
+                position: absolute;
+                height: 200vh;
+            }
+            
+            .particles {
+                position: absolute;
+                height: 200vh;
+            }
         }
 
         /* Navigation */
@@ -82,11 +116,14 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(10, 10, 15, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             padding: 1rem 2rem;
+            /* iOS Safari fix for fixed nav */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         .nav-container {
@@ -122,11 +159,21 @@
             color: #64b5f6;
         }
 
-        /* Main content */
+        /* Main content - iOS optimized */
         .main-content {
             position: relative;
             z-index: 10;
             padding-top: 100px;
+            min-height: calc(100vh - 100px);
+            padding-bottom: 4rem;
+        }
+
+        /* iOS specific main content fixes */
+        @supports (-webkit-touch-callout: none) {
+            .main-content {
+                min-height: calc(-webkit-fill-available - 100px);
+                overflow-y: visible;
+            }
         }
 
         /* Page header */
@@ -166,6 +213,8 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 10;
         }
 
         /* Series progress */
@@ -332,6 +381,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            /* iOS touch improvements */
+            -webkit-tap-highlight-color: transparent;
         }
 
         .play-button:hover {
@@ -428,6 +479,8 @@
             font-weight: 500;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            /* iOS touch improvements */
+            -webkit-tap-highlight-color: transparent;
         }
 
         .download-button:hover {
@@ -470,7 +523,7 @@
             margin-right: 0.5rem;
         }
 
-        /* Responsive design */
+        /* Enhanced mobile responsive design */
         @media (max-width: 768px) {
             .audiobook-header {
                 flex-direction: column;
@@ -491,6 +544,32 @@
                 justify-content: center;
                 flex-wrap: wrap;
             }
+            
+            /* iOS specific mobile fixes */
+            @supports (-webkit-touch-callout: none) {
+                .main-content {
+                    padding-bottom: 6rem;
+                    min-height: calc(-webkit-fill-available - 80px);
+                }
+                
+                .audiobooks-container {
+                    padding: 1rem;
+                }
+                
+                .audiobook-card {
+                    margin-bottom: 3rem;
+                }
+                
+                /* Reduce animations on mobile for better scrolling */
+                .audiobook-card::before {
+                    display: none;
+                }
+                
+                .audiobook-card:hover {
+                    transform: none;
+                    box-shadow: 0 10px 20px rgba(100, 181, 246, 0.2);
+                }
+            }
         }
 
         /* Footer */
@@ -500,6 +579,8 @@
             color: #888;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 4rem;
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
@@ -610,7 +691,12 @@ const bookMetadata = [
 // Generate floating particles
 function createParticles() {
     const particleContainer = document.getElementById('particles');
-    const particleCount = 50;
+    let particleCount = 30; // Reduced for mobile performance
+    
+    // Reduce particles on mobile devices
+    if (window.innerWidth <= 768) {
+        particleCount = 15;
+    }
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -919,20 +1005,50 @@ function setVolume(audioId, value) {
     }
 }
 
-// Initialize the auto-detection system
+// Initialize the auto-detection system with iOS optimizations
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Starting audiobook auto-detection...');
     createParticles();
     scanForAudiobooks();
     
-    // Add parallax effect
+    // iOS-specific scroll improvements
+    let isScrolling = false;
+    
+    // Add scroll event listener with throttling for iOS
+    let scrollTimeout;
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const soundField = document.querySelector('.sound-field');
-        if (soundField) {
-            soundField.style.transform = `translateY(${scrolled * 0.5}px)`;
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
         }
-    });
+        
+        scrollTimeout = setTimeout(() => {
+            const scrolled = window.pageYOffset;
+            const soundField = document.querySelector('.sound-field');
+            
+            // Reduce background movement on iOS for better scrolling performance
+            if (soundField && !isScrolling) {
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                if (!isMobile) {
+                    soundField.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+            }
+        }, 10);
+    }, { passive: true });
+    
+    // Detect iOS Safari for additional optimizations
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+        // Additional iOS-specific optimizations
+        document.body.style.webkitOverflowScrolling = 'touch';
+        
+        // Force repaint on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                window.scrollTo(window.scrollX, window.scrollY + 1);
+                window.scrollTo(window.scrollX, window.scrollY - 1);
+            }, 100);
+        });
+    }
 });
 </script>
 </body>
