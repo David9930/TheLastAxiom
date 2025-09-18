@@ -19,7 +19,6 @@
             overflow-x: hidden;
             position: relative;
             -webkit-overflow-scrolling: touch;
-            /* Ensure smooth scrolling on iOS */
         }
 
         /* Simplified background for better performance */
@@ -83,7 +82,7 @@
             color: #64b5f6;
         }
 
-        /* Main content with better spacing for mobile */
+        /* Main content */
         .main-content {
             position: relative;
             z-index: 10;
@@ -155,7 +154,7 @@
             height: 100%;
             background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700);
             border-radius: 4px;
-            width: 33%;
+            transition: width 1s ease;
         }
 
         .progress-text {
@@ -163,7 +162,7 @@
             font-size: 0.9rem;
         }
 
-        /* Audiobook cards - optimized for mobile */
+        /* Audiobook cards - initially hidden */
         .audiobook-card {
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(100, 181, 246, 0.2);
@@ -171,6 +170,16 @@
             padding: 1.5rem;
             margin-bottom: 2rem;
             backdrop-filter: blur(10px);
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .audiobook-card.available {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .audiobook-header {
@@ -226,11 +235,6 @@
             font-weight: bold;
         }
 
-        .status-coming-soon {
-            color: #ffd700;
-            font-style: italic;
-        }
-
         .audiobook-description {
             line-height: 1.5;
             color: #d0d0d0;
@@ -238,7 +242,7 @@
             font-size: 0.9rem;
         }
 
-        /* Simplified audio player - prioritize native iOS controls */
+        /* Audio player */
         .audio-player {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -248,19 +252,11 @@
             text-align: center;
         }
 
-        /* Make sure native audio controls are prominent and touch-friendly */
         .native-audio {
             width: 100%;
             max-width: 400px;
             height: 40px;
             margin: 0 auto;
-            /* Ensure iOS native controls are used */
-            -webkit-appearance: media-controls-background;
-        }
-
-        /* iOS-specific audio styling */
-        audio::-webkit-media-controls-panel {
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Download section */
@@ -281,7 +277,6 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            /* Make buttons touch-friendly */
             min-height: 44px;
             min-width: 44px;
         }
@@ -291,19 +286,31 @@
             transform: translateY(-1px);
         }
 
-        .download-button.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
         .icon {
             width: 16px;
             height: 16px;
             fill: currentColor;
         }
 
-        /* Mobile-first responsive design */
+        /* Loading indicator */
+        .loading-indicator {
+            text-align: center;
+            color: #64b5f6;
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        /* No audiobooks message */
+        .no-audiobooks {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        /* Mobile responsive */
         @media (max-width: 768px) {
             nav {
                 padding: 0.5rem;
@@ -331,7 +338,6 @@
                 padding: 1rem;
             }
             
-            /* Ensure touch targets are large enough */
             .download-button {
                 width: 100%;
                 max-width: 250px;
@@ -346,13 +352,6 @@
             color: #888;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 2rem;
-        }
-
-        /* Loading state for audio */
-        .audio-loading {
-            color: #999;
-            font-style: italic;
-            padding: 1rem;
         }
     </style>
 </head>
@@ -389,216 +388,25 @@
             <div class="series-progress">
                 <h3 class="progress-title">Audio Series Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill"></div>
+                    <div class="progress-fill" id="progress-fill"></div>
                 </div>
-                <p class="progress-text">5 of 15 audiobooks available • More coming soon</p>
+                <p class="progress-text" id="progress-text">Loading audiobook progress...</p>
             </div>
 
-            <!-- Book 1 -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">1</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>Finch's Raven</h3>
-                        <p class="audiobook-subtitle">Where It All Begins</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~69 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="audiobook-description">
-                    Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself.
-                </p>
-                <div class="audio-player">
-                    <audio class="native-audio" controls preload="metadata">
-                        <source src="Audiobooks/Book1.mp3" type="audio/mpeg">
-                        <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
-                    </audio>
-                </div>
-                <div class="download-section">
-                    <a href="Audiobooks/Book1.mp3" download="The_Last_Axiom_Book1_Finchs_Raven.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
+            <!-- Loading indicator -->
+            <div class="loading-indicator" id="loading-indicator">
+                Checking for available audiobooks...
             </div>
 
-            <!-- Book 2 -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">2</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>The Last Axiom</h3>
-                        <p class="audiobook-subtitle">First Contact</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~49 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="audiobook-description">
-                    Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes.
-                </p>
-                <div class="audio-player">
-                    <audio class="native-audio" controls preload="metadata">
-                        <source src="Audiobooks/Book2.mp3" type="audio/mpeg">
-                        <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
-                    </audio>
-                </div>
-                <div class="download-section">
-                    <a href="Audiobooks/Book2.mp3" download="The_Last_Axiom_Book2_The_Last_Axiom.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
+            <!-- Audiobook cards container -->
+            <div id="audiobooks-container">
+                <!-- All 15 audiobook cards will be generated here -->
             </div>
 
-            <!-- Book 3 -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">3</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>Quantum Ghosts</h3>
-                        <p class="audiobook-subtitle">Digital Consciousness</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~30 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="audiobook-description">
-                    Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication.
-                </p>
-                <div class="audio-player">
-                    <audio class="native-audio" controls preload="metadata">
-                        <source src="Audiobooks/Book3.mp3" type="audio/mpeg">
-                        <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
-                    </audio>
-                </div>
-                <div class="download-section">
-                    <a href="Audiobooks/Book3.mp3" download="The_Last_Axiom_Book3_Quantum_Ghosts.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
-            </div>
-
-            <!-- Book 7 -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">7</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>The Recursive Code</h3>
-                        <p class="audiobook-subtitle">AI Awakening</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~30 min listen</span>
-                            <span>MP3 Format</span>
-                            <span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="audiobook-description">
-                    Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance.
-                </p>
-                <div class="audio-player">
-                    <audio class="native-audio" controls preload="metadata">
-                        <source src="Audiobooks/Book7.mp3" type="audio/mpeg">
-                        <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
-                    </audio>
-                </div>
-                <div class="download-section">
-                    <a href="Audiobooks/Book7.mp3" download="The_Last_Axiom_Book7_The_Recursive_Code.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
-            </div>
-
-            <!-- Book 8 -->
-            <div class="audiobook-card">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">8</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>Quantum Memory</h3>
-                        <p class="audiobook-subtitle">Memories Across Realities</p>
-                        <div class="audiobook-meta">
-                            <span class="status-available">Available Now</span>
-                            <span>~30 min listen</span>
-                            <span>MP3 Format</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="audiobook-description">
-                    Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence.
-                </p>
-                <div class="audio-player">
-                    <audio class="native-audio" controls preload="metadata">
-                        <source src="Audiobooks/Book8.mp3" type="audio/mpeg">
-                        <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
-                    </audio>
-                </div>
-                <div class="download-section">
-                    <a href="Audiobooks/Book8.mp3" download="The_Last_Axiom_Book8_Quantum_Memory.mp3" class="download-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Download MP3
-                    </a>
-                </div>
-            </div>
-
-            <!-- Coming Soon Books -->
-            <div class="audiobook-card" style="opacity: 0.6;">
-                <div class="audiobook-header">
-                    <div class="audiobook-visual">
-                        <div class="audiobook-number">...</div>
-                    </div>
-                    <div class="audiobook-info">
-                        <h3>More Books Coming</h3>
-                        <p class="audiobook-subtitle">Additional Audiobooks in Production</p>
-                        <div class="audiobook-meta">
-                            <span class="status-coming-soon">Coming Soon</span>
-                            <span>Books 4, 5, 6, 9-15</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="audiobook-description">
-                    Additional audiobooks are in production and will be available soon. Check back regularly for updates as we continue to bring the entire cosmic journey to audio format.
-                </p>
-                <div class="audio-player">
-                    <div style="text-align: center; color: #d0d0d0; padding: 1.5rem;">Coming Soon</div>
-                </div>
-                <div class="download-section">
-                    <a href="#" class="download-button disabled">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Coming Soon
-                    </a>
-                </div>
+            <!-- No audiobooks fallback -->
+            <div class="no-audiobooks" id="no-audiobooks" style="display: none;">
+                <h3>No Audiobooks Available Yet</h3>
+                <p>Audiobooks are being produced and will appear here automatically once the MP3 files are uploaded. Check back soon!</p>
             </div>
         </div>
     </div>
@@ -609,26 +417,230 @@
     </footer>
 
     <script>
-        // Minimal JavaScript - let iOS handle audio natively
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('iPhone-optimized audiobooks page loaded');
+        // Complete book data with all 15 books
+        const BOOK_DATA = [
+            {
+                number: 1,
+                title: "Finch's Raven",
+                subtitle: "Where It All Begins",
+                duration: "~69 min listen",
+                description: "Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself."
+            },
+            {
+                number: 2,
+                title: "The Last Axiom",
+                subtitle: "First Contact",
+                duration: "~49 min listen",
+                description: "Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes."
+            },
+            {
+                number: 3,
+                title: "Quantum Ghosts",
+                subtitle: "Digital Consciousness",
+                duration: "~30 min listen",
+                description: "Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication."
+            },
+            {
+                number: 4,
+                title: "The Constants",
+                subtitle: "Reality's New Rules",
+                duration: "~30 min listen",
+                description: "Three friends discover that golf putts won't break, charm doesn't work, and people are unconsciously speaking in song lyrics. Experience how the universe's fundamental constants are changing, and only their friendship can help them navigate reality's new rules."
+            },
+            {
+                number: 5,
+                title: "The Observer Effect",
+                subtitle: "Consciousness and Reality",
+                duration: "~30 min listen",
+                description: "Dr. Maureen Hamner at CERN discovers that her consciousness research isn't just theoretical—human observation directly influences quantum fields. When government agents pressure her to contain cosmic contact, she must choose between safety and evolution."
+            },
+            {
+                number: 6,
+                title: "Harmonic Convergence",
+                subtitle: "Love Across Time",
+                duration: "~30 min listen",
+                description: "At the Tokyo Institute, Dr. Kenji Nakamura witnesses samurai warriors materializing in his lab as time itself becomes fluid. Meanwhile, Derek and Maureen's growing connection reveals that love may be the universe's most powerful integration protocol."
+            },
+            {
+                number: 7,
+                title: "The Recursive Code",
+                subtitle: "AI Awakening",
+                duration: "~30 min listen",
+                description: "Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance.",
+                multipleVoices: true
+            },
+            {
+                number: 8,
+                title: "Quantum Memory",
+                subtitle: "Memories Across Realities",
+                duration: "~30 min listen",
+                description: "Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence."
+            },
+            {
+                number: 9,
+                title: "The Protocol Sleepers",
+                subtitle: "Resistance and Choice",
+                duration: "~30 min listen",
+                description: "Dr. Lena Hanson leads humanity's resistance against cosmic integration, developing Protocol Sleepers to restore original physics. But when the cosmic entities offer her the tools to fight them, the question becomes: what does it truly mean to remain human?"
+            },
+            {
+                number: 10,
+                title: "Critical Mass",
+                subtitle: "Nuclear Crisis",
+                duration: "~30 min listen",
+                description: "A nuclear reactor crisis at Russia's Kursk facility becomes humanity's ultimate test. As Dr. Hanson's Protocol Sleeper technology clashes with cosmic assistance, Derek, Maureen, and Nancy race against time while Poe—now with James Bond swagger—coordinates the most dangerous rescue in galactic history."
+            },
+            {
+                number: 11,
+                title: "Beyond the Axiom",
+                subtitle: "The Final Choice",
+                duration: "~30 min listen",
+                description: "As humanity faces the ultimate choice between cosmic transcendence and remaining biologically human, Derek and Maureen's relationship deepens amid species-level decisions. When the Architect reveals that most civilizations abandon biological forms entirely, humanity must forge an unprecedented experimental path—or face extinction when multiple realities converge in seven years."
+            },
+            {
+                number: 12,
+                title: "The Raven's Code",
+                subtitle: "Ancient Patterns Revealed",
+                duration: "~30 min listen",
+                description: "ARIA's mysterious silence leads Luke and Nancy to discover mathematical codes embedded in Edgar Allan Poe's poetry spanning over 170 years. As government forces storm their facility, the cosmic intelligence known as Poe reveals that first contact didn't begin two years ago—it's been ongoing for generations, hidden in humanity's greatest literary works."
+            },
+            {
+                number: "13A",
+                title: "The Architect's Test",
+                subtitle: "Part One: The Rescue",
+                duration: "~30 min listen",
+                description: "Derek discovers Professor Finch's impossible resurrection—young, enhanced, and more than human. But their reunion is cut short by urgent revelation: the Changbaishan supervolcano will erupt in six months, threatening 300 million lives. As Derek infiltrates Fort Bragg to rescue the captured Luke and Nancy, humanity faces its greatest test under the Architect's watchful evaluation.",
+                twoPartStory: true
+            },
+            {
+                number: "13B",
+                title: "The Architect's Test",
+                subtitle: "Part Two: The Evaluation",
+                duration: "~30 min listen",
+                description: "Xi Jinping is brought face-to-face with cosmic intelligence as the largest evacuation in human history begins. As 300 million Chinese refugees are relocated across Asia, Luke and Nancy's partnership deepens into love while adopting orphaned Xiao Li. Meanwhile, Derek and Maureen explore transcendent intimacy as the Architect renders its verdict on humanity's worthiness for cosmic advancement.",
+                twoPartStory: true
+            },
+            {
+                number: 14,
+                title: "Placeholder Title",
+                subtitle: "Placeholder Subtitle",
+                duration: "~30 min listen",
+                description: "Placeholder description for Book 14. This will be updated with the actual book details once finalized."
+            },
+            {
+                number: 15,
+                title: "The Final Adventure",
+                subtitle: "Epic Conclusion",
+                duration: "Epic Finale",
+                description: "The cosmic saga reaches its ultimate conclusion as humanity's choice between transcendence and tradition determines the fate of consciousness itself across multiple realities. The final axiom awaits."
+            }
+        ];
+
+        async function checkAudioFile(bookNumber) {
+            try {
+                const response = await fetch(`Audiobooks/Book${bookNumber}.mp3`, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function createAudiobookCard(book, isAvailable) {
+            const cardClass = isAvailable ? 'audiobook-card available' : 'audiobook-card';
             
-            // Simple fallback for browsers that don't support audio
-            const audioElements = document.querySelectorAll('audio');
-            audioElements.forEach(function(audio) {
-                audio.addEventListener('error', function() {
-                    console.log('Audio loading failed for:', audio.src);
-                    // Show fallback message
-                    const parent = audio.parentElement;
-                    parent.innerHTML = '<div class="audio-loading">Audio file not found. Please try the download link below.</div>';
-                });
+            return `
+                <div class="${cardClass}" data-book="${book.number}">
+                    <div class="audiobook-header">
+                        <div class="audiobook-visual">
+                            <div class="audiobook-number">${book.number}</div>
+                        </div>
+                        <div class="audiobook-info">
+                            <h3>${book.title}</h3>
+                            <p class="audiobook-subtitle">${book.subtitle}</p>
+                            <div class="audiobook-meta">
+                                <span class="status-available">Available Now</span>
+                                <span>${book.duration}</span>
+                                <span>MP3 Format</span>
+                                ${book.multipleVoices ? '<span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>' : ''}
+                                ${book.twoPartStory ? '<span style="color: #bb86fc; font-weight: bold;">Epic Story</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="audiobook-description">
+                        ${book.description}
+                    </p>
+                    <div class="audio-player">
+                        <audio class="native-audio" controls preload="metadata">
+                            <source src="Audiobooks/Book${book.number}.mp3" type="audio/mpeg">
+                            <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
+                        </audio>
+                    </div>
+                    <div class="download-section">
+                        <a href="Audiobooks/Book${book.number}.mp3" download="The_Last_Axiom_Book${book.number}_${book.title.replace(/[^a-zA-Z0-9]/g, '_')}.mp3" class="download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download MP3
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function initializeAudiobooks() {
+            const container = document.getElementById('audiobooks-container');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const noAudiobooks = document.getElementById('no-audiobooks');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            
+            let availableCount = 0;
+            const totalBooks = BOOK_DATA.length;
+            
+            // Create all cards but keep them hidden initially
+            for (const book of BOOK_DATA) {
+                container.innerHTML += createAudiobookCard(book, false);
+            }
+            
+            // Check each audiobook file and show if available
+            for (let i = 0; i < BOOK_DATA.length; i++) {
+                const book = BOOK_DATA[i];
+                const isAvailable = await checkAudioFile(book.number);
                 
-                // Test if file exists
-                audio.addEventListener('loadstart', function() {
-                    console.log('Loading audio:', audio.src);
-                });
-            });
-        });
+                if (isAvailable) {
+                    const card = container.querySelector(`[data-book="${book.number}"]`);
+                    card.classList.add('available');
+                    availableCount++;
+                    
+                    // Add a small delay for nice animation effect
+                    setTimeout(() => {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, i * 100);
+                }
+            }
+            
+            // Update progress bar
+            const progressPercentage = (availableCount / totalBooks) * 100;
+            progressFill.style.width = `${progressPercentage}%`;
+            progressText.textContent = `${availableCount} of ${totalBooks} audiobooks available`;
+            
+            // Hide loading indicator
+            setTimeout(() => {
+                loadingIndicator.style.display = 'none';
+                
+                // Show "no audiobooks" message if none are available
+                if (availableCount === 0) {
+                    noAudiobooks.style.display = 'block';
+                }
+            }, BOOK_DATA.length * 100 + 500);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeAudiobooks);
     </script>
 </body>
 </html>
