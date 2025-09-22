@@ -464,15 +464,8 @@
                     page: 'splash-page'
                 };
 
-                // Send to Google Sheets using FormData (same as working message system)
-                const formData = new FormData();
-                formData.append('data', JSON.stringify(visitorData));
-                
-                await fetch(TRACKING_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
+                // Use EXACT same method as working Derek/Nancy system
+                sendDataViaForm(visitorData);
                 console.log('Visitor tracked:', visitorData.country, visitorData.region);
             } catch (error) {
                 console.log('Tracking failed (this is normal):', error.message);
@@ -488,7 +481,7 @@
             // Add entering state
             container.classList.add('entering');
             
-            // Track entry
+            // Track entry using EXACT same method as working Derek/Nancy system
             try {
                 const entryData = {
                     action: 'trackEntry',
@@ -496,14 +489,7 @@
                     page: 'entered-main-site'
                 };
 
-                // Use FormData (same as working message system)
-                const formData = new FormData();
-                formData.append('data', JSON.stringify(entryData));
-
-                await fetch(TRACKING_URL, {
-                    method: 'POST',
-                    body: formData
-                });
+                sendDataViaForm(entryData);
             } catch (error) {
                 // Fail silently
             }
@@ -512,6 +498,39 @@
             setTimeout(() => {
                 window.location.href = 'Main-page.html';
             }, 2000);
+        }
+
+        // EXACT copy of working Derek/Nancy form submission method
+        function sendDataViaForm(data) {
+            const form = document.createElement('form');
+            form.action = TRACKING_URL;
+            form.method = 'POST';
+            form.target = 'hiddenTrackingFrame';
+            form.style.display = 'none';
+            
+            const dataField = document.createElement('input');
+            dataField.type = 'hidden';
+            dataField.name = 'data';
+            dataField.value = JSON.stringify(data);
+            form.appendChild(dataField);
+            
+            let iframe = document.getElementById('hiddenTrackingFrame');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = 'hiddenTrackingFrame';
+                iframe.name = 'hiddenTrackingFrame';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+            
+            document.body.appendChild(form);
+            form.submit();
+            
+            setTimeout(() => {
+                if (form.parentNode) {
+                    document.body.removeChild(form);
+                }
+            }, 1000);
         }
 
         // Konami Code Easter Egg
