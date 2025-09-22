@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Last Axiom Series | When Reality Itself Can Be Rewritten</title>
+    <title>Warning: Entering The Last Axiom Universe</title>
     <style>
         * {
             margin: 0;
@@ -18,43 +18,10 @@
             color: #e8e8e8;
             overflow-x: hidden;
             position: relative;
-        }
-
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Quantum field background effect */
@@ -64,731 +31,546 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
             animation: quantum-pulse 20s ease-in-out infinite;
             z-index: 0;
         }
 
         @keyframes quantum-pulse {
             0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.8; }
         }
 
-        /* Navigation */
-        nav {
+        /* Warning klaxon effect */
+        .warning-flash {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1000;
-            padding: 1rem 2rem;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: warning-pulse 3s ease-in-out infinite;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #64b5f6;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #e8e8e8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .nav-links a:hover {
-            color: #64b5f6;
+        @keyframes warning-pulse {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 15% { opacity: 0.3; }
         }
 
         /* Main content */
-        .main-content {
+        .warning-container {
             position: relative;
             z-index: 10;
-            padding-top: 100px;
-        }
-
-        /* Hero section */
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-        }
-
-        .series-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: bold;
-            background: linear-gradient(45deg, #64b5f6, #bb86fc, #ffd700);
-            background-size: 200% 200%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gradient-shift 5s ease-in-out infinite;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .tagline {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: #b0b0b0;
-            margin-bottom: 2rem;
-            font-style: italic;
-            opacity: 0;
-            animation: fade-in-up 1s ease-out 0.5s forwards;
-        }
-
-        .description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: #d0d0d0;
-            opacity: 0;
-            animation: fade-in-up 1s ease-out 1s forwards;
-        }
-
-        .journey-expansion {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            opacity: 0;
-            animation: fade-in-up 1s ease-out 1.5s forwards;
-        }
-
-        .journey-detail {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #b8b8b8;
-            font-style: italic;
-            padding: 1.5rem;
-            background: rgba(100, 181, 246, 0.05);
-            border-left: 3px solid #64b5f6;
-            border-radius: 0 10px 10px 0;
-        }
-
-        @keyframes fade-in-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Characters section */
-        .characters-section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .characters-container {
+            padding: 2rem;
             text-align: center;
         }
 
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: #64b5f6;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: #bb86fc;
-            margin-bottom: 3rem;
-            font-style: italic;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
-
-        .characters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .character-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(100, 181, 246, 0.2);
+        .warning-header {
+            background: rgba(255, 0, 0, 0.2);
+            border: 3px solid #ff0000;
             border-radius: 20px;
             padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            text-align: center;
+            animation: border-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes border-pulse {
+            0%, 100% { border-color: #ff0000; }
+            50% { border-color: #ff6b6b; }
+        }
+
+        .warning-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: bold;
+            color: #ff4757;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.8);
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            0% { text-shadow: 0 0 20px rgba(255, 71, 87, 0.8); }
+            100% { text-shadow: 0 0 40px rgba(255, 71, 87, 1), 0 0 60px rgba(255, 71, 87, 0.6); }
+        }
+
+        .warning-subtitle {
+            font-size: 1.3rem;
+            color: #ffd700;
+            font-style: italic;
+            margin-bottom: 2rem;
+            animation: subtitle-flicker 4s ease-in-out infinite;
+        }
+
+        @keyframes subtitle-flicker {
+            0%, 96%, 100% { opacity: 1; }
+            97% { opacity: 0.7; }
+            98% { opacity: 1; }
+            99% { opacity: 0.8; }
+        }
+
+        /* Warning content */
+        .warning-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
 
-        .character-card::before {
+        .warning-content::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
-            transition: left 0.8s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: scanner 5s ease-in-out infinite;
         }
 
-        .character-card:hover::before {
-            left: 100%;
+        @keyframes scanner {
+            0% { left: -100%; }
+            50% { left: -100%; }
+            100% { left: 100%; }
         }
 
-        .character-card:hover {
-            transform: translateY(-10px);
-            border-color: #64b5f6;
-            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.2);
-        }
-
-        .character-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(45deg, #64b5f6, #bb86fc);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .author-warning {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e8e8e8;
+            margin-bottom: 2rem;
             position: relative;
             z-index: 1;
         }
 
-        .char-icon {
-            width: 40px;
-            height: 40px;
-            fill: white;
-        }
-
-        .character-name {
-            font-size: 1.5rem;
-            color: #64b5f6;
-            margin-bottom: 0.5rem;
+        .highlight {
+            color: #ff6b6b;
             font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
         }
 
-        .character-title {
-            font-size: 1rem;
+        .emphasis {
             color: #ffd700;
-            margin-bottom: 1.5rem;
             font-style: italic;
         }
 
-        .character-description {
-            line-height: 1.6;
-            color: #d0d0d0;
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .character-trait {
-            background: rgba(187, 134, 252, 0.1);
-            border-left: 3px solid #bb86fc;
-            padding: 1rem;
-            border-radius: 0 10px 10px 0;
-            font-size: 0.95rem;
-            color: #e8d4f8;
-            text-align: left;
-        }
-
-        /* Cosmic connection tease */
-        .cosmic-connection-tease {
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 20px;
+        .cosmic-disclaimer {
+            background: rgba(138, 43, 226, 0.15);
+            border: 2px solid rgba(187, 134, 252, 0.4);
+            border-radius: 15px;
             padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
             position: relative;
-            overflow: hidden;
         }
 
-        .connection-visual {
-            position: relative;
-            height: 60px;
-            margin-bottom: 2rem;
-        }
-
-        .connection-line {
+        .cosmic-disclaimer::before {
+            content: "⚠️";
             position: absolute;
-            top: 50%;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700, #bb86fc, #64b5f6);
-            background-size: 300% 100%;
-            animation: connection-flow 3s ease-in-out infinite;
-            border-radius: 1px;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a2e;
+            padding: 0 15px;
+            font-size: 1.5rem;
         }
 
-        @keyframes connection-flow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        /* IP tracking notice */
+        .privacy-notice {
+            background: rgba(0, 100, 200, 0.1);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            color: #b8b8b8;
         }
 
-        .connection-nodes {
-            position: relative;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10%;
+        .privacy-notice h4 {
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
         }
 
-        .node {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .node-1 {
-            background: #64b5f6;
-            box-shadow: 0 0 20px rgba(100, 181, 246, 0.6);
-            animation: pulse-node 2s ease-in-out infinite;
-        }
-
-        .node-2 {
-            background: #bb86fc;
-            box-shadow: 0 0 20px rgba(187, 134, 252, 0.6);
-            animation: pulse-node 2s ease-in-out infinite 0.7s;
-        }
-
-        .node-3 {
-            background: #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-            animation: pulse-node 2s ease-in-out infinite 1.4s;
-        }
-
-        @keyframes pulse-node {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-        }
-
-        .connection-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #e8e8e8;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cosmic-wink {
-            display: inline-block;
-            animation: twinkle 2s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.2); }
-        }
-        .nav-buttons {
+        /* Entry buttons */
+        .entry-buttons {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin: 3rem 0;
+            margin-top: 3rem;
             flex-wrap: wrap;
         }
 
-        .nav-button {
+        .entry-button {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, rgba(100, 181, 246, 0.2), rgba(187, 134, 252, 0.2));
-            border: 2px solid transparent;
-            border-radius: 10px;
+            gap: 0.8rem;
+            padding: 1.5rem 2.5rem;
+            border: 3px solid transparent;
+            border-radius: 15px;
             color: #e8e8e8;
             text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.4s ease;
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
+        .enter-button {
+            background: linear-gradient(45deg, rgba(255, 71, 87, 0.3), rgba(255, 107, 107, 0.3));
+            border-color: #ff4757;
         }
 
-        .nav-button:hover::before {
-            left: 100%;
+        .enter-button:hover {
+            background: linear-gradient(45deg, rgba(255, 71, 87, 0.6), rgba(255, 107, 107, 0.6));
+            border-color: #ff6b6b;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.4);
         }
 
-        .nav-button:hover {
-            border-color: #64b5f6;
-            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
-            transform: translateY(-2px);
+        .escape-button {
+            background: linear-gradient(45deg, rgba(100, 100, 100, 0.3), rgba(150, 150, 150, 0.3));
+            border-color: #888;
         }
 
-        /* Icon styles */
-        .icon {
+        .escape-button:hover {
+            background: linear-gradient(45deg, rgba(100, 100, 100, 0.6), rgba(150, 150, 150, 0.6));
+            border-color: #aaa;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(100, 100, 100, 0.4);
+        }
+
+        .button-icon {
             width: 24px;
             height: 24px;
             fill: currentColor;
         }
 
-        /* Series info */
-        .series-info {
+        /* Loading state */
+        .entering {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .entering .enter-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: button-spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes button-spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Fun facts */
+        .author-facts {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
         }
 
-        .info-card {
+        .fact-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #64b5f6;
+            padding: 1rem;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.95rem;
+            color: #d0d0d0;
+            position: relative;
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .info-card h3 {
-            color: #64b5f6;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .info-card p {
-            line-height: 1.6;
-            color: #c0c0c0;
-        }
-
-        /* Quote section */
-        .quote-section {
-            text-align: center;
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quote {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: #bb86fc;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .quote-author {
-            color: #888;
+        .fact-card::before {
+            content: attr(data-icon);
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: #1a1a2e;
+            padding: 4px;
+            border-radius: 50%;
             font-size: 1rem;
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            nav {
+            .warning-container {
                 padding: 1rem;
             }
             
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .nav-buttons {
+            .entry-buttons {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
             }
             
-            .nav-button {
+            .entry-button {
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
             }
+            
+            .author-facts {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #888;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 4rem;
+        /* Easter egg */
+        .konami-activated {
+            animation: reality-shift 0.5s ease-in-out;
+            filter: hue-rotate(180deg) saturate(2);
+        }
+
+        @keyframes reality-shift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(-1deg); }
+            75% { transform: scale(0.95) rotate(1deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Animated background -->
-    <div class="particles" id="particles"></div>
+    <!-- Background effects -->
     <div class="quantum-field"></div>
+    <div class="warning-flash"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">The Last Axiom</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="books.html">Books</a></li>
-                <li><a href="audiobooks.html">Audiobooks</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <!-- Main warning container -->
+    <div class="warning-container" id="warningContainer">
+        <!-- Warning header -->
+        <div class="warning-header">
+            <h1 class="warning-title">⚠️ REALITY DISTORTION WARNING ⚠️</h1>
+            <p class="warning-subtitle">You are about to enter a universe where the laws of physics are... negotiable</p>
         </div>
-    </nav>
 
-    <!-- Main content -->
-    <div class="main-content">
-        <!-- Hero section -->
-        <section class="hero">
-            <h1 class="series-title">The Last Axiom</h1>
-            <p class="tagline">When Reality Itself Can Be Rewritten</p>
-            <p class="description">
-                Journey through 15 interconnected tales where the fundamental laws of physics become fluid, 
-                where cosmic intelligences guide humanity's evolution, and where the universe's source code 
-                is being rewritten. Follow brilliant scientists as they discover that the final assumption 
-                upon which all science rests—that reality's rules remain constant—may be the greatest 
-                illusion of all.
-            </p>
-
-            <!-- Expanded journey description -->
-            <div class="journey-expansion">
-                <p class="journey-detail">
-                    From Professor Finch's final revelation about universal constants to the cosmic network that 
-                    spans galaxies, witness humanity's transformation from isolated observers to active 
-                    participants in the universe's grand design. Each 30-minute story builds upon the last, 
-                    weaving together quantum consciousness, temporal anomalies, and the discovery that love 
-                    itself may be one of the cosmos' most elegant integration protocols.
-                </p>
-            </div>
-            
-            <div class="nav-buttons">
-                <a href="books.html" class="nav-button">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6H6zm0 2h7v5h5v11H6V4z"/>
-                    </svg>
-                    Read the Books
-                </a>
-                <a href="audiobooks.html" class="nav-button">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                    </svg>
-                    Listen to Audiobooks
-                </a>
-            </div>
-        </section>
-
-        <!-- Characters section -->
-        <section class="characters-section">
-            <div class="characters-container">
-                <h2 class="section-title">Meet the Architects of Discovery</h2>
-                <p class="section-subtitle">
-                    Three brilliant minds whose separate journeys toward cosmic truth will converge 
-                    in ways that transcend both science and the heart.
-                </p>
+        <!-- Warning content -->
+        <div class="warning-content">
+            <div class="author-warning">
+                <p><strong class="highlight">ATTENTION:</strong> The author Derek Devon is not a normal person.</p>
                 
-                <div class="characters-grid">
-                    <div class="character-card">
-                        <div class="character-icon">
-                            <svg class="char-icon" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                <circle cx="12" cy="8" r="2"/>
-                                <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
-                        </div>
-                        <h3 class="character-name">Dr. Derek Devon</h3>
-                        <p class="character-title">Astrophysicist & Cosmic Observer</p>
-                        <p class="character-description">
-                            Inheriting Professor Finch's revolutionary Protocol, Derek becomes humanity's first 
-                            witness to universal constant modifications. From his observatory in Chile's Atacama 
-                            Desert, he discovers that the cosmos itself is being rewritten—and that the 
-                            programmers have noticed him noticing.
-                        </p>
-                        <div class="character-trait">
-                            <em>"The universe's source code is being updated. The question is: by whom?"</em>
-                        </div>
-                    </div>
+                <p>He was raised on a steady diet of <span class="emphasis">Star Trek</span> reruns, 
+                <span class="emphasis">Twilight Zone</span> marathons, and enough <span class="emphasis">Isaac Asimov</span> 
+                to convince him that robots will eventually want to discuss philosophy with us over coffee.</p>
+                
+                <p>Derek also believes that <span class="highlight">sailing around the world</span> in a 41-foot boat 
+                is a perfectly reasonable way to test whether reality behaves differently when you're completely 
+                surrounded by water. He calls this "research."</p>
+            </div>
 
-                    <div class="character-card">
-                        <div class="character-icon">
-                            <svg class="char-icon" viewBox="0 0 24 24">
-                                <path d="M9.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z"/>
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.12.23-2.18.64-3.15L6.5 10.5c-.28-.28-.28-.72 0-1s.72-.28 1 0L9.15 11.36c.97-.41 2.03-.64 3.15-.64s2.18.23 3.15.64L17.5 9.5c.28-.28.72-.28 1 0s.28.72 0 1L16.64 12.36c.41.97.64 2.03.64 3.15 0 4.41-3.59 8-8 8z"/>
-                            </svg>
-                        </div>
-                        <h3 class="character-name">Dr. Nancy Hammond</h3>
-                        <p class="character-title">Quantum Integration Specialist</p>
-                        <p class="character-description">
-                            At Caltech's advanced physics lab, Nancy pioneers quantum consciousness research 
-                            while facilitating humanity's first successful contact with cosmic intelligence. 
-                            Her work reveals that consciousness itself may be the key to navigating reality's 
-                            new, fluid rules.
-                        </p>
-                        <div class="character-trait">
-                            <em>"We're not losing our humanity. We're discovering what humanity can become."</em>
-                        </div>
-                    </div>
-
-                    <div class="character-card">
-                        <div class="character-icon">
-                            <svg class="char-icon" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </div>
-                        <h3 class="character-name">Dr. Maureen Hamner</h3>
-                        <p class="character-title">Quantum Consciousness Researcher</p>
-                        <p class="character-description">
-                            Working at CERN's cutting-edge facilities, Maureen discovers that human observation 
-                            can directly influence quantum field states. Her research becomes crucial when she 
-                            realizes that consciousness and cosmic modification may be more intimately connected 
-                            than anyone imagined.
-                        </p>
-                        <div class="character-trait">
-                            <em>"Reality is collaborative. Conscious minds shape probability fields through focused intention."</em>
-                        </div>
-                    </div>
+            <div class="author-facts">
+                <div class="fact-card" data-icon="🚀">
+                    <strong>Side Effects:</strong> May cause spontaneous questioning of fundamental constants
                 </div>
-
-                <div class="cosmic-connection-tease">
-                    <div class="connection-visual">
-                        <div class="connection-line"></div>
-                        <div class="connection-nodes">
-                            <div class="node node-1"></div>
-                            <div class="node node-2"></div>
-                            <div class="node node-3"></div>
-                        </div>
-                    </div>
-                    <p class="connection-text">
-                        As the cosmic modifications accelerate, these three brilliant minds will discover that their 
-                        separate research paths are converging toward something extraordinary—a connection that transcends 
-                        professional collaboration and ventures into realms where quantum entanglement meets matters of the heart. 
-                        For in a universe where consciousness shapes reality itself, perhaps love is the most powerful 
-                        force of all... <span class="cosmic-wink">✨</span>
-                    </p>
+                <div class="fact-card" data-icon="🤖">
+                    <strong>Warning:</strong> Contains AI characters with better social skills than most humans
+                </div>
+                <div class="fact-card" data-icon="⚡">
+                    <strong>Caution:</strong> Physics may behave differently after reading
+                </div>
+                <div class="fact-card" data-icon="💫">
+                    <strong>Note:</strong> Author genuinely believes love might be a cosmic force
                 </div>
             </div>
 
-        <!-- Series info -->
-        <section class="series-info">
-            <div class="info-card">
-                <h3>Cosmic Scale</h3>
-                <p>
-                    Experience science fiction that spans from quantum consciousness to galactic networks, 
-                    where humanity discovers its place in a universe far stranger and more interconnected 
-                    than ever imagined.
-                </p>
+            <div class="cosmic-disclaimer">
+                <p><strong>COSMIC DISCLAIMER:</strong> The following website contains 15 interconnected stories where:</p>
+                <ul style="text-align: left; margin: 1rem 0; padding-left: 2rem;">
+                    <li>Professors discover that π might not always equal 3.14159...</li>
+                    <li>Pac-Man becomes humanity's first contact with cosmic intelligence</li>
+                    <li>Golf putts refuse to follow curved spacetime</li>
+                    <li>Nuclear physicists fall in love while the universe gets a software update</li>
+                    <li>Reality itself starts taking suggestions</li>
+                </ul>
+                <p><em>Reader discretion is advised. Side effects may include: existential wonder, 
+                uncontrollable theorizing about consciousness, and the sudden urge to look up at the stars 
+                and wonder if they're looking back.</em></p>
             </div>
-            <div class="info-card">
-                <h3>Scientific Depth</h3>
-                <p>
-                    Grounded in real physics and cutting-edge scientific theory, each story explores 
-                    what happens when the fundamental constants of reality become variables in a 
-                    cosmic equation.
-                </p>
-            </div>
-            <div class="info-card">
-                <h3>Human Connection</h3>
-                <p>
-                    At its heart, this is a story about friendship, love, and the courage to embrace 
-                    transformation—even when that transformation challenges everything we believe 
-                    about existence itself.
-                </p>
-            </div>
-        </section>
+        </div>
 
-        <!-- Quote section -->
-        <section class="quote-section">
-            <blockquote class="quote">
-                "Some believe the universe speaks only in mathematics. But what if we've been listening to only half the conversation?"
-            </blockquote>
-            <p class="quote-author">— Professor Alistair Finch, Cambridge Lecture Series</p>
-        </section>
+        <!-- Privacy notice -->
+        <div class="privacy-notice">
+            <h4>🌍 Geographic Analytics Notice</h4>
+            <p>This website collects visitor IP addresses for geographic analytics purposes only. 
+            This helps Derek understand where in the world fellow cosmic travelers are located 
+            (by region/country, not specific addresses). No personal information is stored, 
+            and the data is used solely for understanding the global reach of The Last Axiom series.</p>
+        </div>
+
+        <!-- Entry buttons -->
+        <div class="entry-buttons" id="entryButtons">
+            <a href="index.html" class="entry-button enter-button" id="enterButton" onclick="enterSite(event)">
+                <svg class="button-icon" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                I Accept the Risk
+            </a>
+            <a href="https://www.google.com" class="entry-button escape-button">
+                <svg class="button-icon" viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+                Escape to Safety
+            </a>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
-    </footer>
-
     <script>
-        // Generate floating particles
-        function createParticles() {
-            const particleContainer = document.getElementById('particles');
-            const particleCount = 50;
+        // Google Apps Script URL for IP tracking
+        const TRACKING_URL = 'https://script.google.com/macros/s/AKfycbx9yDuqREJtjsfzhQWBV1kjMGM4vfxRrbBVjIWPcJZZHC-SwTkgkpLXuN58GQpt9Q9b8w/exec';
+        
+        // Track visitor on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            trackVisitor();
+            setupKonamiCode();
+        });
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particleContainer.appendChild(particle);
+        async function trackVisitor() {
+            try {
+                // Get visitor's IP and location info
+                const ipResponse = await fetch('https://ipapi.co/json/');
+                const ipData = await ipResponse.json();
+                
+                const visitorData = {
+                    action: 'trackVisitor',
+                    ip: ipData.ip || 'unknown',
+                    country: ipData.country_name || 'unknown',
+                    region: ipData.region || 'unknown',
+                    city: ipData.city || 'unknown',
+                    timestamp: new Date().toLocaleString(),
+                    userAgent: navigator.userAgent,
+                    referrer: document.referrer || 'direct',
+                    page: 'splash-page'
+                };
+
+                // Send to Google Sheets
+                await fetch(TRACKING_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        data: JSON.stringify(visitorData)
+                    })
+                });
+
+                console.log('Visitor tracked:', visitorData.country, visitorData.region);
+            } catch (error) {
+                console.log('Tracking failed (this is normal):', error.message);
             }
         }
 
-        // Initialize particles on load
-        document.addEventListener('DOMContentLoaded', createParticles);
+        async function enterSite(event) {
+            event.preventDefault();
+            
+            const container = document.getElementById('warningContainer');
+            const buttons = document.getElementById('entryButtons');
+            
+            // Add entering state
+            container.classList.add('entering');
+            
+            // Track entry
+            try {
+                const entryData = {
+                    action: 'trackEntry',
+                    timestamp: new Date().toLocaleString(),
+                    page: 'entered-main-site'
+                };
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                await fetch(TRACKING_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        data: JSON.stringify(entryData)
+                    })
+                });
+            } catch (error) {
+                // Fail silently
+            }
+
+            // Dramatic pause
+            setTimeout(() => {
+                window.location.href = 'Main-page.html';
+            }, 2000);
+        }
+
+        // Konami Code Easter Egg
+        function setupKonamiCode() {
+            const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+            let userInput = [];
+            
+            document.addEventListener('keydown', function(e) {
+                userInput.push(e.keyCode);
+                
+                if (userInput.length > konamiCode.length) {
+                    userInput.shift();
+                }
+                
+                if (JSON.stringify(userInput) === JSON.stringify(konamiCode)) {
+                    activateEasterEgg();
                 }
             });
-        });
+        }
 
-        // Add parallax effect to quantum field
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const quantumField = document.querySelector('.quantum-field');
-            quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
+        function activateEasterEgg() {
+            const container = document.getElementById('warningContainer');
+            container.classList.add('konami-activated');
+            
+            // Change some text
+            const title = document.querySelector('.warning-title');
+            title.innerHTML = '🌌 COSMIC CONSCIOUSNESS ACTIVATED 🌌';
+            
+            const subtitle = document.querySelector('.warning-subtitle');
+            subtitle.innerHTML = 'The universe acknowledges your dedication to the code';
+            
+            // Add special message
+            const disclaimer = document.querySelector('.cosmic-disclaimer');
+            disclaimer.innerHTML = `
+                <p><strong>🎮 ACHIEVEMENT UNLOCKED:</strong> You've discovered the Konami Code!</p>
+                <p>Derek would be proud. You clearly understand that some things in the universe 
+                follow patterns that transcend normal reality. In The Last Axiom series, 
+                characters discover that the universe itself might be running on code—and 
+                sometimes, if you know the right sequence, reality responds.</p>
+                <p><em>Welcome, fellow pattern-seeker. You're ready for what lies ahead.</em></p>
+            `;
+            
+            setTimeout(() => {
+                container.classList.remove('konami-activated');
+            }, 3000);
+        }
+
+        // Add some random "system glitches"
+        setInterval(() => {
+            if (Math.random() < 0.05) { // 5% chance every interval
+                document.body.style.filter = 'hue-rotate(10deg)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 200);
+            }
+        }, 5000);
     </script>
 </body>
 </html>
