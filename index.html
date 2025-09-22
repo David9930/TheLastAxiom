@@ -31,538 +31,209 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
-            animation: quantum-pulse 20s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        @keyframes quantum-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Warning klaxon effect */
-        .warning-flash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 0, 0, 0.1);
-            opacity: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 255, 255, 0.15) 0%, transparent 40%);
             pointer-events: none;
-            z-index: 1;
-            animation: warning-pulse 3s ease-in-out infinite;
+            z-index: -1;
+            animation: quantum-flicker 10s infinite alternate;
         }
 
-        @keyframes warning-pulse {
-            0%, 90%, 100% { opacity: 0; }
-            5%, 15% { opacity: 0.3; }
+        @keyframes quantum-flicker {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
-        /* Main content */
-        .warning-container {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
+        .container {
             text-align: center;
-        }
-
-        .warning-header {
-            background: rgba(255, 0, 0, 0.2);
-            border: 3px solid #ff0000;
-            border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: auto;
             position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            animation: border-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes border-pulse {
-            0%, 100% { border-color: #ff0000; }
-            50% { border-color: #ff6b6b; }
+            z-index: 1;
+            transition: all 0.5s ease;
         }
 
         .warning-title {
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: 3.5rem;
             font-weight: bold;
-            color: #ff4757;
             margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(255, 71, 87, 0.8);
-            animation: title-glow 2s ease-in-out infinite alternate;
+            color: #ff3333;
+            text-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333;
+            letter-spacing: 2px;
+            animation: glitch-text 2s infinite alternate;
         }
 
-        @keyframes title-glow {
-            0% { text-shadow: 0 0 20px rgba(255, 71, 87, 0.8); }
-            100% { text-shadow: 0 0 40px rgba(255, 71, 87, 1), 0 0 60px rgba(255, 71, 87, 0.6); }
+        @keyframes glitch-text {
+            0% { text-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333; }
+            50% { text-shadow: 0 0 15px #33ff33, 0 0 25px #33ff33; }
+            100% { text-shadow: 0 0 10px #3333ff, 0 0 20px #3333ff; }
         }
 
         .warning-subtitle {
-            font-size: 1.3rem;
-            color: #ffd700;
             font-style: italic;
-            margin-bottom: 2rem;
-            animation: subtitle-flicker 4s ease-in-out infinite;
-        }
-
-        @keyframes subtitle-flicker {
-            0%, 96%, 100% { opacity: 1; }
-            97% { opacity: 0.7; }
-            98% { opacity: 1; }
-            99% { opacity: 0.8; }
-        }
-
-        /* Warning content */
-        .warning-content {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .warning-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            animation: scanner 5s ease-in-out infinite;
-        }
-
-        @keyframes scanner {
-            0% { left: -100%; }
-            50% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .author-warning {
             font-size: 1.2rem;
-            line-height: 1.8;
-            color: #e8e8e8;
+            color: #a0a0a0;
             margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
         }
 
-        .highlight {
-            color: #ff6b6b;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        .warning-text {
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 2rem;
+            font-size: 1rem;
         }
 
-        .emphasis {
-            color: #ffd700;
-            font-style: italic;
+        .blinking-cursor {
+            font-size: 1.5rem;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
         .cosmic-disclaimer {
-            background: rgba(138, 43, 226, 0.15);
-            border: 2px solid rgba(187, 134, 252, 0.4);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            font-size: 1rem;
-            line-height: 1.6;
-            position: relative;
-        }
-
-        .cosmic-disclaimer::before {
-            content: "⚠️";
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a1a2e;
-            padding: 0 15px;
-            font-size: 1.5rem;
-        }
-
-        /* IP tracking notice */
-        .privacy-notice {
-            background: rgba(0, 100, 200, 0.1);
-            border: 1px solid rgba(100, 181, 246, 0.3);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            font-size: 0.9rem;
-            color: #b8b8b8;
-        }
-
-        .privacy-notice h4 {
-            color: #64b5f6;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Entry buttons */
-        .entry-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
             margin-top: 3rem;
-            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #6a6a6a;
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
         }
 
-        .entry-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1.5rem 2.5rem;
-            border: 3px solid transparent;
-            border-radius: 15px;
-            color: #e8e8e8;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .konami-activated .warning-title {
+            color: #33ff33;
+            text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33;
+        }
+        
+        /* New Styles for Messaging Section */
+        #messaging-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
         }
 
-        .enter-button {
-            background: linear-gradient(45deg, rgba(255, 71, 87, 0.3), rgba(255, 107, 107, 0.3));
-            border-color: #ff4757;
-        }
-
-        .enter-button:hover {
-            background: linear-gradient(45deg, rgba(255, 71, 87, 0.6), rgba(255, 107, 107, 0.6));
-            border-color: #ff6b6b;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.4);
-        }
-
-        .escape-button {
-            background: linear-gradient(45deg, rgba(100, 100, 100, 0.3), rgba(150, 150, 150, 0.3));
-            border-color: #888;
-        }
-
-        .escape-button:hover {
-            background: linear-gradient(45deg, rgba(100, 100, 100, 0.6), rgba(150, 150, 150, 0.6));
-            border-color: #aaa;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(100, 100, 100, 0.4);
-        }
-
-        .button-icon {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        /* Loading state */
-        .entering {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .entering .enter-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: button-spin 1s linear infinite;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes button-spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Fun facts */
-        .author-facts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        #message-form {
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
-            margin: 2rem 0;
         }
 
-        .fact-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #64b5f6;
+        #message-input {
+            width: 100%;
+            height: 100px;
             padding: 1rem;
-            border-radius: 0 10px 10px 0;
-            font-size: 0.95rem;
-            color: #d0d0d0;
-            position: relative;
+            background: #2e1a1a;
+            border: 1px solid #ff3333;
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
         }
 
-        .fact-card::before {
-            content: attr(data-icon);
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            background: #1a1a2e;
-            padding: 4px;
-            border-radius: 50%;
-            font-size: 1rem;
+        #send-button {
+            background-color: #ff3333;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .warning-container {
-                padding: 1rem;
-            }
-            
-            .entry-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .entry-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
-            .author-facts {
-                grid-template-columns: 1fr;
-            }
+        #send-button:hover {
+            background-color: #ff6666;
+        }
+        
+        #response-message {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #ff3333;
         }
 
-        /* Easter egg */
-        .konami-activated {
-            animation: reality-shift 0.5s ease-in-out;
-            filter: hue-rotate(180deg) saturate(2);
+        #message-board {
+            margin-top: 2rem;
+            border-top: 1px dashed #6a6a6a;
+            padding-top: 2rem;
         }
 
-        @keyframes reality-shift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.05) rotate(-1deg); }
-            75% { transform: scale(0.95) rotate(1deg); }
+        .message-entry {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #ff3333;
         }
+
+        .message-content {
+            font-style: italic;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+        }
+
+        .message-timestamp {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            margin-top: 0.5rem;
+        }
+        
     </style>
 </head>
 <body>
-    <!-- Background effects -->
     <div class="quantum-field"></div>
-    <div class="warning-flash"></div>
-
-    <!-- Main warning container -->
-    <div class="warning-container" id="warningContainer">
-        <!-- Warning header -->
-        <div class="warning-header">
-            <h1 class="warning-title">⚠️ REALITY DISTORTION WARNING ⚠️</h1>
-            <p class="warning-subtitle">You are about to enter a universe where the laws of physics are... negotiable</p>
+    <div class="container" id="main-container">
+        <h1 class="warning-title">WARNING: SYSTEM INTEGRITY COMPROMISED</h1>
+        <p class="warning-subtitle">_ACCESSING: THE LAST AXIOM UNIVERSE_</p>
+        <div class="warning-text">
+            <p><strong>Initiating Universal Connection Protocol...</strong></p>
+            <p>This is a controlled simulation. All data is for informational purposes only. Do not attempt to reverse-engineer or re-create this process in an uncontrolled environment. The universe is a delicate system; unintended alterations can have cascading consequences.</p>
+            <p>Accessing reality signature:<span class="blinking-cursor">_</span></p>
+            <p>Status: <span id="status-text">INITIALIZING</span></p>
         </div>
-
-        <!-- Warning content -->
-        <div class="warning-content">
-            <div class="author-warning">
-                <p><strong class="highlight">ATTENTION:</strong> The author Derek Devon is not a normal person.</p>
-                
-                <p>He was raised on a steady diet of <span class="emphasis">Star Trek</span> reruns, 
-                <span class="emphasis">Twilight Zone</span> marathons, and enough <span class="emphasis">Isaac Asimov</span> 
-                to convince him that robots will eventually want to discuss philosophy with us over coffee.</p>
-                
-                <p>Derek also believes that <span class="highlight">sailing around the world</span> in a 41-foot boat 
-                is a perfectly reasonable way to test whether reality behaves differently when you're completely 
-                surrounded by water. He calls this "research."</p>
-            </div>
-
-            <div class="author-facts">
-                <div class="fact-card" data-icon="🚀">
-                    <strong>Side Effects:</strong> May cause spontaneous questioning of fundamental constants
-                </div>
-                <div class="fact-card" data-icon="🤖">
-                    <strong>Warning:</strong> Contains AI characters with better social skills than most humans
-                </div>
-                <div class="fact-card" data-icon="⚡">
-                    <strong>Caution:</strong> Physics may behave differently after reading
-                </div>
-                <div class="fact-card" data-icon="💫">
-                    <strong>Note:</strong> Author genuinely believes love might be a cosmic force
-                </div>
-            </div>
-
-            <div class="cosmic-disclaimer">
-                <p><strong>COSMIC DISCLAIMER:</strong> The following website contains 15 interconnected stories where:</p>
-                <ul style="text-align: left; margin: 1rem 0; padding-left: 2rem;">
-                    <li>Professors discover that π might not always equal 3.14159...</li>
-                    <li>Pac-Man becomes humanity's first contact with cosmic intelligence</li>
-                    <li>Golf putts refuse to follow curved spacetime</li>
-                    <li>Nuclear physicists fall in love while the universe gets a software update</li>
-                    <li>Reality itself starts taking suggestions</li>
-                </ul>
-                <p><em>Reader discretion is advised. Side effects may include: existential wonder, 
-                uncontrollable theorizing about consciousness, and the sudden urge to look up at the stars 
-                and wonder if they're looking back.</em></p>
-            </div>
-        </div>
-
-        <!-- Privacy notice -->
-        <div class="privacy-notice">
-            <h4>🌍 Geographic Analytics Notice</h4>
-            <p>This website collects visitor IP addresses for geographic analytics purposes only. 
-            This helps Derek understand where in the world fellow cosmic travelers are located 
-            (by region/country, not specific addresses). No personal information is stored, 
-            and the data is used solely for understanding the global reach of The Last Axiom series.</p>
-        </div>
-
-        <!-- Entry buttons -->
-        <div class="entry-buttons" id="entryButtons">
-            <a href="Main-page.html" class="entry-button enter-button" id="enterButton" onclick="enterSite(event)">
-                <svg class="button-icon" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-                I Accept the Risk
-            </a>
-            <a href="https://www.google.com" class="entry-button escape-button">
-                <svg class="button-icon" viewBox="0 0 24 24">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
-                Escape to Safety
-            </a>
+        <div class="cosmic-disclaimer">
+            <p>Unauthorized access to universal constants is a breach of protocol. Proceed with caution.</p>
         </div>
     </div>
-
+    
+    <div id="messaging-container">
+        <h2>Send a Message to the Creator</h2>
+        <form id="message-form">
+            <textarea id="message-input" placeholder="Type your message here..." required></textarea>
+            <button id="send-button" type="submit">SEND TRANSMISSION</button>
+        </form>
+        <p id="response-message"></p>
+        <h3>Incoming Transmissions:</h3>
+        <div id="message-board">
+            <p style="text-align: center;">Loading messages...</p>
+        </div>
+    </div>
+    
     <script>
-        // Google Apps Script URL for IP tracking
-        const TRACKING_URL = 'https://script.google.com/macros/s/AKfycbx9yDuqREJtjsfzhQWBV1kjMGM4vfxRrbBVjIWPcJZZHC-SwTkgkpLXuN58GQpt9Q9b8w/exec';
-        
-        // Track visitor on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            trackVisitor();
-            setupKonamiCode();
+        // Konami Code Detection
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    activateKonamiMode();
+                    konamiIndex = 0; // Reset for future use
+                }
+            } else {
+                konamiIndex = 0;
+            }
         });
 
-        async function trackVisitor() {
-            try {
-                // Get visitor's IP and location info
-                const ipResponse = await fetch('https://ipapi.co/json/');
-                const ipData = await ipResponse.json();
-                
-                const visitorData = {
-                    action: 'trackVisitor',
-                    ip: ipData.ip || 'unknown',
-                    country: ipData.country_name || 'unknown',
-                    region: ipData.region || 'unknown',
-                    city: ipData.city || 'unknown',
-                    timestamp: new Date().toLocaleString(),
-                    userAgent: navigator.userAgent,
-                    referrer: document.referrer || 'direct',
-                    page: 'splash-page'
-                };
-
-                // Use EXACT same method as working Derek/Nancy system
-                sendDataViaForm(visitorData);
-                console.log('Visitor tracked:', visitorData.country, visitorData.region);
-            } catch (error) {
-                console.log('Tracking failed (this is normal):', error.message);
-            }
-        }
-
-        async function enterSite(event) {
-            event.preventDefault();
-            
-            const container = document.getElementById('warningContainer');
-            const buttons = document.getElementById('entryButtons');
-            
-            // Add entering state
-            container.classList.add('entering');
-            
-            // Track entry using EXACT same method as working Derek/Nancy system
-            try {
-                const entryData = {
-                    action: 'trackEntry',
-                    timestamp: new Date().toLocaleString(),
-                    page: 'entered-main-site'
-                };
-
-                sendDataViaForm(entryData);
-            } catch (error) {
-                // Fail silently
-            }
-
-            // Dramatic pause
-            setTimeout(() => {
-                window.location.href = 'Main-page.html';
-            }, 2000);
-        }
-
-        // EXACT copy of working Derek/Nancy form submission method
-        function sendDataViaForm(data) {
-            const form = document.createElement('form');
-            form.action = TRACKING_URL;
-            form.method = 'POST';
-            form.target = 'hiddenTrackingFrame';
-            form.style.display = 'none';
-            
-            const dataField = document.createElement('input');
-            dataField.type = 'hidden';
-            dataField.name = 'data';
-            dataField.value = JSON.stringify(data);
-            form.appendChild(dataField);
-            
-            let iframe = document.getElementById('hiddenTrackingFrame');
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.id = 'hiddenTrackingFrame';
-                iframe.name = 'hiddenTrackingFrame';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            }
-            
-            document.body.appendChild(form);
-            form.submit();
-            
-            setTimeout(() => {
-                if (form.parentNode) {
-                    document.body.removeChild(form);
-                }
-            }, 1000);
-        }
-
-        // Konami Code Easter Egg
-        function setupKonamiCode() {
-            const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
-            let userInput = [];
-            
-            document.addEventListener('keydown', function(e) {
-                userInput.push(e.keyCode);
-                
-                if (userInput.length > konamiCode.length) {
-                    userInput.shift();
-                }
-                
-                if (JSON.stringify(userInput) === JSON.stringify(konamiCode)) {
-                    activateEasterEgg();
-                }
-            });
-        }
-
-        function activateEasterEgg() {
-            const container = document.getElementById('warningContainer');
+        function activateKonamiMode() {
+            const container = document.getElementById('main-container');
             container.classList.add('konami-activated');
-            
-            // Change some text
             const title = document.querySelector('.warning-title');
             title.innerHTML = '🌌 COSMIC CONSCIOUSNESS ACTIVATED 🌌';
-            
             const subtitle = document.querySelector('.warning-subtitle');
             subtitle.innerHTML = 'The universe acknowledges your dedication to the code';
-            
-            // Add special message
             const disclaimer = document.querySelector('.cosmic-disclaimer');
             disclaimer.innerHTML = `
                 <p><strong>🎮 ACHIEVEMENT UNLOCKED:</strong> You've discovered the Konami Code!</p>
@@ -572,7 +243,6 @@
                 sometimes, if you know the right sequence, reality responds.</p>
                 <p><em>Welcome, fellow pattern-seeker. You're ready for what lies ahead.</em></p>
             `;
-            
             setTimeout(() => {
                 container.classList.remove('konami-activated');
             }, 3000);
@@ -587,6 +257,135 @@
                 }, 200);
             }
         }, 5000);
+
+        // START OF NEW MESSAGING SCRIPT FROM NANCY-BACKDOOR.HTML
+        // You MUST replace the placeholder with YOUR actual Google Apps Script URL.
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbx9yDuqREJtjsfzhQWBV1kjMGM4vfxRrbBVjIWPcJZZHC-SwTkgkpLXuN58GQpt9Q9b8w/exec"; // REPLACE THIS URL
+
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
+        const responseMessage = document.getElementById('response-message');
+        const messageBoard = document.getElementById('message-board');
+
+        let lastMessageCount = 0;
+        let autoRefreshInterval;
+
+        messageForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const message = messageInput.value.trim();
+            if (message === '') return;
+            
+            responseMessage.textContent = 'Sending message...';
+            const data = { action: 'addMessage', message: message };
+            
+            try {
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                // The no-cors mode prevents us from reading the response.
+                // We just assume it worked and give a positive message.
+                console.log("Message sent (no-cors mode). Assuming success.");
+                responseMessage.textContent = 'Transmission successful. Awaiting reply.';
+                messageInput.value = '';
+                await fetchMessages(); // Refresh messages immediately
+                
+            } catch (error) {
+                console.error('Error sending message:', error);
+                responseMessage.textContent = 'Error: Could not send transmission.';
+            }
+        });
+
+        async function fetchMessages() {
+            try {
+                const url = new URL(scriptUrl);
+                url.searchParams.append('action', 'getMessages');
+
+                const response = await fetch(url.toString(), {
+                    method: 'GET',
+                    cache: 'no-cache'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success && data.messages) {
+                    const messages = data.messages;
+                    if (messages.length > lastMessageCount) {
+                        playNotificationSound();
+                        lastMessageCount = messages.length;
+                    }
+                    displayMessages(messages);
+                } else {
+                    console.error('Failed to fetch messages:', data);
+                    messageBoard.innerHTML = '<p style="text-align: center;">Error loading messages. Check script URL and deployment.</p>';
+                }
+            } catch (error) {
+                console.error('Failed to fetch messages:', error);
+                messageBoard.innerHTML = '<p style="text-align: center;">Error connecting to the Google Sheets API.</p>';
+            }
+        }
+
+        function displayMessages(messages) {
+            messageBoard.innerHTML = '';
+            if (messages.length === 0) {
+                messageBoard.innerHTML = '<p style="text-align: center;">No transmissions received yet.</p>';
+                return;
+            }
+            messages.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message-entry';
+                messageDiv.innerHTML = `
+                    <p class="message-content">${escapeHtml(msg.message)}</p>
+                    <p class="message-timestamp">Received: ${msg.timestamp}</p>
+                `;
+                messageBoard.prepend(messageDiv);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function playNotificationSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.frequency.value = 600;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.4);
+            } catch (e) {
+                // Ignore audio errors
+            }
+        }
+
+        // Initialize and start auto-refresh
+        window.addEventListener('load', () => {
+            fetchMessages(); // Initial fetch
+            autoRefreshInterval = setInterval(fetchMessages, 5000); // Refresh every 5 seconds
+        });
+
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            clearInterval(autoRefreshInterval);
+        });
+        
     </script>
 </body>
 </html>
