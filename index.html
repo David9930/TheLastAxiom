@@ -464,15 +464,13 @@
                     page: 'splash-page'
                 };
 
-                // Send to Google Sheets
+                // Send to Google Sheets using FormData (same as working message system)
+                const formData = new FormData();
+                formData.append('data', JSON.stringify(visitorData));
+                
                 await fetch(TRACKING_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        data: JSON.stringify(visitorData)
-                    })
+                    body: formData
                 });
 
                 console.log('Visitor tracked:', visitorData.country, visitorData.region);
@@ -498,14 +496,13 @@
                     page: 'entered-main-site'
                 };
 
+                // Use FormData (same as working message system)
+                const formData = new FormData();
+                formData.append('data', JSON.stringify(entryData));
+
                 await fetch(TRACKING_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        data: JSON.stringify(entryData)
-                    })
+                    body: formData
                 });
             } catch (error) {
                 // Fail silently
@@ -513,7 +510,7 @@
 
             // Dramatic pause
             setTimeout(() => {
-                window.location.href = 'Main-page.html';
+                window.location.href = 'mainpage.html';
             }, 2000);
         }
 
