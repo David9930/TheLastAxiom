@@ -451,6 +451,87 @@
             30% { opacity: 1; transform: scale(1.2); }
             100% { opacity: 0; transform: scale(2); }
         }
+
+        /* Special popup message for advanced users */
+        .advanced-user-popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 40, 0.95));
+            border: 3px solid #00ff88;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5), inset 0 0 20px rgba(0, 255, 136, 0.1);
+            backdrop-filter: blur(15px);
+            z-index: 10000;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: matrix-glow 2s ease-in-out infinite alternate;
+        }
+
+        .advanced-user-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .advanced-user-popup.hide {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+        }
+
+        @keyframes matrix-glow {
+            0% { 
+                box-shadow: 0 0 30px rgba(0, 255, 136, 0.5), inset 0 0 20px rgba(0, 255, 136, 0.1);
+                border-color: #00ff88;
+            }
+            100% { 
+                box-shadow: 0 0 50px rgba(0, 255, 136, 0.8), inset 0 0 30px rgba(0, 255, 136, 0.2);
+                border-color: #44ffaa;
+            }
+        }
+
+        .popup-header {
+            color: #00ff88;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+            font-family: 'Courier New', monospace;
+        }
+
+        .popup-message {
+            color: #e0e0e0;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .popup-number {
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.6);
+        }
+
+        .popup-timer {
+            position: absolute;
+            top: -15px;
+            right: 15px;
+            background: #00ff88;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
     </style>
 </head>
 <body>
@@ -692,6 +773,11 @@
                     <p><em>Welcome, fellow pattern-seeker. You're ready for what lies ahead.</em></p>
                 `;
             }, 500);
+
+            // Show the advanced user popup after fireworks settle
+            setTimeout(() => {
+                showAdvancedUserPopup();
+            }, 2000);
             
             // Reset everything after extended time
             setTimeout(() => {
@@ -719,7 +805,55 @@
                     uncontrollable theorizing about consciousness, and the sudden urge to look up at the stars 
                     and wonder if they're looking back.</em></p>
                 `;
-            }, 5000);
+            }, 15000); // Extended time to allow for popup display
+        }
+
+        function showAdvancedUserPopup() {
+            const warningContent = document.querySelector('.warning-content');
+            
+            // Create popup
+            const popup = document.createElement('div');
+            popup.className = 'advanced-user-popup';
+            popup.innerHTML = `
+                <div class="popup-timer" id="popupTimer">10</div>
+                <div class="popup-header">/// ADVANCED USER DETECTED ///</div>
+                <div class="popup-message">
+                    You have demonstrated a higher level of computing skill than the average reader. 
+                    At some point you will wonder what the number <span class="popup-number">12757982</span> represents. 
+                    I will hide a special clue just for you somewhere in the website. 
+                    Hope you're good enough to find it!
+                </div>
+            `;
+            
+            warningContent.appendChild(popup);
+            
+            // Show popup with animation
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 100);
+            
+            // Start countdown timer
+            let timeLeft = 10;
+            const timerElement = popup.querySelector('#popupTimer');
+            
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                }
+            }, 1000);
+            
+            // Hide and remove popup after 10 seconds
+            setTimeout(() => {
+                popup.classList.add('hide');
+                setTimeout(() => {
+                    if (popup.parentNode) {
+                        popup.remove();
+                    }
+                }, 400);
+            }, 10000);
         }
 
         function createFireworksShow() {
