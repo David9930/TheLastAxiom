@@ -453,11 +453,11 @@
         }
 
         /* Special popup message for advanced users */
-        .advanced-user-popup {
+         .advanced-user-popup {
             position: absolute;
-            top: 50%;
+            top: 80px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 40, 0.95));
             border: 3px solid #00ff88;
             border-radius: 15px;
@@ -468,19 +468,19 @@
             backdrop-filter: blur(15px);
             z-index: 10000;
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.3);
+            transform: translateX(-50%) scale(0.3);
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             animation: matrix-glow 2s ease-in-out infinite alternate;
         }
 
         .advanced-user-popup.show {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            transform: translateX(-50%) scale(1);
         }
 
         .advanced-user-popup.hide {
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.3);
+            transform: translateX(-50%) scale(0.3);
         }
 
         @keyframes matrix-glow {
