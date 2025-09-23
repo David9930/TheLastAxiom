@@ -10,7 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
             background: linear-gradient(45deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0f 100%);
@@ -351,12 +351,115 @@
             25% { transform: scale(1.05) rotate(-1deg); }
             75% { transform: scale(0.95) rotate(1deg); }
         }
+
+        /* Fireworks overlay */
+        .fireworks-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fireworks-overlay.active {
+            opacity: 1;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 2s ease-out forwards;
+        }
+
+        .firework-trail {
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            animation: trail 0.8s ease-out forwards;
+        }
+
+        @keyframes trail {
+            0% {
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                height: 60px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #fff, #ffd700);
+            border-radius: 50%;
+            animation: sparkle 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) translate(0, 0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) translate(var(--dx, 0), var(--dy, 0));
+                opacity: 0;
+            }
+        }
+
+        /* Success message enhancement */
+        .success-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            animation: success-burst 1s ease-out;
+        }
+
+        @keyframes success-burst {
+            0% { opacity: 0; transform: scale(0); }
+            30% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(2); }
+        }
     </style>
 </head>
 <body>
     <!-- Background effects -->
     <div class="quantum-field"></div>
     <div class="warning-flash"></div>
+    
+    <!-- Fireworks overlay for Konami code -->
+    <div class="fireworks-overlay" id="fireworksOverlay"></div>
 
     <!-- Main warning container -->
     <div class="warning-container" id="warningContainer">
@@ -555,29 +658,231 @@
 
         function activateEasterEgg() {
             const container = document.getElementById('warningContainer');
-            container.classList.add('konami-activated');
             
-            // Change some text
-            const title = document.querySelector('.warning-title');
-            title.innerHTML = '🌌 COSMIC CONSCIOUSNESS ACTIVATED 🌌';
+            // Create success flash overlay
+            const successFlash = document.createElement('div');
+            successFlash.className = 'success-flash';
+            document.body.appendChild(successFlash);
             
-            const subtitle = document.querySelector('.warning-subtitle');
-            subtitle.innerHTML = 'The universe acknowledges your dedication to the code';
+            // Start fireworks immediately
+            createFireworksShow();
             
-            // Add special message
-            const disclaimer = document.querySelector('.cosmic-disclaimer');
-            disclaimer.innerHTML = `
-                <p><strong>🎮 ACHIEVEMENT UNLOCKED:</strong> You've discovered the Konami Code!</p>
-                <p>Derek would be proud. You clearly understand that some things in the universe 
-                follow patterns that transcend normal reality. In The Last Axiom series, 
-                characters discover that the universe itself might be running on code—and 
-                sometimes, if you know the right sequence, reality responds.</p>
-                <p><em>Welcome, fellow pattern-seeker. You're ready for what lies ahead.</em></p>
-            `;
+            // Play triumphant sound
+            playTriumphantSound();
             
+            // Apply reality shift after brief delay
+            setTimeout(() => {
+                container.classList.add('konami-activated');
+                
+                // Change text content
+                const title = document.querySelector('.warning-title');
+                title.innerHTML = '🌌 COSMIC CONSCIOUSNESS ACTIVATED 🌌';
+                
+                const subtitle = document.querySelector('.warning-subtitle');
+                subtitle.innerHTML = 'The universe acknowledges your dedication to the code';
+                
+                // Add special achievement message
+                const disclaimer = document.querySelector('.cosmic-disclaimer');
+                disclaimer.innerHTML = `
+                    <p><strong>🎮 ACHIEVEMENT UNLOCKED:</strong> You've discovered the Konami Code!</p>
+                    <p>Derek would be proud. You clearly understand that some things in the universe 
+                    follow patterns that transcend normal reality. In The Last Axiom series, 
+                    characters discover that the universe itself might be running on code—and 
+                    sometimes, if you know the right sequence, reality responds.</p>
+                    <p><em>Welcome, fellow pattern-seeker. You're ready for what lies ahead.</em></p>
+                `;
+            }, 500);
+            
+            // Reset everything after extended time
             setTimeout(() => {
                 container.classList.remove('konami-activated');
-            }, 3000);
+                successFlash.remove();
+                
+                // Reset text back to original
+                const title = document.querySelector('.warning-title');
+                title.innerHTML = '⚠️ REALITY DISTORTION WARNING ⚠️';
+                
+                const subtitle = document.querySelector('.warning-subtitle');
+                subtitle.innerHTML = 'You are about to enter a universe where the laws of physics are... negotiable';
+                
+                const disclaimer = document.querySelector('.cosmic-disclaimer');
+                disclaimer.innerHTML = `
+                    <p><strong>COSMIC DISCLAIMER:</strong> The following website contains 15 interconnected stories where:</p>
+                    <ul style="text-align: left; margin: 1rem 0; padding-left: 2rem;">
+                        <li>Professors discover that π might not always equal 3.14159...</li>
+                        <li>Pac-Man becomes humanity's first contact with cosmic intelligence</li>
+                        <li>Golf putts refuse to follow curved spacetime</li>
+                        <li>Nuclear physicists fall in love while the universe gets a software update</li>
+                        <li>Reality itself starts taking suggestions</li>
+                    </ul>
+                    <p><em>Reader discretion is advised. Side effects may include: existential wonder, 
+                    uncontrollable theorizing about consciousness, and the sudden urge to look up at the stars 
+                    and wonder if they're looking back.</em></p>
+                `;
+            }, 5000);
+        }
+
+        function createFireworksShow() {
+            const overlay = document.getElementById('fireworksOverlay');
+            overlay.classList.add('active');
+            
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8', '#f7dc6f'];
+            const fireworkCount = 12;
+            
+            // Create multiple fireworks with staggered timing
+            for (let i = 0; i < fireworkCount; i++) {
+                setTimeout(() => {
+                    createSingleFirework(overlay, colors);
+                }, i * 300);
+            }
+            
+            // Hide overlay after show
+            setTimeout(() => {
+                overlay.classList.remove('active');
+                // Clean up any remaining firework elements
+                overlay.innerHTML = '';
+            }, 4000);
+        }
+
+        function createSingleFirework(container, colors) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.6) + window.innerHeight * 0.1;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Create launch trail
+            const trail = document.createElement('div');
+            trail.className = 'firework-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = (y + 60) + 'px';
+            trail.style.background = `linear-gradient(to top, ${color}, transparent)`;
+            container.appendChild(trail);
+            
+            // Create main explosion after trail
+            setTimeout(() => {
+                createExplosion(container, x, y, color);
+            }, 800);
+            
+            // Clean up trail
+            setTimeout(() => {
+                if (trail.parentNode) trail.remove();
+            }, 1000);
+        }
+
+        function createExplosion(container, x, y, color) {
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 50 + Math.random() * 50;
+                const dx = Math.cos(angle) * velocity;
+                const dy = Math.sin(angle) * velocity;
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 6px ${color}`;
+                
+                // Add random motion
+                particle.style.setProperty('--dx', dx + 'px');
+                particle.style.setProperty('--dy', dy + 'px');
+                
+                container.appendChild(particle);
+                
+                // Create sparkles around each particle
+                if (Math.random() < 0.3) {
+                    setTimeout(() => {
+                        createSparkles(container, x + dx/2, y + dy/2, color);
+                    }, 500);
+                }
+                
+                // Clean up particle
+                setTimeout(() => {
+                    if (particle.parentNode) particle.remove();
+                }, 2000);
+            }
+        }
+
+        function createSparkles(container, x, y, color) {
+            const sparkleCount = 8;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 20 + Math.random() * 30;
+                const dx = Math.cos(angle) * distance;
+                const dy = Math.sin(angle) * distance;
+                
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.setProperty('--dx', dx + 'px');
+                sparkle.style.setProperty('--dy', dy + 'px');
+                
+                container.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (sparkle.parentNode) sparkle.remove();
+                }, 1500);
+            }
+        }
+
+        function playTriumphantSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create a triumphant chord sequence
+                const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5
+                const duration = 0.8;
+                
+                frequencies.forEach((freq, index) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = freq;
+                    oscillator.type = 'sine';
+                    
+                    const startTime = audioContext.currentTime + (index * 0.1);
+                    gainNode.gain.setValueAtTime(0, startTime);
+                    gainNode.gain.linearRampToValueAtTime(0.1, startTime + 0.01);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+                    
+                    oscillator.start(startTime);
+                    oscillator.stop(startTime + duration);
+                });
+                
+                // Add some sparkly high notes
+                setTimeout(() => {
+                    [1046.5, 1318.5, 1567.98].forEach((freq, index) => {
+                        const osc = audioContext.createOscillator();
+                        const gain = audioContext.createGain();
+                        
+                        osc.connect(gain);
+                        gain.connect(audioContext.destination);
+                        
+                        osc.frequency.value = freq;
+                        osc.type = 'sine';
+                        
+                        const time = audioContext.currentTime + (index * 0.15);
+                        gain.gain.setValueAtTime(0, time);
+                        gain.gain.linearRampToValueAtTime(0.05, time + 0.01);
+                        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.4);
+                        
+                        osc.start(time);
+                        osc.stop(time + 0.4);
+                    });
+                }, 300);
+                
+            } catch (e) {
+                // Ignore audio errors - not all browsers support Web Audio API
+                console.log('Audio not supported');
+            }
         }
 
         // Add some random "system glitches"
