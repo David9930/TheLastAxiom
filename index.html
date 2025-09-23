@@ -437,7 +437,7 @@
     </div>
 
     <script>
-        // Google Apps Script URL for IP tracking
+        // Google Apps Script URL for tracking - SAME URL as Nancy-Backdoor.html
         const TRACKING_URL = 'https://script.google.com/macros/s/AKfycbx9yDuqREJtjsfzhQWBV1kjMGM4vfxRrbBVjIWPcJZZHC-SwTkgkpLXuN58GQpt9Q9b8w/exec';
         
         // Track visitor on page load
@@ -445,6 +445,32 @@
             trackVisitor();
             setupKonamiCode();
         });
+
+        // FIXED: Use the EXACT same method as Nancy-Backdoor.html
+        async function sendTrackingData(data) {
+            try {
+                const formData = new FormData();
+                formData.append('data', JSON.stringify(data));
+                
+                const response = await fetch(TRACKING_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    console.log('Tracking successful:', data.action);
+                } else {
+                    console.log('Tracking failed:', result.error);
+                }
+                
+                return result;
+            } catch (error) {
+                console.log('Tracking error:', error.message);
+                return { success: false, error: error.message };
+            }
+        }
 
         async function trackVisitor() {
             try {
@@ -464,11 +490,16 @@
                     page: 'splash-page'
                 };
 
-                // Use EXACT same method as working Derek/Nancy system
-                sendDataViaForm(visitorData);
-                console.log('Visitor tracked:', visitorData.country, visitorData.region);
+                // Use the EXACT same method as Nancy-Backdoor.html
+                const result = await sendTrackingData(visitorData);
+                
+                if (result.success) {
+                    console.log('Visitor tracked successfully:', visitorData.country, visitorData.region);
+                } else {
+                    console.log('Visitor tracking failed:', result.error);
+                }
             } catch (error) {
-                console.log('Tracking failed (this is normal):', error.message);
+                console.log('Tracking failed:', error.message);
             }
         }
 
@@ -481,7 +512,7 @@
             // Add entering state
             container.classList.add('entering');
             
-            // Track entry using EXACT same method as working Derek/Nancy system
+            // Track entry using the EXACT same method as Nancy-Backdoor.html
             try {
                 const entryData = {
                     action: 'trackEntry',
@@ -489,48 +520,21 @@
                     page: 'entered-main-site'
                 };
 
-                sendDataViaForm(entryData);
+                const result = await sendTrackingData(entryData);
+                
+                if (result.success) {
+                    console.log('Entry tracked successfully');
+                } else {
+                    console.log('Entry tracking failed:', result.error);
+                }
             } catch (error) {
-                // Fail silently
+                console.log('Entry tracking error:', error.message);
             }
 
             // Dramatic pause
             setTimeout(() => {
                 window.location.href = 'Main-page.html';
             }, 2000);
-        }
-
-        // EXACT copy of working Derek/Nancy form submission method
-        function sendDataViaForm(data) {
-            const form = document.createElement('form');
-            form.action = TRACKING_URL;
-            form.method = 'POST';
-            form.target = 'hiddenTrackingFrame';
-            form.style.display = 'none';
-            
-            const dataField = document.createElement('input');
-            dataField.type = 'hidden';
-            dataField.name = 'data';
-            dataField.value = JSON.stringify(data);
-            form.appendChild(dataField);
-            
-            let iframe = document.getElementById('hiddenTrackingFrame');
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.id = 'hiddenTrackingFrame';
-                iframe.name = 'hiddenTrackingFrame';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            }
-            
-            document.body.appendChild(form);
-            form.submit();
-            
-            setTimeout(() => {
-                if (form.parentNode) {
-                    document.body.removeChild(form);
-                }
-            }, 1000);
         }
 
         // Konami Code Easter Egg
