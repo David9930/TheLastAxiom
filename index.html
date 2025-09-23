@@ -437,7 +437,7 @@
     </div>
 
     <script>
-        // Google Apps Script URL for tracking - SAME URL as Nancy-Backdoor.html
+        // FIXED: Use correct Google Apps Script URL for visitor tracking
         const TRACKING_URL = 'https://script.google.com/macros/s/AKfycbx9yDuqREJtjsfzhQWBV1kjMGM4vfxRrbBVjIWPcJZZHC-SwTkgkpLXuN58GQpt9Q9b8w/exec';
         
         // Track visitor on page load
@@ -446,7 +446,7 @@
             setupKonamiCode();
         });
 
-        // FIXED: Use the EXACT same method as Nancy-Backdoor.html
+        // FIXED: Use the correct visitor tracking format
         async function sendTrackingData(data) {
             try {
                 const formData = new FormData();
@@ -478,14 +478,18 @@
                 const ipResponse = await fetch('https://ipapi.co/json/');
                 const ipData = await ipResponse.json();
                 
-                // TEST: Use the EXACT same format as Nancy-Backdoor.html messages
+                // FIXED: Use proper visitor tracking format with action field
                 const visitorData = {
-                    message: `🌍 New visitor from ${ipData.country_name || 'Unknown'}, ${ipData.city || 'Unknown'} (${ipData.ip || 'unknown IP'}) - Referrer: ${document.referrer || 'direct'}`,
-                    sender: 'Splash-Page-Tracker',
-                    timestamp: new Date().toLocaleString()
+                    action: 'trackVisitor',  // This tells the script to use visitor tracking
+                    ip: ipData.ip || 'unknown',
+                    country: ipData.country_name || 'unknown',
+                    region: ipData.region || 'unknown',
+                    city: ipData.city || 'unknown',
+                    timestamp: new Date().toLocaleString(),
+                    userAgent: navigator.userAgent || 'unknown',
+                    referrer: document.referrer || 'direct'
                 };
 
-                // Use the EXACT same method as Nancy-Backdoor.html
                 const result = await sendTrackingData(visitorData);
                 
                 if (result.success) {
@@ -502,17 +506,16 @@
             event.preventDefault();
             
             const container = document.getElementById('warningContainer');
-            const buttons = document.getElementById('entryButtons');
             
             // Add entering state
             container.classList.add('entering');
             
-            // Track entry using the EXACT same message format as Nancy-Backdoor.html
+            // FIXED: Use proper entry tracking format with action field
             try {
                 const entryData = {
-                    message: `🚀 User entered main site from splash page at ${new Date().toLocaleString()}`,
-                    sender: 'Site-Entry-Tracker',
-                    timestamp: new Date().toLocaleString()
+                    action: 'trackEntry',  // This tells the script to use entry tracking
+                    timestamp: new Date().toLocaleString(),
+                    page: 'main-site-entry'
                 };
 
                 const result = await sendTrackingData(entryData);
