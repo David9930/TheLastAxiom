@@ -478,23 +478,18 @@
                 const ipResponse = await fetch('https://ipapi.co/json/');
                 const ipData = await ipResponse.json();
                 
+                // TEST: Use the EXACT same format as Nancy-Backdoor.html messages
                 const visitorData = {
-                    action: 'trackVisitor',
-                    ip: ipData.ip || 'unknown',
-                    country: ipData.country_name || 'unknown',
-                    region: ipData.region || 'unknown',
-                    city: ipData.city || 'unknown',
-                    timestamp: new Date().toLocaleString(),
-                    userAgent: navigator.userAgent,
-                    referrer: document.referrer || 'direct',
-                    page: 'splash-page'
+                    message: `🌍 New visitor from ${ipData.country_name || 'Unknown'}, ${ipData.city || 'Unknown'} (${ipData.ip || 'unknown IP'}) - Referrer: ${document.referrer || 'direct'}`,
+                    sender: 'Splash-Page-Tracker',
+                    timestamp: new Date().toLocaleString()
                 };
 
                 // Use the EXACT same method as Nancy-Backdoor.html
                 const result = await sendTrackingData(visitorData);
                 
                 if (result.success) {
-                    console.log('Visitor tracked successfully:', visitorData.country, visitorData.region);
+                    console.log('Visitor tracked successfully:', ipData.country_name, ipData.city);
                 } else {
                     console.log('Visitor tracking failed:', result.error);
                 }
@@ -512,12 +507,12 @@
             // Add entering state
             container.classList.add('entering');
             
-            // Track entry using the EXACT same method as Nancy-Backdoor.html
+            // Track entry using the EXACT same message format as Nancy-Backdoor.html
             try {
                 const entryData = {
-                    action: 'trackEntry',
-                    timestamp: new Date().toLocaleString(),
-                    page: 'entered-main-site'
+                    message: `🚀 User entered main site from splash page at ${new Date().toLocaleString()}`,
+                    sender: 'Site-Entry-Tracker',
+                    timestamp: new Date().toLocaleString()
                 };
 
                 const result = await sendTrackingData(entryData);
