@@ -298,12 +298,11 @@
             position: relative;
             cursor: pointer;
             overflow: hidden;
-            background-color: rgba(10, 10, 15, 0.8);
+            background-color: rgba(10, 10, 15, 0.95);
             background-size: 400% 400%;
             background-repeat: no-repeat;
             border: 1px solid rgba(100, 181, 246, 0.2);
-            transition: all 0.3s ease;
-            opacity: 0.3;
+            transition: all 0.4s ease;
         }
 
         .puzzle-piece:hover {
@@ -313,15 +312,24 @@
             box-shadow: 0 0 15px rgba(100, 181, 246, 0.6);
         }
 
-        .puzzle-piece.correct {
+        .puzzle-piece.revealed {
             border-color: #ffd700;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-            cursor: default;
-            opacity: 1;
+            animation: revealPiece 0.5s ease-out;
         }
 
-        .puzzle-piece.correct:hover {
-            transform: scale(1);
+        @keyframes revealPiece {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         /* Completion message */
@@ -634,184 +642,100 @@
             }
         }
 
-        // Puzzle game logic
-        class PuzzleGame {
+        // Simple Click-to-Reveal Puzzle
+        class RevealPuzzle {
             constructor() {
                 this.gridSize = 4;
-                this.totalPieces = this.gridSize * this.gridSize;
-                this.correctPositions = Array.from({length: this.totalPieces}, (_, i) => i);
-                this.currentPositions = [...this.correctPositions];
-                this.selectedPiece = null;
-                this.correctCount = 0;
+                this.totalPieces = 16;
                 this.imagePath = 'author-photo.jpg';
-                this.clickCount = 0;
+                this.revealedCount = 0;
                 
                 this.init();
             }
 
             init() {
-                this.shuffle();
-                this.render();
-                this.attachEventListeners();
+                this.createPuzzle();
             }
 
-            shuffle() {
-                // Fisher-Yates shuffle - perform multiple times for better scrambling
-                for (let round = 0; round < 3; round++) {
-                    for (let i = this.currentPositions.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [this.currentPositions[i], this.currentPositions[j]] = 
-                        [this.currentPositions[j], this.currentPositions[i]];
-                    }
-                }
-            }
-
-            render() {
+            createPuzzle() {
                 const grid = document.getElementById('puzzleGrid');
                 grid.innerHTML = '';
-                this.correctCount = 0;
 
-                this.currentPositions.forEach((imageIndex, position) => {
+                for (let i = 0; i < this.totalPieces; i++) {
                     const piece = document.createElement('div');
                     piece.className = 'puzzle-piece';
-                    piece.dataset.position = position;
-                    piece.dataset.imageIndex = imageIndex;
-
-                    // Set background image
+                    piece.dataset.index = i;
+                    
+                    // Calculate which part of the image this piece shows
+                    const row = Math.floor(i / this.gridSize);
+                    const col = i % this.gridSize;
+                    
+                    // Set background image and position
                     piece.style.backgroundImage = `url('${this.imagePath}')`;
+                    const bgX = (col / 3) * 100;  // 0, 33.333, 66.666, 100
+                    const bgY = (row / 3) * 100;  // 0, 33.333, 66.666, 100
+                    piece.style.backgroundPosition = `${bgX}% ${bgY}%`;
                     
-                    // Calculate which part of the image to show
-                    // imageIndex tells us which piece of the original image this is (0-15)
-                    const imageRow = Math.floor(imageIndex / this.gridSize);
-                    const imageCol = imageIndex % this.gridSize;
+                    // Add click handler
+                    piece.addEventListener('click', () => this.revealPiece(piece));
                     
-                    // Set background position as percentage
-                    // Each piece shows 1/4 of the image, so we use 33.333% spacing
-                    const xPercent = (imageCol / (this.gridSize - 1)) * 100;
-                    const yPercent = (imageRow / (this.gridSize - 1)) * 100;
-                    piece.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
-
                     grid.appendChild(piece);
-
-                    // Check if piece is in correct position
-                    if (position === imageIndex) {
-                        piece.classList.add('correct');
-                        this.correctCount++;
-                    }
-                });
-                
-                // Hide instruction after first click
-                if (this.clickCount > 0) {
-                    document.getElementById('puzzleInstruction').classList.add('hidden');
                 }
             }
 
-            attachEventListeners() {
-                const grid = document.getElementById('puzzleGrid');
-                
-                // Remove old listener if exists
-                const newGrid = grid.cloneNode(true);
-                grid.parentNode.replaceChild(newGrid, grid);
-                
-                // Add click listener to grid using event delegation
-                newGrid.addEventListener('click', (e) => {
-                    const piece = e.target.closest('.puzzle-piece');
-                    if (piece) {
-                        this.handlePieceClick(piece);
-                    }
-                });
-
-                // Reset button
-                const resetBtn = document.getElementById('resetBtn');
-                const newResetBtn = resetBtn.cloneNode(true);
-                resetBtn.parentNode.replaceChild(newResetBtn, resetBtn);
-                newResetBtn.addEventListener('click', () => this.reset());
-            }
-
-            handlePieceClick(clickedPiece) {
-                // Increment click counter
-                this.clickCount++;
-                
-                // Don't allow moving pieces that are already correct
-                if (clickedPiece.classList.contains('correct')) {
+            revealPiece(piece) {
+                // Don't do anything if already revealed
+                if (piece.classList.contains('revealed')) {
                     return;
                 }
-
-                const clickedPosition = parseInt(clickedPiece.dataset.position);
                 
-                // Find all adjacent pieces
-                const adjacentPositions = this.getAdjacentPositions(clickedPosition);
+                // Reveal the piece
+                piece.classList.add('revealed');
+                piece.style.cursor = 'default';
+                this.revealedCount++;
                 
-                if (adjacentPositions.length === 0) return;
-                
-                // Pick a random adjacent piece to swap with
-                const randomAdjacent = adjacentPositions[Math.floor(Math.random() * adjacentPositions.length)];
-                
-                // Swap the pieces
-                [this.currentPositions[clickedPosition], this.currentPositions[randomAdjacent]] = 
-                [this.currentPositions[randomAdjacent], this.currentPositions[clickedPosition]];
-
-                // Re-render and reattach listeners
-                this.render();
-                this.attachEventListeners();
-
-                // Check if puzzle is complete
-                this.checkCompletion();
-            }
-
-            getAdjacentPositions(position) {
-                const row = Math.floor(position / this.gridSize);
-                const col = position % this.gridSize;
-                const adjacent = [];
-
-                // Up
-                if (row > 0) adjacent.push(position - this.gridSize);
-                // Down
-                if (row < this.gridSize - 1) adjacent.push(position + this.gridSize);
-                // Left
-                if (col > 0) adjacent.push(position - 1);
-                // Right
-                if (col < this.gridSize - 1) adjacent.push(position + 1);
-
-                return adjacent;
-            }
-
-            checkCompletion() {
-                if (this.correctCount === this.totalPieces) {
-                    // Hide instruction
+                // Hide instruction after first click
+                if (this.revealedCount === 1) {
                     document.getElementById('puzzleInstruction').classList.add('hidden');
-                    
-                    // Show completion message
-                    const completionMsg = document.getElementById('completionMessage');
-                    completionMsg.classList.add('show');
-                    setTimeout(() => {
-                        completionMsg.classList.remove('show');
-                    }, 3000);
                 }
+                
+                // Check if all pieces are revealed
+                if (this.revealedCount === this.totalPieces) {
+                    this.showCompletion();
+                }
+            }
+
+            showCompletion() {
+                const msg = document.getElementById('completionMessage');
+                msg.classList.add('show');
+                setTimeout(() => msg.classList.remove('show'), 3000);
             }
 
             reset() {
-                this.correctCount = 0;
-                this.clickCount = 0;
-                this.selectedPiece = null;
-                this.shuffle();
-                this.render();
-                this.attachEventListeners();
+                this.revealedCount = 0;
+                const pieces = document.querySelectorAll('.puzzle-piece');
+                pieces.forEach(piece => {
+                    piece.classList.remove('revealed');
+                    piece.style.cursor = 'pointer';
+                });
                 document.getElementById('puzzleInstruction').classList.remove('hidden');
             }
         }
 
-        // Initialize everything on load
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
-            new PuzzleGame();
+            const puzzle = new RevealPuzzle();
+            document.getElementById('resetBtn').addEventListener('click', () => puzzle.reset());
         });
 
-        // Add parallax effect to quantum field
+        // Parallax effect
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const quantumField = document.querySelector('.quantum-field');
-            quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (quantumField) {
+                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
         });
     </script>
 </body>
