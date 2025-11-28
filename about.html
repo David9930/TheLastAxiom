@@ -231,16 +231,165 @@
 
         .author-placeholder {
             width: 100%;
-            height: 300px;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Puzzle container */
+        .puzzle-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%);
             border: 2px solid #64b5f6;
             border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
+        }
+
+        .puzzle-instruction {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #64b5f6;
+            font-size: 1.2rem;
+            z-index: 10;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            padding: 2rem;
+        }
+
+        .puzzle-instruction.hidden {
+            opacity: 0;
+        }
+
+        .puzzle-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(100, 181, 246, 0.5));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(100, 181, 246, 0.8));
+                transform: scale(1.1);
+            }
+        }
+
+        /* Puzzle grid */
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            width: 100%;
+            height: 100%;
+            gap: 2px;
+            padding: 2px;
+        }
+
+        .puzzle-piece {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .puzzle-piece:hover {
+            border-color: #64b5f6;
+            transform: scale(1.05);
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.6);
+        }
+
+        .puzzle-piece.correct {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            cursor: default;
+        }
+
+        .puzzle-piece.correct:hover {
+            transform: scale(1);
+        }
+
+        .puzzle-piece img {
+            width: 400%;
+            height: 400%;
+            position: absolute;
+            object-fit: cover;
+            pointer-events: none;
+            opacity: 0.3;
+            transition: opacity 0.5s ease;
+        }
+
+        .puzzle-piece.correct img {
+            opacity: 1;
+        }
+
+        /* Completion message */
+        .completion-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64b5f6;
-            font-size: 1.2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 20;
+            border-radius: 15px;
+        }
+
+        .completion-message.show {
+            opacity: 1;
+            animation: fadeInOut 3s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
+        }
+
+        .completion-text {
+            color: #ffd700;
+            font-size: 1.5rem;
             text-align: center;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Reset button */
+        .puzzle-reset {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .reset-btn {
+            background: rgba(100, 181, 246, 0.2);
+            border: 2px solid #64b5f6;
+            color: #e8e8e8;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: rgba(100, 181, 246, 0.4);
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
         }
 
         /* Special highlights */
@@ -373,9 +522,20 @@
             <section class="content-section">
                 <div class="author-section">
                     <div class="author-placeholder">
-                        <div>
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
-                            <div>Author Photo<br>Coming Soon</div>
+                        <div class="puzzle-container" id="puzzleContainer">
+                            <div class="puzzle-instruction" id="puzzleInstruction">
+                                <div class="puzzle-icon">🧩</div>
+                                <div>Click the puzzle pieces<br>to reveal the author</div>
+                            </div>
+                            <div class="puzzle-grid" id="puzzleGrid">
+                                <!-- Puzzle pieces will be generated by JavaScript -->
+                            </div>
+                            <div class="completion-message" id="completionMessage">
+                                <div class="completion-text">✨ Mystery Revealed! ✨</div>
+                            </div>
+                        </div>
+                        <div class="puzzle-reset">
+                            <button class="reset-btn" id="resetBtn">Reset Puzzle</button>
                         </div>
                     </div>
                     <div>
@@ -484,8 +644,145 @@
             }
         }
 
-        // Initialize particles on load
-        document.addEventListener('DOMContentLoaded', createParticles);
+        // Puzzle game logic
+        class PuzzleGame {
+            constructor() {
+                this.gridSize = 4;
+                this.totalPieces = this.gridSize * this.gridSize;
+                this.correctPositions = Array.from({length: this.totalPieces}, (_, i) => i);
+                this.currentPositions = [...this.correctPositions];
+                this.correctCount = 0;
+                this.imagePath = 'author-photo.jpg'; // Update this with your image path
+                
+                this.init();
+            }
+
+            init() {
+                this.shuffle();
+                this.render();
+                this.attachEventListeners();
+            }
+
+            shuffle() {
+                // Fisher-Yates shuffle
+                for (let i = this.currentPositions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.currentPositions[i], this.currentPositions[j]] = 
+                    [this.currentPositions[j], this.currentPositions[i]];
+                }
+            }
+
+            render() {
+                const grid = document.getElementById('puzzleGrid');
+                grid.innerHTML = '';
+
+                this.currentPositions.forEach((imageIndex, position) => {
+                    const piece = document.createElement('div');
+                    piece.className = 'puzzle-piece';
+                    piece.dataset.position = position;
+                    piece.dataset.imageIndex = imageIndex;
+
+                    const img = document.createElement('img');
+                    img.src = this.imagePath;
+                    
+                    // Calculate image position
+                    const row = Math.floor(imageIndex / this.gridSize);
+                    const col = imageIndex % this.gridSize;
+                    img.style.left = `${-col * 100}%`;
+                    img.style.top = `${-row * 100}%`;
+
+                    piece.appendChild(img);
+                    grid.appendChild(piece);
+
+                    // Check if piece is in correct position
+                    if (position === imageIndex) {
+                        piece.classList.add('correct');
+                        this.correctCount++;
+                    }
+                });
+            }
+
+            attachEventListeners() {
+                const pieces = document.querySelectorAll('.puzzle-piece');
+                pieces.forEach(piece => {
+                    piece.addEventListener('click', (e) => this.handlePieceClick(e));
+                });
+
+                document.getElementById('resetBtn').addEventListener('click', () => this.reset());
+            }
+
+            handlePieceClick(e) {
+                const clickedPiece = e.currentTarget;
+                
+                // Don't allow moving pieces that are already correct
+                if (clickedPiece.classList.contains('correct')) {
+                    return;
+                }
+
+                const clickedPosition = parseInt(clickedPiece.dataset.position);
+                
+                // Find a random adjacent piece to swap with
+                const adjacentPositions = this.getAdjacentPositions(clickedPosition);
+                const randomAdjacent = adjacentPositions[Math.floor(Math.random() * adjacentPositions.length)];
+                
+                // Swap the pieces
+                [this.currentPositions[clickedPosition], this.currentPositions[randomAdjacent]] = 
+                [this.currentPositions[randomAdjacent], this.currentPositions[clickedPosition]];
+
+                // Re-render
+                this.correctCount = 0;
+                this.render();
+                this.attachEventListeners();
+
+                // Check if puzzle is complete
+                this.checkCompletion();
+            }
+
+            getAdjacentPositions(position) {
+                const row = Math.floor(position / this.gridSize);
+                const col = position % this.gridSize;
+                const adjacent = [];
+
+                // Up
+                if (row > 0) adjacent.push(position - this.gridSize);
+                // Down
+                if (row < this.gridSize - 1) adjacent.push(position + this.gridSize);
+                // Left
+                if (col > 0) adjacent.push(position - 1);
+                // Right
+                if (col < this.gridSize - 1) adjacent.push(position + 1);
+
+                return adjacent;
+            }
+
+            checkCompletion() {
+                if (this.correctCount === this.totalPieces) {
+                    // Hide instruction
+                    document.getElementById('puzzleInstruction').classList.add('hidden');
+                    
+                    // Show completion message
+                    const completionMsg = document.getElementById('completionMessage');
+                    completionMsg.classList.add('show');
+                    setTimeout(() => {
+                        completionMsg.classList.remove('show');
+                    }, 3000);
+                }
+            }
+
+            reset() {
+                this.correctCount = 0;
+                this.shuffle();
+                this.render();
+                this.attachEventListeners();
+                document.getElementById('puzzleInstruction').classList.remove('hidden');
+            }
+        }
+
+        // Initialize everything on load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            new PuzzleGame();
+        });
 
         // Add parallax effect to quantum field
         window.addEventListener('scroll', () => {
