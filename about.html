@@ -651,8 +651,10 @@
                 this.totalPieces = this.gridSize * this.gridSize;
                 this.correctPositions = Array.from({length: this.totalPieces}, (_, i) => i);
                 this.currentPositions = [...this.correctPositions];
+                this.selectedPiece = null;
                 this.correctCount = 0;
-                this.imagePath = 'author-photo.jpg'; // Update this with your image path
+                this.imagePath = 'author-photo.jpg';
+                this.clickCount = 0;
                 
                 this.init();
             }
@@ -664,17 +666,20 @@
             }
 
             shuffle() {
-                // Fisher-Yates shuffle
-                for (let i = this.currentPositions.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [this.currentPositions[i], this.currentPositions[j]] = 
-                    [this.currentPositions[j], this.currentPositions[i]];
+                // Fisher-Yates shuffle - perform multiple times for better scrambling
+                for (let round = 0; round < 3; round++) {
+                    for (let i = this.currentPositions.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [this.currentPositions[i], this.currentPositions[j]] = 
+                        [this.currentPositions[j], this.currentPositions[i]];
+                    }
                 }
             }
 
             render() {
                 const grid = document.getElementById('puzzleGrid');
                 grid.innerHTML = '';
+                this.correctCount = 0;
 
                 this.currentPositions.forEach((imageIndex, position) => {
                     const piece = document.createElement('div');
@@ -700,19 +705,38 @@
                         this.correctCount++;
                     }
                 });
+                
+                // Hide instruction after first click
+                if (this.clickCount > 0) {
+                    document.getElementById('puzzleInstruction').classList.add('hidden');
+                }
             }
 
             attachEventListeners() {
-                const pieces = document.querySelectorAll('.puzzle-piece');
-                pieces.forEach(piece => {
-                    piece.addEventListener('click', (e) => this.handlePieceClick(e));
+                const grid = document.getElementById('puzzleGrid');
+                
+                // Remove old listener if exists
+                const newGrid = grid.cloneNode(true);
+                grid.parentNode.replaceChild(newGrid, grid);
+                
+                // Add click listener to grid using event delegation
+                newGrid.addEventListener('click', (e) => {
+                    const piece = e.target.closest('.puzzle-piece');
+                    if (piece) {
+                        this.handlePieceClick(piece);
+                    }
                 });
 
-                document.getElementById('resetBtn').addEventListener('click', () => this.reset());
+                // Reset button
+                const resetBtn = document.getElementById('resetBtn');
+                const newResetBtn = resetBtn.cloneNode(true);
+                resetBtn.parentNode.replaceChild(newResetBtn, resetBtn);
+                newResetBtn.addEventListener('click', () => this.reset());
             }
 
-            handlePieceClick(e) {
-                const clickedPiece = e.currentTarget;
+            handlePieceClick(clickedPiece) {
+                // Increment click counter
+                this.clickCount++;
                 
                 // Don't allow moving pieces that are already correct
                 if (clickedPiece.classList.contains('correct')) {
@@ -721,16 +745,19 @@
 
                 const clickedPosition = parseInt(clickedPiece.dataset.position);
                 
-                // Find a random adjacent piece to swap with
+                // Find all adjacent pieces
                 const adjacentPositions = this.getAdjacentPositions(clickedPosition);
+                
+                if (adjacentPositions.length === 0) return;
+                
+                // Pick a random adjacent piece to swap with
                 const randomAdjacent = adjacentPositions[Math.floor(Math.random() * adjacentPositions.length)];
                 
                 // Swap the pieces
                 [this.currentPositions[clickedPosition], this.currentPositions[randomAdjacent]] = 
                 [this.currentPositions[randomAdjacent], this.currentPositions[clickedPosition]];
 
-                // Re-render
-                this.correctCount = 0;
+                // Re-render and reattach listeners
                 this.render();
                 this.attachEventListeners();
 
@@ -771,6 +798,8 @@
 
             reset() {
                 this.correctCount = 0;
+                this.clickCount = 0;
+                this.selectedPiece = null;
                 this.shuffle();
                 this.render();
                 this.attachEventListeners();
