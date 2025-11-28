@@ -271,10 +271,11 @@
         }
 
         .bonus-image-overlay img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
             border-radius: 13px;
+            margin: auto;
         }
 
         .bonus-caption {
@@ -717,7 +718,7 @@
             <section class="content-section">
                 <h2 class="section-title">The Writing Journey</h2>
                 <div class="section-content">
-                    <p>Like many people, I caught the writing bug during COVID in 2021 after listening to episode #79 of the TC Afterdark podcast that discussed getting off your ass and write a book. My first novel, <span class="highlight">"A Letter Guide For Rebecca,"</span> became my pandemic project and is now available on Amazon. But writing is like a virus—once it's in your system, it doesn't leave quietly.</p>
+                    <p>Like many people, I caught the writing bug during COVID in 2021. My first novel, <span class="highlight">"A Letter Guide For Rebecca,"</span> became my pandemic project and is now available on Amazon. But writing is like a virus—once it's in your system, it doesn't leave quietly.</p>
                     
                     <p>I've also created a 10-episode TV series called <span class="emphasis">"Living with the Ghost of Sam"</span> (yes, that Sam Kinison), which is currently being shopped to studios and producers. There's something fascinating about exploring how larger-than-life personalities continue to influence the world even after they're gone.</p>
                     
@@ -964,6 +965,12 @@
                             // Fade out after 20 seconds, revealing handsome older Derek
                             setTimeout(() => {
                                 bonusOverlay.classList.remove('show');
+                                
+                                // Also fade out the quiz after a brief delay
+                                setTimeout(() => {
+                                    document.getElementById('bonusQuiz').classList.remove('show');
+                                }, 1000);
+                                
                                 // Re-enable quiz options
                                 quizOptions.forEach(opt => opt.style.pointerEvents = 'auto');
                             }, 20000);
