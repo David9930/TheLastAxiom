@@ -292,6 +292,7 @@
             height: 100%;
             gap: 2px;
             padding: 2px;
+            transition: all 0.5s ease;
         }
 
         .puzzle-piece {
@@ -349,11 +350,14 @@
 
         /* Hide grid lines when all pieces are revealed */
         .puzzle-grid.complete {
-            gap: 0;
+            gap: 0 !important;
+            padding: 0 !important;
         }
 
         .puzzle-grid.complete .puzzle-piece {
-            border: none;
+            border: none !important;
+            box-shadow: none !important;
+            transform: none !important;
         }
 
         /* Completion message */
@@ -674,6 +678,22 @@
                 this.imagePath = 'author-photo.jpg';
                 this.revealedCount = 0;
                 
+                // Personal greetings from Derek
+                this.greetings = [
+                    "Thanks for taking the time to learn about me! 🚀",
+                    "Welcome! Hope you enjoy the cosmic journey ahead! ✨",
+                    "Great to meet you! Ready to explore The Last Axiom? 🌌",
+                    "Thanks for stopping by! Let's question reality together! 💫",
+                    "Awesome! You found me! Now let's dive into the series! 🎯",
+                    "Welcome aboard! The universe is waiting to surprise you! 🌠",
+                    "Thanks for the click-through! Hope you'll join the adventure! 🔭",
+                    "You revealed the mystery! Now discover what happens when constants change! ⚡",
+                    "Great! Now you know the face behind the cosmic chaos! 🎨",
+                    "Thanks for playing along! Ready for stories where physics breaks? 🧬",
+                    "Mystery solved! Want to solve the ultimate mystery of existence? 📚",
+                    "You found me! Now let's explore what makes us human! 🧩"
+                ];
+                
                 this.init();
             }
 
@@ -734,10 +754,16 @@
                 const grid = document.getElementById('puzzleGrid');
                 grid.classList.add('complete');
                 
-                // Show completion message
+                // Pick a random greeting
+                const randomGreeting = this.greetings[Math.floor(Math.random() * this.greetings.length)];
+                
+                // Show completion message with greeting
                 const msg = document.getElementById('completionMessage');
+                const textElement = msg.querySelector('.completion-text');
+                textElement.innerHTML = `✨ ${randomGreeting} ✨`;
+                
                 msg.classList.add('show');
-                setTimeout(() => msg.classList.remove('show'), 3000);
+                setTimeout(() => msg.classList.remove('show'), 5000); // Show for 5 seconds
             }
 
             reset() {
