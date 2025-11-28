@@ -367,33 +367,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
             z-index: 20;
             border-radius: 15px;
+            transition: opacity 1s ease;
         }
 
         .completion-message.show {
             opacity: 1;
-            animation: fadeInOut 3s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            20%, 80% { opacity: 1; }
         }
 
         .completion-text {
             color: #ffd700;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             text-align: center;
             font-weight: bold;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            padding: 2rem;
+            max-width: 90%;
         }
 
         /* Reset button */
@@ -760,10 +756,15 @@
                 // Show completion message with greeting
                 const msg = document.getElementById('completionMessage');
                 const textElement = msg.querySelector('.completion-text');
-                textElement.innerHTML = `✨ ${randomGreeting} ✨`;
+                textElement.innerHTML = randomGreeting;
                 
+                // Fade in the message
                 msg.classList.add('show');
-                setTimeout(() => msg.classList.remove('show'), 5000); // Show for 5 seconds
+                
+                // After 10 seconds, fade it out
+                setTimeout(() => {
+                    msg.classList.remove('show');
+                }, 10000);
             }
 
             reset() {
