@@ -298,9 +298,12 @@
             position: relative;
             cursor: pointer;
             overflow: hidden;
-            background: rgba(10, 10, 15, 0.8);
+            background-color: rgba(10, 10, 15, 0.8);
+            background-size: 400% 400%;
+            background-repeat: no-repeat;
             border: 1px solid rgba(100, 181, 246, 0.2);
             transition: all 0.3s ease;
+            opacity: 0.3;
         }
 
         .puzzle-piece:hover {
@@ -314,24 +317,11 @@
             border-color: #ffd700;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
             cursor: default;
+            opacity: 1;
         }
 
         .puzzle-piece.correct:hover {
             transform: scale(1);
-        }
-
-        .puzzle-piece img {
-            width: 400%;
-            height: 400%;
-            position: absolute;
-            object-fit: cover;
-            pointer-events: none;
-            opacity: 0.3;
-            transition: opacity 0.5s ease;
-        }
-
-        .puzzle-piece.correct img {
-            opacity: 1;
         }
 
         /* Completion message */
@@ -687,16 +677,20 @@
                     piece.dataset.position = position;
                     piece.dataset.imageIndex = imageIndex;
 
-                    const img = document.createElement('img');
-                    img.src = this.imagePath;
+                    // Set background image
+                    piece.style.backgroundImage = `url('${this.imagePath}')`;
                     
-                    // Calculate image position
-                    const row = Math.floor(imageIndex / this.gridSize);
-                    const col = imageIndex % this.gridSize;
-                    img.style.left = `${-col * 100}%`;
-                    img.style.top = `${-row * 100}%`;
+                    // Calculate which part of the image to show
+                    // imageIndex tells us which piece of the original image this is (0-15)
+                    const imageRow = Math.floor(imageIndex / this.gridSize);
+                    const imageCol = imageIndex % this.gridSize;
+                    
+                    // Set background position as percentage
+                    // Each piece shows 1/4 of the image, so we use 33.333% spacing
+                    const xPercent = (imageCol / (this.gridSize - 1)) * 100;
+                    const yPercent = (imageRow / (this.gridSize - 1)) * 100;
+                    piece.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
 
-                    piece.appendChild(img);
                     grid.appendChild(piece);
 
                     // Check if piece is in correct position
