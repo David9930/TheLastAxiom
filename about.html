@@ -248,6 +248,49 @@
             box-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
         }
 
+        /* Bonus image overlay */
+        .bonus-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+        }
+
+        .bonus-image-overlay.show {
+            opacity: 1;
+        }
+
+        .bonus-image-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 13px;
+        }
+
+        .bonus-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #ffd700;
+            padding: 1.5rem 1rem 1rem 1rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
         .puzzle-instruction {
             position: absolute;
             top: 50%;
@@ -414,6 +457,84 @@
             box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
         }
 
+        /* Bonus quiz section */
+        .bonus-quiz {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .bonus-quiz.show {
+            opacity: 1;
+            max-height: 500px;
+        }
+
+        .bonus-quiz h3 {
+            color: #bb86fc;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .quiz-question {
+            color: #e8e8e8;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            background: rgba(100, 181, 246, 0.2);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: #e8e8e8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: rgba(100, 181, 246, 0.4);
+            border-color: #64b5f6;
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4caf50;
+            animation: correctAnswer 0.5s ease;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctAnswer {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
         /* Special highlights */
         .fun-facts {
             background: rgba(255, 215, 0, 0.1);
@@ -555,9 +676,28 @@
                             <div class="completion-message" id="completionMessage">
                                 <div class="completion-text">✨ Mystery Revealed! ✨</div>
                             </div>
+                            
+                            <!-- Bonus image overlay -->
+                            <div class="bonus-image-overlay" id="bonusImageOverlay">
+                                <img src="derek-luke.jpg" alt="Derek Devon and Luke Matson in their 30's">
+                                <div class="bonus-caption">Derek Devon & Luke Matson - The Early Days! 🚀</div>
+                            </div>
                         </div>
                         <div class="puzzle-reset">
                             <button class="reset-btn" id="resetBtn">Reset Puzzle</button>
+                        </div>
+                        
+                        <!-- Bonus Quiz -->
+                        <div class="bonus-quiz" id="bonusQuiz">
+                            <h3>🎁 Bonus Challenge!</h3>
+                            <p class="quiz-question">Answer this question and I'll show you a photo of Derek Devon and Luke Matson in their 30's!</p>
+                            <p class="quiz-question" style="font-weight: bold; color: #ffd700;">Name the huge movie that featured a character named Katniss:</p>
+                            <div class="quiz-options" id="quizOptions">
+                                <div class="quiz-option" data-answer="wrong">Divergent</div>
+                                <div class="quiz-option" data-answer="correct">The Hunger Games</div>
+                                <div class="quiz-option" data-answer="wrong">Maze Runner</div>
+                                <div class="quiz-option" data-answer="wrong">Twilight</div>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -765,6 +905,11 @@
                 setTimeout(() => {
                     msg.classList.remove('show');
                 }, 10000);
+                
+                // Show bonus quiz after 2 seconds
+                setTimeout(() => {
+                    document.getElementById('bonusQuiz').classList.add('show');
+                }, 2000);
             }
 
             reset() {
@@ -780,6 +925,16 @@
                     piece.style.cursor = 'pointer';
                 });
                 document.getElementById('puzzleInstruction').classList.remove('hidden');
+                
+                // Hide and reset bonus quiz
+                const bonusQuiz = document.getElementById('bonusQuiz');
+                bonusQuiz.classList.remove('show');
+                
+                const options = document.querySelectorAll('.quiz-option');
+                options.forEach(option => {
+                    option.classList.remove('correct', 'wrong');
+                    option.style.pointerEvents = 'auto';
+                });
             }
         }
 
@@ -787,7 +942,42 @@
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             const puzzle = new RevealPuzzle();
+            
+            // Reset button
             document.getElementById('resetBtn').addEventListener('click', () => puzzle.reset());
+            
+            // Quiz options
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Disable all options after click
+                    quizOptions.forEach(opt => opt.style.pointerEvents = 'none');
+                    
+                    if (this.dataset.answer === 'correct') {
+                        this.classList.add('correct');
+                        
+                        // Show bonus image overlay after 1 second
+                        setTimeout(() => {
+                            const bonusOverlay = document.getElementById('bonusImageOverlay');
+                            bonusOverlay.classList.add('show');
+                            
+                            // Fade out after 20 seconds, revealing handsome older Derek
+                            setTimeout(() => {
+                                bonusOverlay.classList.remove('show');
+                                // Re-enable quiz options
+                                quizOptions.forEach(opt => opt.style.pointerEvents = 'auto');
+                            }, 20000);
+                        }, 1000);
+                    } else {
+                        this.classList.add('wrong');
+                        // Re-enable options after 2 seconds to allow retry
+                        setTimeout(() => {
+                            this.classList.remove('wrong');
+                            quizOptions.forEach(opt => opt.style.pointerEvents = 'auto');
+                        }, 2000);
+                    }
+                });
+            });
         });
 
         // Parallax effect
