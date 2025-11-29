@@ -292,6 +292,62 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
+        /* Thought bubble */
+        .thought-wrapper {
+            position: absolute;
+            top: 10%;
+            right: 8%;
+            width: 200px;
+            z-index: 50;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .thought-wrapper.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .thought-cloud {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 1.2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .thought-text {
+            color: #333;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .thought-dot {
+            background: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .dot-1 {
+            width: 18px;
+            height: 18px;
+            bottom: -22px;
+            left: 35px;
+        }
+
+        .dot-2 {
+            width: 10px;
+            height: 10px;
+            bottom: -35px;
+            left: 20px;
+        }
+
         .puzzle-instruction {
             position: absolute;
             top: 50%;
@@ -683,6 +739,15 @@
                                 <img src="derek-luke.jpg" alt="Derek Devon and Luke Matson in their 30's">
                                 <div class="bonus-caption">Derek Devon & Luke Matson - The Early Days! 🚀</div>
                             </div>
+                            
+                            <!-- Thought bubble -->
+                            <div class="thought-wrapper" id="thoughtBubble">
+                                <div class="thought-cloud">
+                                    <div class="thought-text">Gee I look old now.... :(</div>
+                                    <div class="thought-dot dot-1"></div>
+                                    <div class="thought-dot dot-2"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="puzzle-reset">
                             <button class="reset-btn" id="resetBtn">Reset Puzzle</button>
@@ -913,6 +978,16 @@
                 }, 2000);
             }
 
+            showThoughtBubble() {
+                const thoughtBubble = document.getElementById('thoughtBubble');
+                thoughtBubble.classList.add('show');
+                
+                // Hide after 6 seconds
+                setTimeout(() => {
+                    thoughtBubble.classList.remove('show');
+                }, 6000);
+            }
+
             reset() {
                 this.revealedCount = 0;
                 
@@ -965,6 +1040,11 @@
                             // Fade out after 20 seconds, revealing handsome older Derek
                             setTimeout(() => {
                                 bonusOverlay.classList.remove('show');
+                                
+                                // Show thought bubble after bonus fades
+                                setTimeout(() => {
+                                    puzzle.showThoughtBubble();
+                                }, 800);
                                 
                                 // Also fade out the quiz after a brief delay
                                 setTimeout(() => {
