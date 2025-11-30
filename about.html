@@ -297,7 +297,7 @@
             position: absolute;
             top: 2%;
             left: 2%;
-            width: 110px;
+            width: 140px;
             z-index: 50;
             opacity: 0;
             transform: scale(0.8);
@@ -312,8 +312,8 @@
 
         .thought-cloud {
             background: #ffffff;
-            border-radius: 20px;
-            padding: 0.6rem 0.8rem;
+            border-radius: 25px;
+            padding: 0.75rem 1rem;
             text-align: center;
             position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -322,9 +322,9 @@
         .thought-text {
             color: #333;
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .thought-dot {
@@ -335,17 +335,17 @@
         }
 
         .dot-1 {
-            width: 10px;
-            height: 10px;
-            bottom: -12px;
-            right: 20px;
+            width: 12px;
+            height: 12px;
+            bottom: -15px;
+            right: 15px;
         }
 
         .dot-2 {
-            width: 6px;
-            height: 6px;
-            bottom: -20px;
-            right: 30px;
+            width: 7px;
+            height: 7px;
+            bottom: -25px;
+            right: 5px;
         }
 
         .puzzle-instruction {
@@ -740,10 +740,15 @@
                                 <div class="bonus-caption">Derek Devon & Luke Matson - The Early Days! 🚀</div>
                             </div>
                             
+                            <!-- Young Derek overlay -->
+                            <div class="bonus-image-overlay" id="youngDerekOverlay">
+                                <img src="young-derek.jpg" alt="Young Derek Devon">
+                            </div>
+                            
                             <!-- Thought bubble -->
                             <div class="thought-wrapper" id="thoughtBubble">
                                 <div class="thought-cloud">
-                                    <div class="thought-text">Gee I look old now.... :(</div>
+                                    <div class="thought-text" id="thoughtText">Gee I look old now.... :(</div>
                                     <div class="thought-dot dot-1"></div>
                                     <div class="thought-dot dot-2"></div>
                                 </div>
@@ -980,12 +985,36 @@
 
             showThoughtBubble() {
                 const thoughtBubble = document.getElementById('thoughtBubble');
+                const thoughtText = document.getElementById('thoughtText');
+                const youngDerek = document.getElementById('youngDerekOverlay');
+                
+                // Step 1: Show "Gee I look old now"
+                thoughtText.textContent = "Gee I look old now.... :(";
                 thoughtBubble.classList.add('show');
                 
-                // Hide after 6 seconds
+                // Step 2: After 3 seconds, change to "Wait...I am a computer Genius!"
                 setTimeout(() => {
-                    thoughtBubble.classList.remove('show');
-                }, 6000);
+                    thoughtText.textContent = "Wait... I am a computer Genius!";
+                    
+                    // Show young Derek photo
+                    setTimeout(() => {
+                        youngDerek.classList.add('show');
+                    }, 500);
+                }, 3000);
+                
+                // Step 3: After 6 more seconds, hide young Derek and show final message
+                setTimeout(() => {
+                    youngDerek.classList.remove('show');
+                    
+                    setTimeout(() => {
+                        thoughtText.textContent = "Just kidding... I still look good!";
+                        
+                        // Step 4: After 6 seconds, fade bubble away
+                        setTimeout(() => {
+                            thoughtBubble.classList.remove('show');
+                        }, 6000);
+                    }, 800);
+                }, 9000);
             }
 
             reset() {
