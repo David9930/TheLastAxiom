@@ -295,25 +295,25 @@
         /* Thought bubble */
         .thought-wrapper {
             position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%) scale(0.8);
-            width: 200px;
+            top: 2%;
+            left: 2%;
+            width: 110px;
             z-index: 50;
             opacity: 0;
+            transform: scale(0.8);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
         }
 
         .thought-wrapper.show {
             opacity: 1;
-            transform: translateX(-50%) scale(1);
+            transform: scale(1);
         }
 
         .thought-cloud {
             background: #ffffff;
-            border-radius: 30px;
-            padding: 1.2rem;
+            border-radius: 20px;
+            padding: 0.6rem 0.8rem;
             text-align: center;
             position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -322,9 +322,9 @@
         .thought-text {
             color: #333;
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-            font-size: 1rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .thought-dot {
@@ -335,17 +335,17 @@
         }
 
         .dot-1 {
-            width: 18px;
-            height: 18px;
-            bottom: -22px;
-            left: 35px;
+            width: 10px;
+            height: 10px;
+            bottom: -12px;
+            left: 20px;
         }
 
         .dot-2 {
-            width: 10px;
-            height: 10px;
-            bottom: -35px;
-            left: 20px;
+            width: 6px;
+            height: 6px;
+            bottom: -20px;
+            left: 12px;
         }
 
         .puzzle-instruction {
