@@ -1,219 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    body {
-        margin: 0;
-        padding: 40px;
-        background-color: #050505; /* Deep Void Black */
-        font-family: 'Courier New', Courier, monospace;
-        color: #e0e0e0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Axiom - Back Cover</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* The Book Cover Container */
-    .book-cover {
-        width: 600px;
-        height: 900px;
-        background: radial-gradient(circle at 50% 30%, #1a0b2e 0%, #000000 70%);
-        border: 1px solid #333;
-        box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
-        padding: 40px;
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    /* The "Grid" Overlay */
-    .grid-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: 
-            linear-gradient(rgba(0, 255, 128, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 128, 0.03) 1px, transparent 1px);
-        background-size: 20px 20px;
-        pointer-events: none;
-        z-index: 1;
-    }
+        .back-cover {
+            width: 6in;
+            height: 9in;
+            background: linear-gradient(135deg, #f4e4c1 0%, #e8d4a8 50%, #d4c29a 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
 
-    /* Glitch Line Decoration */
-    .glitch-line {
-        position: absolute;
-        top: 15%;
-        left: -10%;
-        width: 120%;
-        height: 2px;
-        background: rgba(0, 255, 255, 0.5);
-        transform: rotate(-5deg);
-        box-shadow: 0 0 10px #0ff;
-        z-index: 0;
-    }
+        /* Aged paper texture overlay */
+        .back-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 90, 43, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(101, 67, 33, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 40% 80%, rgba(120, 80, 40, 0.04) 1px, transparent 1px);
+            background-size: 3px 3px, 5px 5px, 4px 4px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
 
-    /* Content Styling */
-    .header-alert {
-        text-align: center;
-        color: #ff3333;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-        z-index: 2;
-        text-shadow: 0 0 5px #ff0000;
-        border-bottom: 1px solid #333;
-        padding-bottom: 10px;
-    }
+        /* Torn paper edge at top */
+        .torn-edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(135deg, #f4e4c1 0%, #e8d4a8 100%);
+            clip-path: polygon(
+                0 20px, 2% 15px, 4% 22px, 6% 18px, 8% 24px, 10% 16px,
+                12% 20px, 14% 14px, 16% 21px, 18% 17px, 20% 23px, 22% 19px,
+                24% 16px, 26% 22px, 28% 18px, 30% 20px, 32% 15px, 34% 21px,
+                36% 17px, 38% 23px, 40% 19px, 42% 16px, 44% 22px, 46% 18px,
+                48% 20px, 50% 14px, 52% 21px, 54% 17px, 56% 23px, 58% 19px,
+                60% 16px, 62% 22px, 64% 18px, 66% 20px, 68% 15px, 70% 21px,
+                72% 17px, 74% 23px, 76% 19px, 78% 16px, 80% 22px, 82% 18px,
+                84% 20px, 86% 14px, 88% 21px, 90% 17px, 92% 23px, 94% 19px,
+                96% 16px, 98% 22px, 100% 18px, 100% 40px, 0 40px
+            );
+        }
 
-    .quote {
-        font-family: 'Georgia', serif;
-        font-style: italic;
-        font-size: 1.2rem;
-        text-align: center;
-        line-height: 1.4;
-        color: #fff;
-        margin: 20px 0;
-        z-index: 2;
-        text-shadow: 0 0 10px rgba(255,255,255,0.3);
-    }
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 60px 40px 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .synopsis {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        color: #cccccc;
-        z-index: 2;
-        text-align: justify;
-    }
+        /* Cosmic corner elements */
+        .cosmic-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.3), transparent 70%);
+            filter: blur(20px);
+            animation: pulse 4s ease-in-out infinite;
+        }
 
-    .synopsis strong {
-        color: #fff;
-    }
+        .cosmic-corner.top-left {
+            top: 30px;
+            left: 20px;
+        }
 
-    .warning-box {
-        border: 1px dashed #ff3333;
-        background: rgba(50, 0, 0, 0.3);
-        padding: 10px;
-        margin: 15px 0;
-        font-size: 0.85rem;
-        text-align: center;
-        color: #ff9999;
-    }
+        .cosmic-corner.bottom-right {
+            bottom: 30px;
+            right: 20px;
+            animation-delay: 2s;
+        }
 
-    /* Author Section simulating the layout */
-    .author-section {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        border-top: 1px solid #333;
-        padding-top: 20px;
-        z-index: 2;
-    }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
 
-    .author-photo-placeholder {
-        width: 100px;
-        height: 100px;
-        background-color: #222;
-        border: 1px solid #555;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.7rem;
-        color: #666;
-        text-align: center;
-    }
+        /* Periodic elements decoration */
+        .element-symbol {
+            position: absolute;
+            font-family: 'Courier Prime', monospace;
+            font-size: 11px;
+            color: rgba(101, 67, 33, 0.3);
+            font-weight: bold;
+            border: 1px solid rgba(101, 67, 33, 0.2);
+            padding: 3px 6px;
+            background: rgba(255, 255, 255, 0.3);
+        }
 
-    .author-bio {
-        font-size: 0.8rem;
-        color: #aaa;
-        font-family: 'Courier New', monospace;
-    }
+        .element-symbol.el1 { top: 25px; right: 30px; }
+        .element-symbol.el2 { top: 50px; left: 25px; }
+        .element-symbol.el3 { bottom: 80px; right: 35px; }
+        .element-symbol.el4 { bottom: 25px; left: 30px; }
 
-    .footer-node {
-        text-align: center;
-        font-size: 0.7rem;
-        color: #00ff88;
-        margin-top: 20px;
-        letter-spacing: 1px;
-        z-index: 2;
-        text-transform: uppercase;
-    }
+        /* Title section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(101, 67, 33, 0.3);
+        }
 
-    /* Glitch Text Effect for Key Words */
-    .glitch-text {
-        position: relative;
-    }
-    
-    .hidden-code {
-        position: absolute;
-        bottom: 100px;
-        right: 20px;
-        font-size: 4rem;
-        opacity: 0.05;
-        font-weight: bold;
-        pointer-events: none;
-        z-index: 0;
-        color: white;
-    }
+        .series-label {
+            font-family: 'Courier Prime', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #654321;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
 
-</style>
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c1810;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .book-number {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: #654321;
+        }
+
+        /* Synopsis section */
+        .synopsis {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .synopsis-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #2c1810;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .synopsis-text strong {
+            font-weight: 600;
+            color: #1a0f08;
+        }
+
+        /* Quotes section */
+        .quotes {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.4);
+            border-left: 3px solid #8b5a2b;
+            border-radius: 3px;
+        }
+
+        .quote {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #2c1810;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .quote:last-child {
+            margin-bottom: 0;
+        }
+
+        .quote-text {
+            margin-bottom: 3px;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            font-size: 10px;
+            color: #654321;
+            font-style: normal;
+        }
+
+        /* Author section */
+        .author-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(139, 90, 43, 0.3);
+        }
+
+        .author-photo {
+            width: 90px;
+            height: 90px;
+            border-radius: 3px;
+            object-fit: cover;
+            border: 2px solid #8b5a2b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-bio {
+            flex: 1;
+        }
+
+        .author-name {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 5px;
+        }
+
+        .author-description {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #2c1810;
+        }
+
+        /* Footer section */
+        .footer {
+            text-align: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(101, 67, 33, 0.3);
+        }
+
+        .isbn-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Courier Prime', monospace;
+            font-size: 9px;
+            color: #654321;
+            margin-bottom: 8px;
+        }
+
+        .website {
+            font-family: 'Courier Prime', monospace;
+            font-size: 10px;
+            color: #8b5a2b;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .convergence-code {
+            font-family: 'Courier Prime', monospace;
+            font-size: 8px;
+            color: rgba(101, 67, 33, 0.5);
+            margin-top: 5px;
+            letter-spacing: 3px;
+        }
+
+        /* Constellation line decoration */
+        .constellation-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .constellation-lines svg {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-
-<div class="book-cover">
-    <div class="grid-overlay"></div>
-    <div class="glitch-line"></div>
-    
-    <div class="hidden-code">12 75 79 82</div>
-
-    <div class="header-alert">
-        [SYSTEM ALERT: REALITY MODIFICATION DETECTED]<br>
-        NODE: 13.0 // STATUS: UNSTABLE
-    </div>
-
-    <div class="quote">
-        "Some believe the universe speaks only in mathematics. But what if we've been listening to only half the conversation?"
-    </div>
-
-    <div class="synopsis">
-        <p><strong>THE UNIVERSE HAS A TYPO.</strong><br>
-        And Professor Alistair Finch just found the correction pen.</p>
+    <div class="back-cover">
+        <!-- Decorative elements -->
+        <div class="torn-edge"></div>
+        <div class="cosmic-corner top-left"></div>
+        <div class="cosmic-corner bottom-right"></div>
         
-        <p>Hidden within the data of a CERN particle collision lies a sequence that shouldn't exist. It isn't an error. It's a message.</p>
-        
-        <p>When Finch dies under mysterious circumstances, his protégé, <strong>Derek Devon</strong>, inherits a silver Zippo lighter, a hard drive full of impossible data, and the knowledge that the constants of our universe are being quietly rewritten.</p>
-        
-        <p>From Cambridge to the Atacama Desert, Derek must decipher the <strong>Finch Protocol</strong> before the edit is complete.</p>
-        
-        <div class="warning-box">
-            WARNING: This is not just a book. It is a Node.<br>
-            Proceed with caution. The edit has already begun.
+        <div class="element-symbol el1">Ne</div>
+        <div class="element-symbol el2">Ar</div>
+        <div class="element-symbol el3">Cv</div>
+        <div class="element-symbol el4">Cg</div>
+
+        <!-- Constellation decoration -->
+        <div class="constellation-lines">
+            <svg viewBox="0 0 576 864">
+                <line x1="100" y1="100" x2="150" y2="140" stroke="#654321" stroke-width="0.5" opacity="0.3"/>
+                <line x1="150" y1="140" x2="180" y2="120" stroke="#654321" stroke-width="0.5" opacity="0.3"/>
+                <line x1="180" y1="120" x2="220" y2="160" stroke="#654321" stroke-width="0.5" opacity="0.3"/>
+                <circle cx="100" cy="100" r="2" fill="#654321" opacity="0.4"/>
+                <circle cx="150" cy="140" r="2" fill="#654321" opacity="0.4"/>
+                <circle cx="180" cy="120" r="2" fill="#654321" opacity="0.4"/>
+                <circle cx="220" cy="160" r="2" fill="#654321" opacity="0.4"/>
+                
+                <line x1="400" y1="700" x2="450" y2="740" stroke="#654321" stroke-width="0.5" opacity="0.3"/>
+                <line x1="450" y1="740" x2="480" y2="720" stroke="#654321" stroke-width="0.5" opacity="0.3"/>
+                <circle cx="400" cy="700" r="2" fill="#654321" opacity="0.4"/>
+                <circle cx="450" cy="740" r="2" fill="#654321" opacity="0.4"/>
+                <circle cx="480" cy="720" r="2" fill="#654321" opacity="0.4"/>
+            </svg>
+        </div>
+
+        <!-- Main content -->
+        <div class="content">
+            <!-- Title section -->
+            <div class="title-section">
+                <div class="series-label">The Last Axiom Series</div>
+                <div class="book-title">THE LAST AXIOM</div>
+                <div class="book-number">Book 1 - Finch's Raven</div>
+            </div>
+
+            <!-- Synopsis -->
+            <div class="synopsis">
+                <div class="synopsis-text">
+                    <strong>THE UNIVERSE HAS A TYPO.</strong> And Professor Alistair Finch just found the correction pen.
+                </div>
+                <div class="synopsis-text">
+                    Hidden within the data of a CERN particle collision lies a sequence that shouldn't exist. It isn't an error—it's a message. When Finch dies under mysterious circumstances, his protégé <strong>Derek Devon</strong> inherits a silver Zippo lighter, a hard drive full of impossible data, and the knowledge that the constants of our universe are being quietly rewritten.
+                </div>
+                <div class="synopsis-text">
+                    From Cambridge to the Atacama Desert, Derek must decipher the <strong>Finch Protocol</strong> before the edit is complete. Some believe the universe speaks only in mathematics—but what if we've been listening to only half the conversation?
+                </div>
+            </div>
+
+            <!-- Review quotes -->
+            <div class="quotes">
+                <div class="quote">
+                    <div class="quote-text">"A mind-bending journey through the fabric of reality itself. Devon writes with the precision of a physicist and the soul of a poet."</div>
+                    <div class="quote-author">— Commander J. Shepard, New Alexandria Review</div>
+                </div>
+                <div class="quote">
+                    <div class="quote-text">"Brilliantly weaves hard science with cosmic mystery. I couldn't put it down."</div>
+                    <div class="quote-author">— Dr. Ellie Arroway, Journal of Speculative Physics</div>
+                </div>
+                <div class="quote">
+                    <div class="quote-text">"Part thriller, part existential meditation. The Last Axiom asks what happens when the universe starts debugging itself—and we're the ones who notice."</div>
+                    <div class="quote-author">— Dr. Isaac Asimov III, Foundation Institute</div>
+                </div>
+            </div>
+
+            <!-- Author section -->
+            <div class="author-section">
+                <img src="author-photo.jpg" alt="Derek Devon" class="author-photo">
+                <div class="author-bio">
+                    <div class="author-name">DEREK DEVON</div>
+                    <div class="author-description">
+                        Derek Devon documents the shifting parameters of reality through his acclaimed Last Axiom series. When not writing about cosmic mysteries, he can be found sailing the world's oceans or contemplating the mathematical elegance of the universe. This is his first novel in a 17-book series exploring the boundaries between science and the inexplicable.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="isbn-section">
+                    <span>ISBN: 978-1-7386519-2-4</span>
+                    <span>DEVON PUBLISHING</span>
+                    <span>Book 1 of 17</span>
+                </div>
+                <div class="website">www.TheLastAxiom.com</div>
+                <div class="convergence-code">CONVERGENCE: 12 75 79 82</div>
+            </div>
         </div>
     </div>
-
-    <div class="author-section">
-        <div class="author-photo-placeholder">
-            [INSERT<br>AUTHOR<br>PHOTO]
-        </div>
-        <div class="author-bio">
-            <strong>ARCHITECT: DEREK DEVON</strong><br>
-            COORDINATES: REDACTED<br>
-            CONVERGENCE: 12 75 79 82<br><br>
-            Derek Devon documents the shifting parameters of reality. He advises that any urge to solve complex equations is purely coincidental.
-        </div>
-    </div>
-
-    <div class="footer-node">
-        www.TheLastAxiom.com<br>
-        NETWORK NODE © 2025 • REALITY STATUS: CRITICAL
-    </div>
-</div>
-
 </body>
 </html>
