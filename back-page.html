@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    body {
+        margin: 0;
+        padding: 40px;
+        background-color: #050505; /* Deep Void Black */
+        font-family: 'Courier New', Courier, monospace;
+        color: #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* The Book Cover Container */
+    .book-cover {
+        width: 600px;
+        height: 900px;
+        background: radial-gradient(circle at 50% 30%, #1a0b2e 0%, #000000 70%);
+        border: 1px solid #333;
+        box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        padding: 40px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* The "Grid" Overlay */
+    .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            linear-gradient(rgba(0, 255, 128, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 128, 0.03) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* Glitch Line Decoration */
+    .glitch-line {
+        position: absolute;
+        top: 15%;
+        left: -10%;
+        width: 120%;
+        height: 2px;
+        background: rgba(0, 255, 255, 0.5);
+        transform: rotate(-5deg);
+        box-shadow: 0 0 10px #0ff;
+        z-index: 0;
+    }
+
+    /* Content Styling */
+    .header-alert {
+        text-align: center;
+        color: #ff3333;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        z-index: 2;
+        text-shadow: 0 0 5px #ff0000;
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+    }
+
+    .quote {
+        font-family: 'Georgia', serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 1.4;
+        color: #fff;
+        margin: 20px 0;
+        z-index: 2;
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .synopsis {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #cccccc;
+        z-index: 2;
+        text-align: justify;
+    }
+
+    .synopsis strong {
+        color: #fff;
+    }
+
+    .warning-box {
+        border: 1px dashed #ff3333;
+        background: rgba(50, 0, 0, 0.3);
+        padding: 10px;
+        margin: 15px 0;
+        font-size: 0.85rem;
+        text-align: center;
+        color: #ff9999;
+    }
+
+    /* Author Section simulating the layout */
+    .author-section {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        z-index: 2;
+    }
+
+    .author-photo-placeholder {
+        width: 100px;
+        height: 100px;
+        background-color: #222;
+        border: 1px solid #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.7rem;
+        color: #666;
+        text-align: center;
+    }
+
+    .author-bio {
+        font-size: 0.8rem;
+        color: #aaa;
+        font-family: 'Courier New', monospace;
+    }
+
+    .footer-node {
+        text-align: center;
+        font-size: 0.7rem;
+        color: #00ff88;
+        margin-top: 20px;
+        letter-spacing: 1px;
+        z-index: 2;
+        text-transform: uppercase;
+    }
+
+    /* Glitch Text Effect for Key Words */
+    .glitch-text {
+        position: relative;
+    }
+    
+    .hidden-code {
+        position: absolute;
+        bottom: 100px;
+        right: 20px;
+        font-size: 4rem;
+        opacity: 0.05;
+        font-weight: bold;
+        pointer-events: none;
+        z-index: 0;
+        color: white;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="book-cover">
+    <div class="grid-overlay"></div>
+    <div class="glitch-line"></div>
+    
+    <div class="hidden-code">12 75 79 82</div>
+
+    <div class="header-alert">
+        [SYSTEM ALERT: REALITY MODIFICATION DETECTED]<br>
+        NODE: 13.0 // STATUS: UNSTABLE
+    </div>
+
+    <div class="quote">
+        "Some believe the universe speaks only in mathematics. But what if we've been listening to only half the conversation?"
+    </div>
+
+    <div class="synopsis">
+        <p><strong>THE UNIVERSE HAS A TYPO.</strong><br>
+        And Professor Alistair Finch just found the correction pen.</p>
+        
+        <p>Hidden within the data of a CERN particle collision lies a sequence that shouldn't exist. It isn't an error. It's a message.</p>
+        
+        <p>When Finch dies under mysterious circumstances, his protégé, <strong>Derek Devon</strong>, inherits a silver Zippo lighter, a hard drive full of impossible data, and the knowledge that the constants of our universe are being quietly rewritten.</p>
+        
+        <p>From Cambridge to the Atacama Desert, Derek must decipher the <strong>Finch Protocol</strong> before the edit is complete.</p>
+        
+        <div class="warning-box">
+            WARNING: This is not just a book. It is a Node.<br>
+            Proceed with caution. The edit has already begun.
+        </div>
+    </div>
+
+    <div class="author-section">
+        <div class="author-photo-placeholder">
+            [INSERT<br>AUTHOR<br>PHOTO]
+        </div>
+        <div class="author-bio">
+            <strong>ARCHITECT: DEREK DEVON</strong><br>
+            COORDINATES: REDACTED<br>
+            CONVERGENCE: 12 75 79 82<br><br>
+            Derek Devon documents the shifting parameters of reality. He advises that any urge to solve complex equations is purely coincidental.
+        </div>
+    </div>
+
+    <div class="footer-node">
+        www.TheLastAxiom.com<br>
+        NETWORK NODE © 2025 • REALITY STATUS: CRITICAL
+    </div>
+</div>
+
+</body>
+</html>
