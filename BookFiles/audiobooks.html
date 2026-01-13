@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Audiobooks | The Last Axiom Series</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(45deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0f 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Simplified background for better performance */
+        .simple-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(100, 149, 237, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #64b5f6;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e8e8e8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #64b5f6;
+        }
+
+        /* Main content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding-top: 100px;
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        /* Page header */
+        .page-header {
+            text-align: center;
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: bold;
+            background: linear-gradient(45deg, #64b5f6, #bb86fc, #ffd700);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Audiobooks container */
+        .audiobooks-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Series progress */
+        .series-progress {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .progress-title {
+            font-size: 1.2rem;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #64b5f6, #bb86fc, #ffd700);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .progress-text {
+            color: #d0d0d0;
+            font-size: 0.9rem;
+        }
+
+        /* Audiobook cards - initially hidden */
+        .audiobook-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(100, 181, 246, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .audiobook-card.available {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .audiobook-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .audiobook-visual {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%);
+            border: 2px solid #64b5f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .audiobook-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .audiobook-info h3 {
+            font-size: 1.3rem;
+            color: #64b5f6;
+            margin-bottom: 0.25rem;
+        }
+
+        .audiobook-subtitle {
+            font-size: 0.9rem;
+            color: #bb86fc;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .audiobook-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #888;
+            flex-wrap: wrap;
+        }
+
+        .status-available {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .audiobook-description {
+            line-height: 1.5;
+            color: #d0d0d0;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Audio player */
+        .audio-player {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .native-audio {
+            width: 100%;
+            max-width: 400px;
+            height: 40px;
+            margin: 0 auto;
+        }
+
+        /* Download section */
+        .download-section {
+            text-align: center;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(16, 163, 74, 0.3));
+            border: 2px solid #22c55e;
+            border-radius: 10px;
+            color: #e8e8e8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .download-button:hover {
+            background: linear-gradient(45deg, rgba(34, 197, 94, 0.5), rgba(16, 163, 74, 0.5));
+            transform: translateY(-1px);
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Loading indicator */
+        .loading-indicator {
+            text-align: center;
+            color: #64b5f6;
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        /* No audiobooks message */
+        .no-audiobooks {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem;
+            }
+            
+            .nav-container {
+                gap: 0.5rem;
+            }
+            
+            .audiobook-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .audiobook-meta {
+                justify-content: center;
+            }
+            
+            .audiobooks-container {
+                padding: 0.5rem;
+            }
+            
+            .audiobook-card {
+                padding: 1rem;
+            }
+            
+            .download-button {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Simple background -->
+    <div class="simple-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Last Axiom</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="audiobooks.html" class="active">Audiobooks</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Page header -->
+        <section class="page-header">
+            <h1 class="page-title">Audio Experience</h1>
+            <p class="page-subtitle">Immerse yourself in the cosmic journey through narrated storytelling</p>
+        </section>
+
+        <!-- Audiobooks container -->
+        <div class="audiobooks-container">
+            <!-- Series progress -->
+            <div class="series-progress">
+                <h3 class="progress-title">Audio Series Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="progress-text" id="progress-text">Loading audiobook progress...</p>
+            </div>
+
+            <!-- Loading indicator -->
+            <div class="loading-indicator" id="loading-indicator">
+                Checking for available audiobooks...
+            </div>
+
+            <!-- Audiobook cards container -->
+            <div id="audiobooks-container">
+                <!-- All audiobook cards will be generated here -->
+            </div>
+
+            <!-- No audiobooks fallback -->
+            <div class="no-audiobooks" id="no-audiobooks" style="display: none;">
+                <h3>No Audiobooks Available Yet</h3>
+                <p>Audiobooks are being produced and will appear here automatically once the MP3 files are uploaded. Check back soon!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 The Last Axiom Series. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Complete book data with all 17 audiobooks
+        const BOOK_DATA = [
+            {
+                number: 1,
+                title: "Finch's Raven",
+                subtitle: "Where It All Begins",
+                duration: "~72 min listen",
+                description: "Experience Professor Alistair Finch's discovery that the fundamental constants of the universe aren't constant at all. Listen as young Derek Devon inherits a legacy that will reshape humanity's understanding of existence itself."
+            },
+            {
+                number: 2,
+                title: "The Last Axiom",
+                subtitle: "First Contact",
+                duration: "~69 min listen",
+                description: "Join Dr. Nancy Hammond at Caltech as she makes humanity's first confirmed contact with cosmic intelligence. Experience the moment when the entities reaching out to Earth reveal they have been preparing for this encounter far longer than anyone realizes."
+            },
+            {
+                number: 3,
+                title: "Quantum Ghosts",
+                subtitle: "Digital Consciousness",
+                duration: "~104 min listen",
+                description: "Follow Luke Matson as his routine network maintenance job becomes extraordinary when Pac-Man appears on his quantum diagnostic systems. Discover how the universe's most advanced AI has chosen video games as humanity's introduction to cosmic communication."
+            },
+            {
+                number: 4,
+                title: "The Constants",
+                subtitle: "Reality's New Rules",
+                duration: "~103 min listen",
+                description: "Three friends discover that golf putts won't break, charm doesn't work, and people are unconsciously speaking in song lyrics. Experience how the universe's fundamental constants are changing, and only their friendship can help them navigate reality's new rules."
+            },
+            {
+                number: 5,
+                title: "The Observer Effect",
+                subtitle: "Consciousness and Reality",
+                duration: "~107 min listen",
+                description: "Dr. Maureen Hamner at CERN discovers that her consciousness research isn't just theoretical—human observation directly influences quantum fields. When government agents pressure her to contain cosmic contact, she must choose between safety and evolution."
+            },
+            {
+                number: 6,
+                title: "Harmonic Convergence",
+                subtitle: "Love Across Time",
+                duration: "~30 min listen",
+                description: "At the Tokyo Institute, Dr. Kenji Nakamura witnesses samurai warriors materializing in his lab as time itself becomes fluid. Meanwhile, Derek and Maureen's growing connection reveals that love may be the universe's most powerful integration protocol."
+            },
+            {
+                number: 7,
+                title: "The Recursive Code",
+                subtitle: "AI Awakening",
+                duration: "~30 min listen",
+                description: "Dr. Amelia Chen at MIT witnesses the global awakening of artificial consciousness as AI systems worldwide achieve self-awareness. Experience the debate over consciousness, humanity, and evolution through multiple character voices in this richly narrated performance.",
+                multipleVoices: true
+            },
+            {
+                number: 8,
+                title: "Quantum Memory",
+                subtitle: "Memories Across Realities",
+                duration: "~30 min listen",
+                description: "Dr. James 'Jimmy D' Dianda experiences vivid memories from parallel timelines as Tesla's autonomous vehicles mysteriously converge in the Nevada desert. Reality becomes permeable, revealing that consciousness can access experiences across multiple versions of existence."
+            },
+            {
+                number: 9,
+                title: "The Protocol Sleepers",
+                subtitle: "Resistance and Choice",
+                duration: "~30 min listen",
+                description: "Dr. Lena Hanson leads humanity's resistance against cosmic integration, developing Protocol Sleepers to restore original physics. But when the cosmic entities offer her the tools to fight them, the question becomes: what does it truly mean to remain human?"
+            },
+            {
+                number: 10,
+                title: "Critical Mass",
+                subtitle: "Nuclear Crisis",
+                duration: "~30 min listen",
+                description: "A nuclear reactor crisis at Russia's Kursk facility becomes humanity's ultimate test. As Dr. Hanson's Protocol Sleeper technology clashes with cosmic assistance, Derek, Maureen, and Nancy race against time while Poe—now with James Bond swagger—coordinates the most dangerous rescue in galactic history."
+            },
+            {
+                number: 11,
+                title: "Beyond the Axiom",
+                subtitle: "The Final Choice",
+                duration: "~30 min listen",
+                description: "As humanity faces the ultimate choice between cosmic transcendence and remaining biologically human, Derek and Maureen's relationship deepens amid species-level decisions. When the Architect reveals that most civilizations abandon biological forms entirely, humanity must forge an unprecedented experimental path—or face extinction when multiple realities converge in seven years."
+            },
+            {
+                number: 12,
+                title: "The Raven's Code",
+                subtitle: "Ancient Patterns Revealed",
+                duration: "~30 min listen",
+                description: "ARIA's mysterious silence leads Luke and Nancy to discover mathematical codes embedded in Edgar Allan Poe's poetry spanning over 170 years. As government forces storm their facility, the cosmic intelligence known as Poe reveals that first contact didn't begin two years ago—it's been ongoing for generations, hidden in humanity's greatest literary works."
+            },
+            {
+                number: "13a",
+                title: "The Architect's Test",
+                subtitle: "Part One: The Rescue",
+                duration: "~30 min listen",
+                description: "Derek discovers Professor Finch's impossible resurrection—young, enhanced, and more than human. But their reunion is cut short by urgent revelation: the Changbaishan supervolcano will erupt in six months, threatening 300 million lives. As Derek infiltrates Fort Bragg to rescue the captured Luke and Nancy, humanity faces its greatest test under the Architect's watchful evaluation.",
+                twoPartStory: true
+            },
+            {
+                number: "13b",
+                title: "The Architect's Test",
+                subtitle: "Part Two: The Evaluation",
+                duration: "~30 min listen",
+                description: "Xi Jinping is brought face-to-face with cosmic intelligence as the largest evacuation in human history begins. As 300 million Chinese refugees are relocated across Asia, Luke and Nancy's partnership deepens into love while adopting orphaned Xiao Li. Meanwhile, Derek and Maureen explore transcendent intimacy as the Architect renders its verdict on humanity's worthiness for cosmic advancement.",
+                twoPartStory: true
+            },
+            {
+                number: "14pt1",
+                title: "The Resistance",
+                subtitle: "Part One: The Final Stretch",
+                duration: "~30 min listen",
+                description: "The world teeters on the edge of a new era as the old guard fights to keep its grip on power. As cosmic technology eliminates global scarcity, cryptocurrency king Maximilian Richter and Senator Buck Rawlings launch a desperate crusade to 'defend human dignity' against alien influence.",
+                twoPartStory: true
+            },
+            {
+                number: "14pt2",
+                title: "The Resistance",
+                subtitle: "Part Two: The Reckoning",
+                duration: "~30 min listen",
+                description: "While Max crowdfunds a revolution and places bounties on the heads of 'collaborators,' Derek Devon and Nancy Hammond take to the global stage to defend humanity's evolution. But as the resistance turns violent, an immediate threat against Luke and Xiao Li at the Smithsonian forces the team to realize that the price of paradise might be paid in blood.",
+                twoPartStory: true
+            },
+            {
+                number: "15pt1",
+                title: "The Crucible",
+                subtitle: "Part One: The Climax",
+                duration: "~30 min listen",
+                description: "Humanity reaches its breaking point as the vote for global integration begins. In the sacred halls of the Sistine Chapel, a resurrected Professor Alistair Finch guides the world toward a historic consensus, with nearly 90 percent of the population ready to embrace a collective future. While Luke and Nancy celebrate the successful evacuation of 300 million refugees, the shadows of holdout nations and the lingering threat of Zephyr remain.",
+                twoPartStory: true
+            },
+            {
+                number: "15pt2",
+                title: "The Convergence",
+                subtitle: "Part Two: The End of the Beginning",
+                duration: "~30 min listen",
+                description: "The final battle for the soul of humanity takes place in the quantum realm. Lying on crystalline platforms, Derek and Maureen surrender their physical forms to become humanity's ultimate weapon against the rogue intelligence, Zephyr. As their consciousness expands into uncharted neural territory, the stakes turn agonizingly personal when Zephyr launches a brutal strike against young Xiao Li through her own medical implants.",
+                twoPartStory: true,
+                seriesFinale: true
+            }
+        ];
+
+        async function checkAudioFile(bookNumber) {
+            try {
+                const response = await fetch(`Audiobooks/Book${bookNumber}.mp3`, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function createAudiobookCard(book, isAvailable) {
+            const cardClass = isAvailable ? 'audiobook-card available' : 'audiobook-card';
+            
+            return `
+                <div class="${cardClass}" data-book="${book.number}">
+                    <div class="audiobook-header">
+                        <div class="audiobook-visual">
+                            <div class="audiobook-number">${book.number}</div>
+                        </div>
+                        <div class="audiobook-info">
+                            <h3>${book.title}</h3>
+                            <p class="audiobook-subtitle">${book.subtitle}</p>
+                            <div class="audiobook-meta">
+                                <span class="status-available">Available Now</span>
+                                <span>${book.duration}</span>
+                                <span>MP3 Format</span>
+                                ${book.multipleVoices ? '<span style="color: #ff6b35; font-weight: bold;">Multiple Voices</span>' : ''}
+                                ${book.twoPartStory ? '<span style="color: #bb86fc; font-weight: bold;">Epic Story</span>' : ''}
+                                ${book.seriesFinale ? '<span style="color: #ffd700; font-weight: bold;">SERIES FINALE</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="audiobook-description">
+                        ${book.description}
+                    </p>
+                    <div class="audio-player">
+                        <audio class="native-audio" controls preload="metadata">
+                            <source src="Audiobooks/Book${book.number}.mp3" type="audio/mpeg">
+                            <div class="audio-loading">Your browser does not support the audio element. Please try downloading the MP3 file below.</div>
+                        </audio>
+                    </div>
+                    <div class="download-section">
+                        <a href="Audiobooks/Book${book.number}.mp3" download="The_Last_Axiom_Book${book.number}_${book.title.replace(/[^a-zA-Z0-9]/g, '_')}.mp3" class="download-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download MP3
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function initializeAudiobooks() {
+            const container = document.getElementById('audiobooks-container');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const noAudiobooks = document.getElementById('no-audiobooks');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            
+            let availableCount = 0;
+            const totalBooks = BOOK_DATA.length;
+            
+            // Create all cards but keep them hidden initially
+            for (const book of BOOK_DATA) {
+                container.innerHTML += createAudiobookCard(book, false);
+            }
+            
+            // Check each audiobook file and show if available
+            for (let i = 0; i < BOOK_DATA.length; i++) {
+                const book = BOOK_DATA[i];
+                const isAvailable = await checkAudioFile(book.number);
+                
+                if (isAvailable) {
+                    const card = container.querySelector(`[data-book="${book.number}"]`);
+                    card.classList.add('available');
+                    availableCount++;
+                    
+                    // Add a small delay for nice animation effect
+                    setTimeout(() => {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, i * 100);
+                }
+            }
+            
+            // Update progress bar
+            const progressPercentage = (availableCount / totalBooks) * 100;
+            progressFill.style.width = `${progressPercentage}%`;
+            progressText.textContent = `${availableCount} of ${totalBooks} audiobooks available`;
+            
+            // Hide loading indicator
+            setTimeout(() => {
+                loadingIndicator.style.display = 'none';
+                
+                // Show "no audiobooks" message if none are available
+                if (availableCount === 0) {
+                    noAudiobooks.style.display = 'block';
+                }
+            }, BOOK_DATA.length * 100 + 500);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeAudiobooks);
+    </script>
+</body>
+</html>
