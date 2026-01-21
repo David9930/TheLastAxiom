@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get the Books | The Last Axiom Series</title>
-    <meta name="description" content="Start your cosmic journey with The Last Axiom series. Get Books 1-2 FREE, or save with bundle packages.">
+    <meta name="description" content="Start your cosmic journey with The Last Axiom series. Get Books 1-2 FREE, or save with bundle packages. Audiobooks included FREE with every purchase!">
     <style>
         * {
             margin: 0;
@@ -244,7 +244,7 @@
         /* BUNDLE Section */
         .bundles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -260,6 +260,21 @@
             overflow: hidden;
         }
 
+        .bundle-card::before {
+            content: '🎧 AUDIO INCLUDED';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            letter-spacing: 0.5px;
+        }
+
         .bundle-card:hover {
             transform: translateY(-10px);
             border-color: #64b5f6;
@@ -267,10 +282,11 @@
         }
 
         .bundle-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
             color: #bb86fc;
             margin-bottom: 1rem;
+            margin-top: 1.5rem;
         }
 
         .bundle-title {
@@ -282,27 +298,67 @@
         .bundle-books {
             font-size: 0.95rem;
             color: #888;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .time-info {
+            background: rgba(100, 181, 246, 0.12);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .time-row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-item {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        .time-value {
+            font-weight: bold;
+            color: #64b5f6;
+        }
+
+        .audio-value {
+            font-size: 0.85rem;
+            color: #ff6b35;
+            font-weight: bold;
+            margin-top: 0.5rem;
         }
 
         .bundle-books-list {
             font-size: 0.85rem;
             color: #b0b0b0;
-            line-height: 1.6;
+            line-height: 1.8;
             margin: 1rem 0;
+            text-align: left;
         }
 
         .bundle-price {
             font-size: 2.5rem;
             color: #ffd700;
             font-weight: bold;
-            margin: 1rem 0;
+            margin: 1.5rem 0 0.5rem;
         }
 
         .bundle-value {
             font-size: 0.9rem;
             color: #888;
             text-decoration: line-through;
+            margin-bottom: 0.3rem;
+        }
+
+        .audio-bonus {
+            color: #22c55e;
+            font-size: 0.95rem;
+            font-weight: bold;
             margin-bottom: 1.5rem;
         }
 
@@ -366,6 +422,38 @@
         .feature-icon {
             color: #ffd700;
             font-size: 1.5rem;
+        }
+
+        .complete-time-info {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .complete-time-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .time-stat {
+            text-align: center;
+        }
+
+        .time-stat-value {
+            font-size: 2rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .time-stat-label {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-top: 0.3rem;
         }
 
         .complete-price-section {
@@ -470,7 +558,7 @@
             fill: currentColor;
         }
 
-        /* Book preview cards (simplified for bundles) */
+        /* Book preview cards */
         .book-mini-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(100, 181, 246, 0.2);
@@ -526,6 +614,11 @@
                 font-size: 1.2rem;
                 top: 10px;
                 right: 15px;
+            }
+
+            .bundle-card::before {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.6rem;
             }
 
             .bundles-grid {
@@ -592,6 +685,27 @@
         <!-- Main container -->
         <div class="books-container">
 
+            <!-- AUDIOBOOK VALUE CALLOUT -->
+            <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 140, 0, 0.1)); border: 3px solid rgba(255, 107, 53, 0.4); border-radius: 20px; padding: 2.5rem; margin: 3rem 0; text-align: center;">
+                <h3 style="font-size: 2rem; color: #ff6b35; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);">
+                    🎧 FREE Audiobooks Included with Every Purchase!
+                </h3>
+                <p style="font-size: 1.2rem; color: #d0d0d0; margin-bottom: 1rem;">
+                    Every bundle includes professionally narrated audiobooks at no extra cost
+                </p>
+                <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2.5rem; color: #ffd700; font-weight: bold;">$238</div>
+                        <div style="color: #888; font-size: 0.95rem;">Audible Value (17 audiobooks)</div>
+                    </div>
+                    <div style="font-size: 3rem; color: #64b5f6;">→</div>
+                    <div>
+                        <div style="font-size: 2.5rem; color: #22c55e; font-weight: bold;">FREE</div>
+                        <div style="color: #888; font-size: 0.95rem;">Included with Your Purchase</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- FREE BOOKS SECTION -->
             <section class="free-books-section">
                 <div class="section-header">
@@ -622,6 +736,15 @@
                     </div>
                 </div>
 
+                <div class="time-info" style="max-width: 400px; margin: 2rem auto;">
+                    <div style="font-size: 0.95rem; color: #b0b0b0; margin-bottom: 0.5rem;">
+                        📖 ~1 hour reading • 🎧 ~2.5 hours listening
+                    </div>
+                    <div style="font-size: 0.85rem; color: #ff6b35; font-weight: bold;">
+                        Audible value: $28 • Yours FREE
+                    </div>
+                </div>
+
                 <div style="text-align: center; margin-top: 2.5rem;">
                     <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button">
                         <svg class="icon" viewBox="0 0 24 24">
@@ -630,7 +753,7 @@
                         Get Books 1 & 2 FREE
                     </a>
                     <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
-                        📖 Ebook + 🎧 Audiobook included • Delivered via BookFunnel
+                        📖 Ebooks + 🎧 Audiobooks included • Delivered instantly via BookFunnel
                     </p>
                 </div>
             </section>
@@ -638,7 +761,7 @@
             <!-- BUNDLE PACKAGES SECTION -->
             <div class="section-header">
                 <h2 class="section-title">📚 Continue with Bundle Packages</h2>
-                <p class="section-subtitle">Save 60% when you buy books in bundles of four</p>
+                <p class="section-subtitle">Save 60% • Audiobooks included FREE with every bundle</p>
             </div>
 
             <div class="bundles-grid">
@@ -647,6 +770,15 @@
                     <div class="bundle-number">Bundle 1</div>
                     <h3 class="bundle-title">The Discovery Arc</h3>
                     <p class="bundle-books">Books 3-6</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item">📖 <span class="time-value">~2 hrs</span> reading</div>
+                            <div class="time-item">🎧 <span class="time-value">~4 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $56</div>
+                    </div>
+
                     <div class="bundle-books-list">
                         • Quantum Ghosts<br>
                         • The Constants<br>
@@ -654,7 +786,8 @@
                         • Harmonic Convergence
                     </div>
                     <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Regular: $15.96</p>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
                     <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -668,6 +801,15 @@
                     <div class="bundle-number">Bundle 2</div>
                     <h3 class="bundle-title">The Integration Arc</h3>
                     <p class="bundle-books">Books 7-10</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item">📖 <span class="time-value">~2 hrs</span> reading</div>
+                            <div class="time-item">🎧 <span class="time-value">~4 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $56</div>
+                    </div>
+
                     <div class="bundle-books-list">
                         • The Recursive Code<br>
                         • Quantum Memory<br>
@@ -675,7 +817,8 @@
                         • Critical Mass
                     </div>
                     <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Regular: $15.96</p>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
                     <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -689,6 +832,15 @@
                     <div class="bundle-number">Bundle 3</div>
                     <h3 class="bundle-title">The Revelation Arc</h3>
                     <p class="bundle-books">Books 11-14</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item">📖 <span class="time-value">~2.5 hrs</span> reading</div>
+                            <div class="time-item">🎧 <span class="time-value">~5 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $56</div>
+                    </div>
+
                     <div class="bundle-books-list">
                         • Beyond the Axiom<br>
                         • The Raven's Code<br>
@@ -696,7 +848,8 @@
                         • The Resistance
                     </div>
                     <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Regular: $15.96</p>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
                     <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -710,13 +863,23 @@
                     <div class="bundle-number">Bundle 4</div>
                     <h3 class="bundle-title">The Convergence Arc</h3>
                     <p class="bundle-books">Books 15-17 (Series Finale)</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item">📖 <span class="time-value">~1.5 hrs</span> reading</div>
+                            <div class="time-item">🎧 <span class="time-value">~3 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $42</div>
+                    </div>
+
                     <div class="bundle-books-list">
                         • The Crucible (Part 1)<br>
                         • The Convergence (Part 2)<br>
                         🎆 <strong>EPIC SERIES FINALE</strong>
                     </div>
                     <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Regular: $15.96</p>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($42 value)</p>
                     <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -733,6 +896,23 @@
                     Get the entire cosmic journey in one purchase - all 17 books plus audiobooks. 
                     The complete story from Finch's discovery to the universe-changing finale.
                 </p>
+
+                <div class="complete-time-info">
+                    <div class="complete-time-stats">
+                        <div class="time-stat">
+                            <div class="time-stat-value">~8 hrs</div>
+                            <div class="time-stat-label">Total Reading Time</div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-value">~18 hrs</div>
+                            <div class="time-stat-label">Total Listening Time</div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-value">17</div>
+                            <div class="time-stat-label">Complete Books</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="complete-features">
                     <div class="feature-item">
@@ -753,11 +933,39 @@
                     </div>
                 </div>
 
-                <div class="complete-price-section">
-                    <div class="complete-price">$9.99</div>
-                    <div class="complete-savings">Save $6.00!</div>
-                    <div class="complete-value">Individual Bundles: $15.96</div>
-                    <div class="complete-value" style="margin-top: 0.5rem; color: #666;">Total Value: $221+</div>
+                <!-- VALUE BREAKDOWN BOX -->
+                <div style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin: 2.5rem auto; max-width: 650px;">
+                    <h3 style="color: #ffd700; text-align: center; margin-bottom: 1.8rem; font-size: 1.6rem;">💰 What You're Really Getting</h3>
+                    
+                    <div style="text-align: left; color: #e0e0e0; font-size: 1.1rem; line-height: 2.2;">
+                        <div style="display: flex; justify-content: space-between; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <span>📚 17 Ebooks (@ $2.99 each):</span>
+                            <span style="color: #64b5f6; font-weight: bold;">$50.83</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <span>🎧 17 Audiobooks (@ $9.99 each):</span>
+                            <span style="color: #64b5f6; font-weight: bold;">$169.83</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 1rem 1rem; margin-top: 0.5rem; font-size: 1.25rem; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
+                            <span style="color: #ffd700;"><strong>Total Retail Value:</strong></span>
+                            <span style="color: #ffd700; font-weight: bold; font-size: 1.4rem;">$220.66</span>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid rgba(138, 43, 226, 0.4);">
+                        <div style="font-size: 1.1rem; color: #bb86fc; margin-bottom: 0.8rem; font-weight: 600;">💡 On Audible Alone:</div>
+                        <div style="font-size: 1.35rem; color: #ff6b6b; font-weight: bold;">17 audiobooks @ $14.95 = <span style="font-size: 1.5rem;">$254.15</span></div>
+                        <div style="font-size: 0.9rem; color: #888; margin-top: 0.5rem; font-style: italic;">
+                            (Based on typical Audible pricing for 60-90 min audiobooks)
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(34, 197, 94, 0.15); border-radius: 15px; border: 2px solid rgba(34, 197, 94, 0.3);">
+                        <div style="font-size: 1.2rem; color: #b0b0b0; margin-bottom: 0.8rem;">🎯 Your Complete Series Price:</div>
+                        <div style="font-size: 3.5rem; color: #22c55e; font-weight: bold; margin: 0.5rem 0;">$9.99</div>
+                        <div style="font-size: 1.4rem; color: #ffd700; font-weight: bold; margin-top: 1rem;">YOU SAVE $210.67</div>
+                        <div style="font-size: 1.1rem; color: #64b5f6; margin-top: 0.5rem;">That's <strong style="font-size: 1.3rem;">95% OFF!</strong> 🎉</div>
+                    </div>
                 </div>
 
                 <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button">
