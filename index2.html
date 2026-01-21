@@ -587,6 +587,50 @@
             color: #b0b0b0;
         }
 
+        /* Sample preview boxes */
+        .sample-box {
+            background: rgba(100, 181, 246, 0.1);
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            max-width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .sample-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
+        }
+
+        .sample-box.audio-sample {
+            background: rgba(255, 107, 53, 0.1);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .sample-box.audio-sample:hover {
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .sample-button {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(45deg, #64b5f6, #4a9fd8);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sample-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(100, 181, 246, 0.4);
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .hamburger {
@@ -632,6 +676,11 @@
             .cta-button {
                 width: 100%;
                 justify-content: center;
+            }
+
+            /* Sample boxes stack on mobile */
+            .sample-box {
+                max-width: 100%;
             }
         }
 
@@ -745,16 +794,43 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 2.5rem;">
-                    <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                        </svg>
-                        Get Books 1 & 2 FREE
-                    </a>
-                    <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
-                        📖 Ebooks + 🎧 Audiobooks included • Delivered instantly via BookFunnel
-                    </p>
+                <!-- Sample Previews and CTA -->
+                <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem;">
+                    
+                    <!-- PDF Sample Box (Left) -->
+                    <div style="background: rgba(100, 181, 246, 0.1); border: 2px solid rgba(100, 181, 246, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📖</div>
+                        <h4 style="color: #64b5f6; font-size: 1.1rem; margin-bottom: 0.5rem;">Try Before You Download</h4>
+                        <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">Read a sample chapter from Book 1</p>
+                        <a href="Book1ReaderSample.pdf" target="_blank" style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
+                            Read Sample
+                        </a>
+                    </div>
+
+                    <!-- Main CTA Button (Center) -->
+                    <div style="text-align: center;">
+                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Get Books 1 & 2 FREE
+                        </a>
+                        <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
+                            📖 Ebooks + 🎧 Audiobooks included • Delivered instantly via BookFunnel
+                        </p>
+                    </div>
+
+                    <!-- Audio Sample Box (Right) -->
+                    <div style="background: rgba(255, 107, 53, 0.1); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎧</div>
+                        <h4 style="color: #ff6b35; font-size: 1.1rem; margin-bottom: 0.5rem;">Listen to a Preview</h4>
+                        <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">3-minute audio sample from Book 1</p>
+                        <audio controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
+                            <source src="Book1Sample.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+
                 </div>
             </section>
 
@@ -933,38 +1009,34 @@
                     </div>
                 </div>
 
-                <!-- VALUE BREAKDOWN BOX -->
-                <div style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin: 2.5rem auto; max-width: 650px;">
-                    <h3 style="color: #ffd700; text-align: center; margin-bottom: 1.8rem; font-size: 1.6rem;">💰 What You're Really Getting</h3>
-                    
-                    <div style="text-align: left; color: #e0e0e0; font-size: 1.1rem; line-height: 2.2;">
-                        <div style="display: flex; justify-content: space-between; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <span>📚 17 Ebooks (@ $2.99 each):</span>
-                            <span style="color: #64b5f6; font-weight: bold;">$50.83</span>
+                <!-- Value Breakdown Box -->
+                <div style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin: 2rem auto 3rem; max-width: 650px;">
+                    <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.5rem; text-align: center;">💰 Total Value Breakdown</h3>
+                    <div style="color: #d0d0d0; font-size: 1.1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <span>📚 17 Ebooks × $3.99 retail each</span>
+                            <span style="color: #ffd700; font-weight: bold;">$67.83</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <span>🎧 17 Audiobooks (@ $9.99 each):</span>
-                            <span style="color: #64b5f6; font-weight: bold;">$169.83</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 2px solid rgba(255, 215, 0, 0.3);">
+                            <span>🎧 17 Audiobooks × $14 typical Audible price</span>
+                            <span style="color: #ffd700; font-weight: bold;">$238.00</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 1rem 1rem; margin-top: 0.5rem; font-size: 1.25rem; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
-                            <span style="color: #ffd700;"><strong>Total Retail Value:</strong></span>
-                            <span style="color: #ffd700; font-weight: bold; font-size: 1.4rem;">$220.66</span>
-                        </div>
-                    </div>
-
-                    <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid rgba(138, 43, 226, 0.4);">
-                        <div style="font-size: 1.1rem; color: #bb86fc; margin-bottom: 0.8rem; font-weight: 600;">💡 On Audible Alone:</div>
-                        <div style="font-size: 1.35rem; color: #ff6b6b; font-weight: bold;">17 audiobooks @ $14.95 = <span style="font-size: 1.5rem;">$254.15</span></div>
-                        <div style="font-size: 0.9rem; color: #888; margin-top: 0.5rem; font-style: italic;">
-                            (Based on typical Audible pricing for 60-90 min audiobooks)
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 1rem 1rem; font-size: 1.3rem;">
+                            <span style="color: #fff; font-weight: bold;">TOTAL RETAIL VALUE:</span>
+                            <span style="color: #ffd700; font-weight: bold; font-size: 1.6rem;">$305.83</span>
                         </div>
                     </div>
+                </div>
 
-                    <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: rgba(34, 197, 94, 0.15); border-radius: 15px; border: 2px solid rgba(34, 197, 94, 0.3);">
-                        <div style="font-size: 1.2rem; color: #b0b0b0; margin-bottom: 0.8rem;">🎯 Your Complete Series Price:</div>
-                        <div style="font-size: 3.5rem; color: #22c55e; font-weight: bold; margin: 0.5rem 0;">$9.99</div>
-                        <div style="font-size: 1.4rem; color: #ffd700; font-weight: bold; margin-top: 1rem;">YOU SAVE $210.67</div>
-                        <div style="font-size: 1.1rem; color: #64b5f6; margin-top: 0.5rem;">That's <strong style="font-size: 1.3rem;">95% OFF!</strong> 🎉</div>
+                <div class="complete-price-section">
+                    <div class="complete-price">$9.99</div>
+                    <div class="complete-savings" style="font-size: 1.5rem;">You Save $295.84 — That's 97% OFF!</div>
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255, 107, 53, 0.15); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 10px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        <div style="color: #ff6b35; font-weight: bold; font-size: 1.2rem; margin-bottom: 0.5rem;">🎧 Audiobook Value Highlight</div>
+                        <div style="color: #d0d0d0; font-size: 1rem;">
+                            These professionally narrated audiobooks would cost <strong style="color: #fff;">$238</strong> on Audible alone.
+                            You're getting them + all 17 ebooks for just $9.99!
+                        </div>
                     </div>
                 </div>
 
