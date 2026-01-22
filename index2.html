@@ -368,7 +368,7 @@
         }
 
         .free-books-section::before {
-            content: '🎁 FREE';
+            content: ' FREE';
             position: absolute;
             top: 20px;
             right: 30px;
@@ -379,7 +379,7 @@
         }
 
         .free-books-section::after {
-            content: '🎁 FREE';
+            content: ' FREE';
             position: absolute;
             top: 20px;
             left: 30px;
@@ -416,7 +416,7 @@
         }
 
         .bundle-card::before {
-            content: '🎧 AUDIO INCLUDED';
+            content: ' AUDIO INCLUDED';
             position: absolute;
             top: 15px;
             right: 15px;
@@ -862,6 +862,64 @@
             z-index: 10;
         }
     </style>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1TV7FYGSN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D1TV7FYGSN', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+        
+        // Enhanced measurement - track clicks, scrolls, and file downloads
+        gtag('config', 'G-D1TV7FYGSN', {
+            'enhanced_measurement': true
+        });
+    </script>
+    
+    <!-- Google Sheets Tracking Configuration -->
+    <script>
+        // Replace this with your Google Apps Script Web App URL after deployment
+        const GOOGLE_SHEETS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+        
+        // Function to track events to both GA4 and Google Sheets
+        function trackEvent(eventName, eventData = {}) {
+            // Track to GA4
+            gtag('event', eventName, eventData);
+            
+            // Track to Google Sheets
+            if (GOOGLE_SHEETS_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+                const data = {
+                    timestamp: new Date().toISOString(),
+                    event: eventName,
+                    ...eventData,
+                    page: window.location.pathname,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    screenResolution: `${window.screen.width}x${window.screen.height}`
+                };
+                
+                // Send to Google Sheets (fire and forget)
+                fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                }).catch(err => console.log('Tracking logged locally'));
+            }
+        }
+        
+        // Track page view
+        window.addEventListener('load', function() {
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- Animated background -->
@@ -895,7 +953,7 @@
         <section class="page-header">
             <h1 class="page-title">Get The Last Axiom Series</h1>
             <p class="page-subtitle">17 interconnected books exploring the boundaries of reality itself</p>
-            <p class="value-proposition">💫 Start FREE • Save with Bundles • Best Value: Complete Series</p>
+            <p class="value-proposition"> Start FREE • Save with Bundles • Best Value: Complete Series</p>
         </section>
 
         <!-- Main container -->
@@ -904,7 +962,7 @@
             <!-- AUDIOBOOK VALUE CALLOUT -->
             <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 140, 0, 0.1)); border: 3px solid rgba(255, 107, 53, 0.4); border-radius: 20px; padding: 2.5rem; margin: 3rem 0; text-align: center;">
                 <h3 style="font-size: 2rem; color: #ff6b35; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);">
-                    🎧 FREE Audiobooks Included with Every Purchase!
+                     FREE Audiobooks Included with Every Purchase!
                 </h3>
                 <p style="font-size: 1.2rem; color: #d0d0d0; margin-bottom: 1rem;">
                     Every bundle includes professionally narrated audiobooks at no extra cost
@@ -925,7 +983,7 @@
             <!-- FREE BOOKS SECTION -->
             <section class="free-books-section">
                 <div class="section-header">
-                    <h2 class="section-title">🎁 Start Your Journey FREE</h2>
+                    <h2 class="section-title"> Start Your Journey FREE</h2>
                     <p class="section-subtitle">Get Books 1 & 2 at no cost - the perfect introduction to the series</p>
                 </div>
 
@@ -954,7 +1012,7 @@
 
                 <div class="time-info" style="max-width: 400px; margin: 2rem auto;">
                     <div style="font-size: 0.95rem; color: #b0b0b0; margin-bottom: 0.5rem;">
-                        📖 ~1 hour reading • 🎧 ~2.5 hours listening
+                         ~1 hour reading •  ~2.5 hours listening
                     </div>
                     <div style="font-size: 0.85rem; color: #ff6b35; font-weight: bold;">
                         Audible value: $28 • Yours FREE
@@ -966,33 +1024,36 @@
                     
                     <!-- PDF Sample Box (Left) -->
                     <div style="background: rgba(100, 181, 246, 0.1); border: 2px solid rgba(100, 181, 246, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📖</div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
                         <h4 style="color: #64b5f6; font-size: 1.1rem; margin-bottom: 0.5rem;">Try Before You Download</h4>
                         <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">Read a sample chapter from Book 1</p>
-                        <a href="Book1ReaderSample.pdf" target="_blank" style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
+                        <a href="Book1ReaderSample.pdf" target="_blank" 
+                           onclick="trackEvent('sample_pdf_click', {button_name: 'Read Sample PDF', book: 'Book 1'}); return true;"
+                           style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
                             Read Sample
                         </a>
                     </div>
 
                     <!-- Main CTA Button (Center) -->
                     <div style="text-align: center;">
-                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button">
+                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button"
+                           onclick="trackEvent('free_books_click', {button_name: 'Get Books 1 & 2 FREE', books: 'Book 1-2', value: 'free'}); return true;">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
                             Get Books 1 & 2 FREE
                         </a>
                         <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
-                            📖 Ebooks + 🎧 Audiobooks included • Delivered instantly via BookFunnel
+                             Ebooks +  Audiobooks included • Delivered instantly via BookFunnel
                         </p>
                     </div>
 
                     <!-- Audio Sample Box (Right) -->
                     <div style="background: rgba(255, 107, 53, 0.1); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎧</div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
                         <h4 style="color: #ff6b35; font-size: 1.1rem; margin-bottom: 0.5rem;">Listen to a Preview</h4>
                         <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">3-minute audio sample from Book 1</p>
-                        <audio controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
+                        <audio id="audioSample" controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
                             <source src="Book1Sample.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
@@ -1003,7 +1064,7 @@
 
             <!-- BUNDLE PACKAGES SECTION -->
             <div class="section-header">
-                <h2 class="section-title">📚 Continue with Bundle Packages</h2>
+                <h2 class="section-title"> Continue with Bundle Packages</h2>
                 <p class="section-subtitle">Save 60% • Audiobooks included FREE with every bundle</p>
             </div>
 
@@ -1016,8 +1077,8 @@
                     
                     <div class="time-info">
                         <div class="time-row">
-                            <div class="time-item">📖 <span class="time-value">~2 hrs</span> reading</div>
-                            <div class="time-item">🎧 <span class="time-value">~4 hrs</span> listening</div>
+                            <div class="time-item"> <span class="time-value">~2 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~4 hrs</span> listening</div>
                         </div>
                         <div class="audio-value">Audible value: $56</div>
                     </div>
@@ -1031,7 +1092,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 1', books: 'Books 3-6', price: '$3.99', bundle_number: 1}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1047,8 +1109,8 @@
                     
                     <div class="time-info">
                         <div class="time-row">
-                            <div class="time-item">📖 <span class="time-value">~2 hrs</span> reading</div>
-                            <div class="time-item">🎧 <span class="time-value">~4 hrs</span> listening</div>
+                            <div class="time-item"> <span class="time-value">~2 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~4 hrs</span> listening</div>
                         </div>
                         <div class="audio-value">Audible value: $56</div>
                     </div>
@@ -1062,7 +1124,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 2', books: 'Books 7-10', price: '$3.99', bundle_number: 2}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1078,8 +1141,8 @@
                     
                     <div class="time-info">
                         <div class="time-row">
-                            <div class="time-item">📖 <span class="time-value">~2.5 hrs</span> reading</div>
-                            <div class="time-item">🎧 <span class="time-value">~5 hrs</span> listening</div>
+                            <div class="time-item"> <span class="time-value">~2.5 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~5 hrs</span> listening</div>
                         </div>
                         <div class="audio-value">Audible value: $56</div>
                     </div>
@@ -1093,7 +1156,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 3', books: 'Books 11-14', price: '$3.99', bundle_number: 3}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1109,8 +1173,8 @@
                     
                     <div class="time-info">
                         <div class="time-row">
-                            <div class="time-item">📖 <span class="time-value">~1.5 hrs</span> reading</div>
-                            <div class="time-item">🎧 <span class="time-value">~3 hrs</span> listening</div>
+                            <div class="time-item"> <span class="time-value">~1.5 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~3 hrs</span> listening</div>
                         </div>
                         <div class="audio-value">Audible value: $42</div>
                     </div>
@@ -1118,12 +1182,13 @@
                     <div class="bundle-books-list">
                         • The Crucible (Part 1)<br>
                         • The Convergence (Part 2)<br>
-                        🎆 <strong>EPIC SERIES FINALE</strong>
+                         <strong>EPIC SERIES FINALE</strong>
                     </div>
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($42 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 4', books: 'Books 15-17', price: '$3.99', bundle_number: 4}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1159,33 +1224,33 @@
 
                 <div class="complete-features">
                     <div class="feature-item">
-                        <span class="feature-icon">📚</span>
+                        <span class="feature-icon"></span>
                         <span>All 17 Books</span>
                     </div>
                     <div class="feature-item">
-                        <span class="feature-icon">🎧</span>
+                        <span class="feature-icon"></span>
                         <span>All Audiobooks</span>
                     </div>
                     <div class="feature-item">
-                        <span class="feature-icon">💾</span>
+                        <span class="feature-icon"></span>
                         <span>DRM-Free Files</span>
                     </div>
                     <div class="feature-item">
-                        <span class="feature-icon">🔄</span>
+                        <span class="feature-icon"></span>
                         <span>Instant Access</span>
                     </div>
                 </div>
 
                 <!-- Value Breakdown Box -->
                 <div style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin: 2rem auto 3rem; max-width: 650px;">
-                    <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.5rem; text-align: center;">💰 Total Value Breakdown</h3>
+                    <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.5rem; text-align: center;"> Total Value Breakdown</h3>
                     <div style="color: #d0d0d0; font-size: 1.1rem;">
                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <span>📚 17 Ebooks × $2.99 retail each</span>
+                            <span> 17 Ebooks × $2.99 retail each</span>
                             <span style="color: #ffd700; font-weight: bold;">$50.83</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 2px solid rgba(255, 215, 0, 0.3);">
-                            <span>🎧 17 Audiobooks × $9.99 typical Audible price</span>
+                            <span> 17 Audiobooks × $9.99 typical Audible price</span>
                             <span style="color: #ffd700; font-weight: bold;">$169.83</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 1rem 1rem; font-size: 1.3rem;">
@@ -1199,7 +1264,7 @@
                     <div class="complete-price">$9.99</div>
                     <div class="complete-savings" style="font-size: 1.5rem;">You Save $210.67 — That's 95.3% OFF!</div>
                     <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255, 107, 53, 0.15); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 10px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                        <div style="color: #ff6b35; font-weight: bold; font-size: 1.2rem; margin-bottom: 0.5rem;">🎧 Audiobook Value Highlight</div>
+                        <div style="color: #ff6b35; font-weight: bold; font-size: 1.2rem; margin-bottom: 0.5rem;"> Audiobook Value Highlight</div>
                         <div style="color: #d0d0d0; font-size: 1rem;">
                             These professionally narrated audiobooks would cost <strong style="color: #fff;">$169.83</strong> on Audible alone.
                             You're getting them + all 17 ebooks for just $9.99!
@@ -1207,7 +1272,8 @@
                     </div>
                 </div>
 
-                <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button">
+                <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button"
+                   onclick="trackEvent('complete_series_click', {button_name: 'Complete Series', books: 'All 17 Books', price: '$9.99', savings: '$210.67'}); return true;">
                     <svg class="icon" viewBox="0 0 24 24" style="width: 28px; height: 28px;">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
@@ -1215,13 +1281,13 @@
                 </a>
 
                 <p style="margin-top: 1.5rem; color: #888; font-size: 0.95rem;">
-                    📖 All Ebooks + 🎧 All Audiobooks • One-time payment • Lifetime access
+                     All Ebooks +  All Audiobooks • One-time payment • Lifetime access
                 </p>
             </section>
 
             <!-- Reading Order Note -->
             <div style="background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 15px; padding: 2rem; margin: 3rem 0; text-align: center;">
-                <h3 style="color: #bb86fc; margin-bottom: 1rem;">📖 Reading Order Note</h3>
+                <h3 style="color: #bb86fc; margin-bottom: 1rem;"> Reading Order Note</h3>
                 <p style="color: #d0d0d0; line-height: 1.6;">
                     Books 1 & 2 should be read in order. After that, Books 3-13b can be enjoyed in any sequence but Derek Devon suggests reading them in order! 
                     However, <strong style="color: #ffd700;">save Books 14-15 (The Finale) for last</strong> to experience 
@@ -1275,17 +1341,37 @@
         });
     </script>
     
-    <!-- Google Analytics (Replace G-XXXXXXXXXX with your actual GA4 Measurement ID) -->
-    <!-- Uncomment when you have your Google Analytics ID:
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
     
+    <!-- Audio Player Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audioSample');
+            if (audioPlayer) {
+                let audioPlayed = false;
+                
+                audioPlayer.addEventListener('play', function() {
+                    if (!audioPlayed) {
+                        trackEvent('audio_sample_play', {
+                            button_name: 'Audio Sample Play',
+                            book: 'Book 1',
+                            sample_type: 'audio',
+                            duration: '2:57'
+                        });
+                        audioPlayed = true;
+                    }
+                });
+                
+                audioPlayer.addEventListener('ended', function() {
+                    trackEvent('audio_sample_complete', {
+                        button_name: 'Audio Sample Complete',
+                        book: 'Book 1',
+                        sample_type: 'audio'
+                    });
+                });
+            }
+        });
+    </script>
+
     <!-- Facebook Pixel (Optional - Add your Pixel ID if running Facebook ads) -->
     <!-- Uncomment when you have your Facebook Pixel ID:
     <script>
