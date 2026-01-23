@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracking Test</title>
+</head>
+<body>
+    <h1>Click Tracking Test</h1>
+    <button onclick="testTracking()">TEST BUTTON - Click Me!</button>
+    <div id="status"></div>
+
+    <script>
+        // YOUR Apps Script URL - Replace this!
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxGUQBqzQQlLOf7rtLvoZMZnGmYBztfPlDBfvlpFaZfD_imK-5UMOAdveQgO81S2pmq9w/exec';
+        
+        function testTracking() {
+            document.getElementById('status').innerHTML = 'Sending...';
+            console.log('Sending test data to:', GOOGLE_SHEETS_URL);
+            
+            const data = {
+                timestamp: new Date().toISOString(),
+                event: 'test_button_click',
+                button_name: 'Test Button',
+                books: 'Test',
+                price: '$0.00',
+                bundle_number: 0,
+                page: window.location.pathname,
+                referrer: document.referrer,
+                userAgent: navigator.userAgent,
+                screenResolution: `${window.screen.width}x${window.screen.height}`
+            };
+            
+            console.log('Data being sent:', data);
+            
+            fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                document.getElementById('status').innerHTML = '✅ Request sent! Check your Google Sheets "Clicks" tab.';
+                console.log('Request completed');
+            })
+            .catch(err => {
+                document.getElementById('status').innerHTML = '❌ Error: ' + err.message;
+                console.error('Error:', err);
+            });
+        }
+    </script>
+</body>
+</html>
