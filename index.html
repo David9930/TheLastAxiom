@@ -967,14 +967,17 @@
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
                         <h4 style="color: #64b5f6; font-size: 1.1rem; margin-bottom: 0.5rem;">Try Before You Download</h4>
                         <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">Read a sample chapter from Book 1</p>
-                        <a href="Book1ReaderSample.pdf" target="_blank" style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
+                        <a href="Book1ReaderSample.pdf" target="_blank" 
+                           onclick="trackEvent('sample_pdf_click', {button_name: 'Read Sample PDF', book: 'Book 1'}); return true;"
+                           style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
                             Read Sample
                         </a>
                     </div>
 
                     <!-- Main CTA Button (Center) -->
                     <div style="text-align: center;">
-                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button">
+                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button"
+                           onclick="trackEvent('free_books_click', {button_name: 'Get Books 1 & 2 FREE', books: 'Book 1-2', value: 'free'}); return true;">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -990,7 +993,7 @@
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
                         <h4 style="color: #ff6b35; font-size: 1.1rem; margin-bottom: 0.5rem;">Listen to a Preview</h4>
                         <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">3-minute audio sample from Book 1</p>
-                        <audio controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
+                        <audio id="audioSample" controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
                             <source src="Book1Sample.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
@@ -1029,7 +1032,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 1', books: 'Books 3-6', price: '$3.99', bundle_number: 1}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1060,7 +1064,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 2', books: 'Books 7-10', price: '$3.99', bundle_number: 2}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1091,7 +1096,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 3', books: 'Books 11-14', price: '$3.99', bundle_number: 3}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1121,7 +1127,8 @@
                     <div class="bundle-price">$3.99</div>
                     <p class="bundle-value">Ebooks alone: $15.96</p>
                     <p class="audio-bonus">+ Audiobooks FREE ($42 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button">
+                    <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 4', books: 'Books 15-17', price: '$3.99', bundle_number: 4}); return true;">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
                         </svg>
@@ -1205,7 +1212,8 @@
                     </div>
                 </div>
 
-                <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button">
+                <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button"
+                   onclick="trackEvent('complete_series_click', {button_name: 'Complete Series', books: 'All 17 Books', price: '$9.99', savings: '$210.67'}); return true;">
                     <svg class="icon" viewBox="0 0 24 24" style="width: 28px; height: 28px;">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
@@ -1273,17 +1281,95 @@
         });
     </script>
     
-    <!-- Google Analytics (Replace G-XXXXXXXXXX with your actual GA4 Measurement ID) -->
-    <!-- Uncomment when you have your Google Analytics ID:
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1TV7FYGSN"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
+        gtag('config', 'G-D1TV7FYGSN', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+        
+        // Enhanced measurement - track clicks, scrolls, and file downloads
+        gtag('config', 'G-D1TV7FYGSN', {
+            'enhanced_measurement': true
+        });
     </script>
-    -->
     
+    <!-- Google Sheets Tracking Configuration -->
+    <script>
+        // Replace this with your Google Apps Script Web App URL after deployment
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxGUQBqzQQlLOf7rtLvoZMZnGmYBztfPlDBfvlpFaZfD_imK-5UMOAdveQgO81S2pmq9w/exec';
+               
+        // Function to track events to both GA4 and Google Sheets
+        function trackEvent(eventName, eventData = {}) {
+            // Track to GA4
+            gtag('event', eventName, eventData);
+            
+            // Track to Google Sheets
+            if (GOOGLE_SHEETS_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+                const data = {
+                    timestamp: new Date().toISOString(),
+                    event: eventName,
+                    ...eventData,
+                    page: window.location.pathname,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    screenResolution: `${window.screen.width}x${window.screen.height}`
+                };
+                
+                // Send to Google Sheets (fire and forget)
+                fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                }).catch(err => console.log('Tracking logged locally'));
+            }
+        }
+        
+        // Track page view
+        window.addEventListener('load', function() {
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        });
+    </script>
+    
+    
+    <!-- Audio Player Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audioSample');
+            if (audioPlayer) {
+                let audioPlayed = false;
+                
+                audioPlayer.addEventListener('play', function() {
+                    if (!audioPlayed) {
+                        trackEvent('audio_sample_play', {
+                            button_name: 'Audio Sample Play',
+                            book: 'Book 1',
+                            sample_type: 'audio',
+                            duration: '2:57'
+                        });
+                        audioPlayed = true;
+                    }
+                });
+                
+                audioPlayer.addEventListener('ended', function() {
+                    trackEvent('audio_sample_complete', {
+                        button_name: 'Audio Sample Complete',
+                        book: 'Book 1',
+                        sample_type: 'audio'
+                    });
+                });
+            }
+        });
+    </script>
+
     <!-- Facebook Pixel (Optional - Add your Pixel ID if running Facebook ads) -->
     <!-- Uncomment when you have your Facebook Pixel ID:
     <script>
