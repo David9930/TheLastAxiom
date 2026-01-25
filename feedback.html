@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 
+    FILENAME: feedback.html
+    LAST MODIFIED: 2025-01-25 5:01 pm
+    VERSION: 1.0 - Chrome crash fixes applied, all emojis fixed, tracking complete
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +47,55 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-D1TV7FYGSN');
+        gtag('config', 'G-D1TV7FYGSN', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+        
+        // Enhanced measurement
+        gtag('config', 'G-D1TV7FYGSN', {
+            'enhanced_measurement': true
+        });
+    </script>
+    
+    <!-- Google Sheets Tracking Configuration -->
+    <script>
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxGUQBqzQQlLOf7rtLvoZMZnGmYBztfPlDBfvlpFaZfD_imK-5UMOAdveQgO81S2pmq9w/exec';
+               
+        // Function to track events to both GA4 and Google Sheets
+        function trackEvent(eventName, eventData = {}) {
+            // Track to GA4
+            gtag('event', eventName, eventData);
+            
+            // Track to Google Sheets
+            if (GOOGLE_SHEETS_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+                const data = {
+                    timestamp: new Date().toISOString(),
+                    event: eventName,
+                    ...eventData,
+                    page: window.location.pathname,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    screenResolution: `${window.screen.width}x${window.screen.height}`
+                };
+                
+                // Send to Google Sheets (fire and forget)
+                fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                }).catch(err => console.log('Tracking logged locally'));
+            }
+        }
+        
+        // Track page view
+        window.addEventListener('load', function() {
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        });
     </script>
     
     <style>
@@ -342,7 +395,7 @@
             font-size: 1.3rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: box-shadow 0.3s ease;
             box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
         }
 
@@ -354,7 +407,6 @@
         .submit-button:disabled {
             background: rgba(100, 100, 100, 0.5);
             cursor: not-allowed;
-            transform: none;
         }
 
         /* Success/Error messages */
@@ -474,7 +526,7 @@
         <div class="content-container">
             <!-- Intro -->
             <section class="intro-section">
-                <div class="intro-icon">ðŸŒŒ</div>
+                <div class="intro-icon">🌌</div>
                 <h2 class="intro-title">Your Voice Matters</h2>
                 <p class="intro-text">
                     Each reader brings their own perspective to The Last Axiom series. Whether you've 
@@ -485,18 +537,18 @@
 
             <!-- Success/Error messages -->
             <div id="successMessage" class="message success">
-                <strong>âœ… Thank you!</strong> Your feedback has been received. Derek appreciates you 
+                <strong>✅ Thank you!</strong> Your feedback has been received. Derek appreciates you 
                 taking the time to share your cosmic journey!
             </div>
             
             <div id="errorMessage" class="message error">
-                <strong>âŒ Oops!</strong> Something went wrong. Please try again or email your feedback 
-                directly to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71151403141a1514071e1f404631161c10181d5f121e1c">[email&#160;protected]</a>
+                <strong>❌ Oops!</strong> Something went wrong. Please try again or email your feedback 
+                directly to <a href="mailto:derekdevon17@gmail.com" style="color: #ef4444;">derekdevon17@gmail.com</a>
             </div>
 
             <!-- Feedback form -->
             <section class="form-section">
-                <h2 class="form-title">ðŸ“ Share Your Thoughts</h2>
+                <h2 class="form-title">📝 Share Your Thoughts</h2>
                 
                 <form id="feedbackForm">
                     <!-- Book Selection -->
@@ -532,23 +584,23 @@
                         <div class="rating-group">
                             <div class="rating-option">
                                 <input type="radio" id="rating1" name="rating" value="1" required>
-                                <label for="rating1">1â­</label>
+                                <label for="rating1">1⭐</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating2" name="rating" value="2">
-                                <label for="rating2">2â­</label>
+                                <label for="rating2">2⭐</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating3" name="rating" value="3">
-                                <label for="rating3">3â­</label>
+                                <label for="rating3">3⭐</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating4" name="rating" value="4">
-                                <label for="rating4">4â­</label>
+                                <label for="rating4">4⭐</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating5" name="rating" value="5">
-                                <label for="rating5">5â­</label>
+                                <label for="rating5">5⭐</label>
                             </div>
                         </div>
                     </div>
@@ -650,9 +702,9 @@
         <p>&copy; 2024 Derek Devon & The Last Axiom Series. All rights reserved.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Configuration
-        const WEB_APP_URL = 'YOUR_WEB_APP_URL_HERE'; // Replace after deployment
+    <script>
+        // Configuration - Uses same Google Sheets URL as other tracking
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxGUQBqzQQlLOf7rtLvoZMZnGmYBztfPlDBfvlpFaZfD_imK-5UMOAdveQgO81S2pmq9w/exec';
 
         // Book titles mapping
         const BOOK_TITLES = {
@@ -710,6 +762,11 @@
             submitButton.disabled = true;
             submitButton.innerHTML = 'Submitting... <span class="loading-spinner"></span>';
             
+            // Track form submission attempt
+            trackEvent('feedback_form_submit_attempt', {
+                page: 'feedback'
+            });
+            
             try {
                 // Get form data
                 const bookId = document.getElementById('bookSelect').value;
@@ -757,6 +814,13 @@
                 const result = await response.json();
                 
                 if (result.success) {
+                    // Track successful submission
+                    trackEvent('feedback_form_submit_success', {
+                        page: 'feedback',
+                        book: bookTitle,
+                        rating: rating
+                    });
+                    
                     // Show success message
                     successMessage.classList.add('show');
                     
@@ -771,6 +835,13 @@
                 
             } catch (error) {
                 console.error('Submission error:', error);
+                
+                // Track failure
+                trackEvent('feedback_form_submit_error', {
+                    page: 'feedback',
+                    error: error.message
+                });
+                
                 errorMessage.classList.add('show');
                 errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } finally {
@@ -783,3 +854,11 @@
         // Parallax effect
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
+            const quantumField = document.querySelector('.quantum-field');
+            if (quantumField) {
+                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
