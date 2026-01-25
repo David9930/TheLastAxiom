@@ -347,7 +347,7 @@
         }
 
         .submit-button:hover {
-            transform: translateY(-3px);
+            /* REMOVED transform - causes Chrome crash */
             box-shadow: 0 15px 40px rgba(100, 181, 246, 0.5);
         }
 
@@ -474,7 +474,7 @@
         <div class="content-container">
             <!-- Intro -->
             <section class="intro-section">
-                <div class="intro-icon">🌌</div>
+                <div class="intro-icon">ðŸŒŒ</div>
                 <h2 class="intro-title">Your Voice Matters</h2>
                 <p class="intro-text">
                     Each reader brings their own perspective to The Last Axiom series. Whether you've 
@@ -485,18 +485,18 @@
 
             <!-- Success/Error messages -->
             <div id="successMessage" class="message success">
-                <strong>✅ Thank you!</strong> Your feedback has been received. Derek appreciates you 
+                <strong>âœ… Thank you!</strong> Your feedback has been received. Derek appreciates you 
                 taking the time to share your cosmic journey!
             </div>
             
             <div id="errorMessage" class="message error">
-                <strong>❌ Oops!</strong> Something went wrong. Please try again or email your feedback 
+                <strong>âŒ Oops!</strong> Something went wrong. Please try again or email your feedback 
                 directly to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71151403141a1514071e1f404631161c10181d5f121e1c">[email&#160;protected]</a>
             </div>
 
             <!-- Feedback form -->
             <section class="form-section">
-                <h2 class="form-title">📝 Share Your Thoughts</h2>
+                <h2 class="form-title">ðŸ“ Share Your Thoughts</h2>
                 
                 <form id="feedbackForm">
                     <!-- Book Selection -->
@@ -532,23 +532,23 @@
                         <div class="rating-group">
                             <div class="rating-option">
                                 <input type="radio" id="rating1" name="rating" value="1" required>
-                                <label for="rating1">1⭐</label>
+                                <label for="rating1">1â­</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating2" name="rating" value="2">
-                                <label for="rating2">2⭐</label>
+                                <label for="rating2">2â­</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating3" name="rating" value="3">
-                                <label for="rating3">3⭐</label>
+                                <label for="rating3">3â­</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating4" name="rating" value="4">
-                                <label for="rating4">4⭐</label>
+                                <label for="rating4">4â­</label>
                             </div>
                             <div class="rating-option">
                                 <input type="radio" id="rating5" name="rating" value="5">
-                                <label for="rating5">5⭐</label>
+                                <label for="rating5">5â­</label>
                             </div>
                         </div>
                     </div>
