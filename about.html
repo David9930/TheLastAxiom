@@ -283,21 +283,13 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            transition: border-color 0.3s ease;
+            /* REMOVED problematic ::before sweep animation - causes Chrome crash */
         }
 
-        .content-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .content-section:hover::before {
-            left: 100%;
+        .content-section:hover {
+            border-color: rgba(100, 181, 246, 0.4);
+            /* Simple border glow instead of complex animation */
         }
 
         .section-title {
@@ -509,7 +501,8 @@
             background-size: 400% 400%;
             background-repeat: no-repeat;
             border: 1px solid rgba(100, 181, 246, 0.2);
-            transition: all 0.4s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            /* REDUCED transitions - removed transform hover for Chrome compatibility */
         }
 
         /* Dark overlay that hides the image */
@@ -531,9 +524,8 @@
 
         .puzzle-piece:hover {
             border-color: #64b5f6;
-            transform: scale(1.05);
-            z-index: 5;
             box-shadow: 0 0 15px rgba(100, 181, 246, 0.6);
+            /* REMOVED transform: scale() - causes Chrome rendering issues */
         }
 
         .puzzle-piece.revealed {
@@ -544,14 +536,12 @@
 
         @keyframes revealPiece {
             0% {
-                transform: scale(0.8);
-            }
-            50% {
-                transform: scale(1.1);
+                opacity: 0.5;
             }
             100% {
-                transform: scale(1);
+                opacity: 1;
             }
+            /* SIMPLIFIED - removed scale transforms */
         }
 
         /* Hide grid lines when all pieces are revealed */
@@ -563,7 +553,6 @@
         .puzzle-grid.complete .puzzle-piece {
             border: none !important;
             box-shadow: none !important;
-            transform: none !important;
         }
 
         /* Completion message */
@@ -672,24 +661,19 @@
         .quiz-option:hover {
             background: rgba(100, 181, 246, 0.4);
             border-color: #64b5f6;
-            transform: translateX(5px);
+            /* REMOVED translateX transform for Chrome compatibility */
         }
 
         .quiz-option.correct {
             background: rgba(76, 175, 80, 0.3);
             border-color: #4caf50;
-            animation: correctAnswer 0.5s ease;
+            /* Removed animation */
         }
 
         .quiz-option.wrong {
             background: rgba(244, 67, 54, 0.3);
             border-color: #f44336;
             animation: shake 0.5s ease;
-        }
-
-        @keyframes correctAnswer {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         @keyframes shake {
@@ -760,8 +744,8 @@
 
         .website-link:hover {
             background: linear-gradient(45deg, rgba(100, 181, 246, 0.6), rgba(187, 134, 252, 0.6));
-            transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
+            /* REMOVED translateY for Chrome compatibility */
         }
 
         /* Responsive design */
