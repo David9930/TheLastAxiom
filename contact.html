@@ -1,9 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 
+    FILENAME: contact.html
+    LAST MODIFIED: 2025-01-25 5:18 pm
+    VERSION: 1.0 - Chrome crash fixes applied, all emojis fixed, tracking complete
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | The Last Axiom Series</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Contact Derek Devon | The Last Axiom Series</title>
+    <meta name="title" content="Contact Derek Devon | The Last Axiom Series">
+    <meta name="description" content="Get in touch with Derek Devon, author of The Last Axiom series. Discuss books, cosmic consciousness, sailing adventures, or collaboration opportunities. Response within 24-48 hours.">
+    <meta name="keywords" content="Derek Devon contact, The Last Axiom contact, author contact, book discussion, media inquiries, Derek Devon email">
+    <meta name="author" content="Derek Devon">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thelastaxiom.com/contact.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelastaxiom.com/contact.html">
+    <meta property="og:title" content="Contact Derek Devon - The Last Axiom Author">
+    <meta property="og:description" content="Connect with Derek Devon to discuss The Last Axiom series, cosmic consciousness, sailing adventures, or collaboration opportunities.">
+    <meta property="og:image" content="https://thelastaxiom.com/images/contact-og.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@thelastaxiom">
+    <meta name="twitter:title" content="Contact Derek Devon">
+    <meta name="twitter:description" content="Get in touch with the author of The Last Axiom series.">
+    <meta name="twitter:image" content="https://thelastaxiom.com/images/contact-twitter.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Structured Data - ContactPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Derek Devon",
+      "description": "Contact page for Derek Devon, author of The Last Axiom series",
+      "url": "https://thelastaxiom.com/contact.html",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Derek Devon",
+        "email": "derekdevon17@gmail.com",
+        "jobTitle": "Author",
+        "url": "https://thelastaxiom.com"
+      }
+    }
+    </script>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1TV7FYGSN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D1TV7FYGSN', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+        
+        // Enhanced measurement
+        gtag('config', 'G-D1TV7FYGSN', {
+            'enhanced_measurement': true
+        });
+    </script>
+    
+    <!-- Google Sheets Tracking Configuration -->
+    <script>
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxGUQBqzQQlLOf7rtLvoZMZnGmYBztfPlDBfvlpFaZfD_imK-5UMOAdveQgO81S2pmq9w/exec';
+               
+        // Function to track events to both GA4 and Google Sheets
+        function trackEvent(eventName, eventData = {}) {
+            // Track to GA4
+            gtag('event', eventName, eventData);
+            
+            // Track to Google Sheets
+            if (GOOGLE_SHEETS_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+                const data = {
+                    timestamp: new Date().toISOString(),
+                    event: eventName,
+                    ...eventData,
+                    page: window.location.pathname,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    screenResolution: `${window.screen.width}x${window.screen.height}`
+                };
+                
+                // Send to Google Sheets (fire and forget)
+                fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                }).catch(err => console.log('Tracking logged locally'));
+            }
+        }
+        
+        // Track page view
+        window.addEventListener('load', function() {
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        });
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -103,6 +210,21 @@
             color: #64b5f6;
             text-decoration: none;
             letter-spacing: 1px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #64b5f6;
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
 
         .nav-links {
@@ -289,7 +411,7 @@
             border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: box-shadow 0.3s ease;
         }
 
         .reason-item:hover {
@@ -389,6 +511,11 @@
             font-style: italic;
         }
 
+        .form-group select option {
+            background: #1a1a2e;
+            color: #ffffff;
+        }
+
         .submit-button {
             display: flex;
             align-items: center;
@@ -420,6 +547,26 @@
 
         /* Responsive design */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.95);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -435,10 +582,6 @@
             
             nav {
                 padding: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
             }
         }
 
@@ -461,11 +604,15 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">The Last Axiom</a>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="books.html">Books</a></li>
-                <li><a href="audiobooks.html">Audiobooks</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="affiliates.html">Affiliates</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
@@ -485,22 +632,22 @@
             <!-- Main contact info -->
             <div class="contact-grid">
                 <div class="contact-section">
-                    <div class="section-icon">ðŸ“§</div>
+                    <div class="section-icon">📧</div>
                     <h2 class="section-title">Email Contact</h2>
                     <div class="section-content">
                         <p>Ready to discuss cosmic consciousness, sailing adventures, or just share your thoughts on the series?</p>
-                        <a href="mailto:derekdevon17@gmail.com" class="email-link">derekdevon17@gmail.com</a>
+                        <a href="mailto:derekdevon17@gmail.com" class="email-link" onclick="trackEvent('contact_email_click', {button_name: 'Email Contact'}); return true;">derekdevon17@gmail.com</a>
                         <p><em>Phone information will follow after initial contact</em></p>
                     </div>
                 </div>
 
                 <div class="contact-section">
-                    <div class="section-icon">âš¡</div>
+                    <div class="section-icon">⚡</div>
                     <h2 class="section-title">Quick Response</h2>
                     <div class="section-content">
                         <div class="response-notice">
                             <h3>Response Time</h3>
-                            <p>I typically respond within 24-48 hours. If you don't hear back, check your spam folderâ€”sometimes cosmic messages get filtered by earthbound email systems!</p>
+                            <p>I typically respond within 24-48 hours. If you don't hear back, check your spam folder—sometimes cosmic messages get filtered by earthbound email systems!</p>
                         </div>
                     </div>
                 </div>
@@ -511,37 +658,37 @@
                 <h3>What Would You Like to Discuss?</h3>
                 <div class="reasons-grid">
                     <div class="reason-item">
-                        <div class="reason-icon">ðŸ“š</div>
+                        <div class="reason-icon">📚</div>
                         <div class="reason-title">Book Discussions</div>
                         <div class="reason-desc">Questions about The Last Axiom series, character development, or cosmic plot theories</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">ðŸ’­</div>
+                        <div class="reason-icon">💭</div>
                         <div class="reason-title">Reader Feedback</div>
-                        <div class="reason-desc">Your thoughts, reviews, and reactions to the storiesâ€”I love hearing from readers!</div>
+                        <div class="reason-desc">Your thoughts, reviews, and reactions to the stories—I love hearing from readers!</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">ðŸŽ¬</div>
+                        <div class="reason-icon">🎬</div>
                         <div class="reason-title">Media Inquiries</div>
                         <div class="reason-desc">Interviews, podcasts, or discussions about writing, AI, and the future of consciousness</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">ðŸ¤</div>
+                        <div class="reason-icon">🤝</div>
                         <div class="reason-title">Collaborations</div>
                         <div class="reason-desc">Speaking engagements, writing projects, or cosmic consciousness conversations</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">ðŸ”¬</div>
+                        <div class="reason-icon">🔬</div>
                         <div class="reason-title">Science & Tech</div>
                         <div class="reason-desc">Discussions about AI, consciousness research, or the real science behind the fiction</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">ðŸ’</div>
+                        <div class="reason-icon">👍</div>
                         <div class="reason-title">Life Beyond Books</div>
                         <div class="reason-desc">Hockey, sailing, scuba diving, cooking, or any other adventures worth sharing</div>
                     </div>
@@ -550,7 +697,7 @@
 
             <!-- Sailing adventure callout -->
             <div class="adventure-callout">
-                <div class="ship-icon">â›µ</div>
+                <div class="ship-icon">⛵</div>
                 <h3>Following the Adventure</h3>
                 <p>Starting February 2026, I'll be circumnavigating the globe in my 41-foot sailboat "It-Girl." If you're interested in following the journey or discussing the intersection of real-world adventure and cosmic fiction, I'd love to hear from you!</p>
                 <p><em>Who knows? Maybe I'll find some real cosmic consciousness out there on the open ocean.</em></p>
@@ -558,7 +705,7 @@
 
             <!-- Contact guidelines -->
             <div class="contact-section" style="margin-top: 3rem;">
-                <div class="section-icon">ðŸŒŸ</div>
+                <div class="section-icon">🌟</div>
                 <h2 class="section-title">A Few Guidelines</h2>
                 <div class="section-content" style="text-align: left;">
                     <p><strong>What I love to receive:</strong></p>
@@ -582,14 +729,14 @@
 
             <!-- Contact form and email options -->
             <div class="contact-section" style="background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); margin-top: 3rem;">
-                <div class="section-icon">ðŸš€</div>
+                <div class="section-icon">🚀</div>
                 <h2 class="section-title" style="color: #ffd700;">Ready to Connect?</h2>
                 <div class="section-content">
                     <p>Whether you want to dive deep into the mysteries of cosmic consciousness, share your thoughts on the latest book, or just say hello from wherever you are in the universe, I'm looking forward to hearing from you.</p>
-                    <p><em>After all, meaningful connections are what make any adventureâ€”literary or otherwiseâ€”truly worthwhile.</em></p>
+                    <p><em>After all, meaningful connections are what make any adventure—literary or otherwise—truly worthwhile.</em></p>
                     
                     <!-- Contact Form -->
-                    <form action="https://formspree.io/f/xwpbkeqj" method="POST" class="contact-form" style="margin-top: 2rem;">
+                    <form action="https://formspree.io/f/xwpbkeqj" method="POST" class="contact-form" style="margin-top: 2rem;" id="contactForm">
                         <div class="form-group">
                             <label for="name">Your Name:</label>
                             <input type="text" id="name" name="name" required>
@@ -620,7 +767,7 @@
                         </div>
                         
                         <button type="submit" class="submit-button">
-                            <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; margin-right: 0.5rem;">
+                            <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; margin-right: 0.5rem; fill: currentColor;">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                             </svg>
                             Send Your Message
@@ -632,8 +779,8 @@
                         <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #b0b0b0;">
                             <em>Prefer email? No problem!</em>
                         </p>
-                        <a href="mailto:derekdevon17@gmail.com?subject=Hello from a Last Axiom Reader" class="email-link" style="border-color: #ffd700; background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));">
-                            ðŸ“§ Email Me Directly
+                        <a href="mailto:derekdevon17@gmail.com?subject=Hello from a Last Axiom Reader" class="email-link" style="border-color: #ffd700; background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));" onclick="trackEvent('contact_email_direct_click', {button_name: 'Email Me Directly'}); return true;">
+                            📧 Email Me Directly
                         </a>
                     </div>
                 </div>
@@ -647,6 +794,18 @@
     </footer>
 
     <script>
+        // Mobile hamburger menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+
         // Generate floating particles
         function createParticles() {
             const particleContainer = document.getElementById('particles');
@@ -669,8 +828,22 @@
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const quantumField = document.querySelector('.quantum-field');
-            quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (quantumField) {
+                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
         });
+
+        // Track form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function() {
+                const subject = document.getElementById('subject').value;
+                trackEvent('contact_form_submit', {
+                    page: 'contact',
+                    subject: subject
+                });
+            });
+        }
     </script>
 </body>
 </html>
