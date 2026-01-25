@@ -187,7 +187,7 @@
         }
 
         .contact-section:hover {
-            transform: translateY(-5px);
+            /* REMOVED transform - causes Chrome crash */
             border-color: #64b5f6;
             box-shadow: 0 15px 40px rgba(100, 181, 246, 0.3);
         }
@@ -243,7 +243,7 @@
 
         .email-link:hover {
             background: linear-gradient(45deg, rgba(100, 181, 246, 0.6), rgba(187, 134, 252, 0.6));
-            transform: translateY(-2px);
+            /* REMOVED transform - causes Chrome crash */
             box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
         }
 
@@ -293,7 +293,8 @@
         }
 
         .reason-item:hover {
-            transform: translateY(-5px);
+            /* REMOVED transform - causes Chrome crash */
+            box-shadow: 0 5px 15px rgba(100, 181, 246, 0.2);
         }
 
         .reason-icon {
@@ -408,11 +409,12 @@
 
         .submit-button:hover {
             background: linear-gradient(45deg, rgba(100, 181, 246, 0.6), rgba(187, 134, 252, 0.6));
-            transform: translateY(-2px);
+            /* REMOVED transform - causes Chrome crash */
             box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
         }
 
         .submit-button:active {
+            /* Keep this - :active is click, not hover */
             transform: translateY(0);
         }
 
@@ -483,7 +485,7 @@
             <!-- Main contact info -->
             <div class="contact-grid">
                 <div class="contact-section">
-                    <div class="section-icon">📧</div>
+                    <div class="section-icon">ðŸ“§</div>
                     <h2 class="section-title">Email Contact</h2>
                     <div class="section-content">
                         <p>Ready to discuss cosmic consciousness, sailing adventures, or just share your thoughts on the series?</p>
@@ -493,12 +495,12 @@
                 </div>
 
                 <div class="contact-section">
-                    <div class="section-icon">⚡</div>
+                    <div class="section-icon">âš¡</div>
                     <h2 class="section-title">Quick Response</h2>
                     <div class="section-content">
                         <div class="response-notice">
                             <h3>Response Time</h3>
-                            <p>I typically respond within 24-48 hours. If you don't hear back, check your spam folder—sometimes cosmic messages get filtered by earthbound email systems!</p>
+                            <p>I typically respond within 24-48 hours. If you don't hear back, check your spam folderâ€”sometimes cosmic messages get filtered by earthbound email systems!</p>
                         </div>
                     </div>
                 </div>
@@ -509,37 +511,37 @@
                 <h3>What Would You Like to Discuss?</h3>
                 <div class="reasons-grid">
                     <div class="reason-item">
-                        <div class="reason-icon">📚</div>
+                        <div class="reason-icon">ðŸ“š</div>
                         <div class="reason-title">Book Discussions</div>
                         <div class="reason-desc">Questions about The Last Axiom series, character development, or cosmic plot theories</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">💭</div>
+                        <div class="reason-icon">ðŸ’­</div>
                         <div class="reason-title">Reader Feedback</div>
-                        <div class="reason-desc">Your thoughts, reviews, and reactions to the stories—I love hearing from readers!</div>
+                        <div class="reason-desc">Your thoughts, reviews, and reactions to the storiesâ€”I love hearing from readers!</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">🎬</div>
+                        <div class="reason-icon">ðŸŽ¬</div>
                         <div class="reason-title">Media Inquiries</div>
                         <div class="reason-desc">Interviews, podcasts, or discussions about writing, AI, and the future of consciousness</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">🤝</div>
+                        <div class="reason-icon">ðŸ¤</div>
                         <div class="reason-title">Collaborations</div>
                         <div class="reason-desc">Speaking engagements, writing projects, or cosmic consciousness conversations</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">🔬</div>
+                        <div class="reason-icon">ðŸ”¬</div>
                         <div class="reason-title">Science & Tech</div>
                         <div class="reason-desc">Discussions about AI, consciousness research, or the real science behind the fiction</div>
                     </div>
 
                     <div class="reason-item">
-                        <div class="reason-icon">🏒</div>
+                        <div class="reason-icon">ðŸ’</div>
                         <div class="reason-title">Life Beyond Books</div>
                         <div class="reason-desc">Hockey, sailing, scuba diving, cooking, or any other adventures worth sharing</div>
                     </div>
@@ -548,7 +550,7 @@
 
             <!-- Sailing adventure callout -->
             <div class="adventure-callout">
-                <div class="ship-icon">⛵</div>
+                <div class="ship-icon">â›µ</div>
                 <h3>Following the Adventure</h3>
                 <p>Starting February 2026, I'll be circumnavigating the globe in my 41-foot sailboat "It-Girl." If you're interested in following the journey or discussing the intersection of real-world adventure and cosmic fiction, I'd love to hear from you!</p>
                 <p><em>Who knows? Maybe I'll find some real cosmic consciousness out there on the open ocean.</em></p>
@@ -556,7 +558,7 @@
 
             <!-- Contact guidelines -->
             <div class="contact-section" style="margin-top: 3rem;">
-                <div class="section-icon">🌟</div>
+                <div class="section-icon">ðŸŒŸ</div>
                 <h2 class="section-title">A Few Guidelines</h2>
                 <div class="section-content" style="text-align: left;">
                     <p><strong>What I love to receive:</strong></p>
@@ -580,11 +582,11 @@
 
             <!-- Contact form and email options -->
             <div class="contact-section" style="background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); margin-top: 3rem;">
-                <div class="section-icon">🚀</div>
+                <div class="section-icon">ðŸš€</div>
                 <h2 class="section-title" style="color: #ffd700;">Ready to Connect?</h2>
                 <div class="section-content">
                     <p>Whether you want to dive deep into the mysteries of cosmic consciousness, share your thoughts on the latest book, or just say hello from wherever you are in the universe, I'm looking forward to hearing from you.</p>
-                    <p><em>After all, meaningful connections are what make any adventure—literary or otherwise—truly worthwhile.</em></p>
+                    <p><em>After all, meaningful connections are what make any adventureâ€”literary or otherwiseâ€”truly worthwhile.</em></p>
                     
                     <!-- Contact Form -->
                     <form action="https://formspree.io/f/xwpbkeqj" method="POST" class="contact-form" style="margin-top: 2rem;">
@@ -631,7 +633,7 @@
                             <em>Prefer email? No problem!</em>
                         </p>
                         <a href="mailto:derekdevon17@gmail.com?subject=Hello from a Last Axiom Reader" class="email-link" style="border-color: #ffd700; background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));">
-                            📧 Email Me Directly
+                            ðŸ“§ Email Me Directly
                         </a>
                     </div>
                 </div>
