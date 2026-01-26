@@ -2,8 +2,8 @@
 <html lang="en">
 <!-- 
     FILENAME: contact.html
-    LAST MODIFIED: 2025-01-25 5:18 pm
-    VERSION: 1.0 - Chrome crash fixes applied, all emojis fixed, tracking complete
+    LAST MODIFIED: 2025-01-25 5:30 pm
+    VERSION: 1.1 - Google Sheets integration, all emojis fixed, tracking complete
 -->
 <head>
     <meta charset="UTF-8">
@@ -507,7 +507,7 @@
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: #888;
+            color: rgba(255, 255, 255, 0.5);
             font-style: italic;
         }
 
@@ -540,9 +540,57 @@
             box-shadow: 0 10px 30px rgba(100, 181, 246, 0.4);
         }
 
+        .submit-button:disabled {
+            background: rgba(100, 100, 100, 0.5);
+            cursor: not-allowed;
+        }
+
         .submit-button:active {
             /* Keep this - :active is click, not hover */
             transform: translateY(0);
+        }
+
+        /* Success/Error messages */
+        .message {
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 2px solid #22c55e;
+            color: #22c55e;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid #ef4444;
+            color: #ef4444;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive design */
@@ -637,7 +685,7 @@
                     <div class="section-content">
                         <p>Ready to discuss cosmic consciousness, sailing adventures, or just share your thoughts on the series?</p>
                         <a href="mailto:derekdevon17@gmail.com" class="email-link" onclick="trackEvent('contact_email_click', {button_name: 'Email Contact'}); return true;">derekdevon17@gmail.com</a>
-                        <p><em>I will do my best to respond but depending on volume of emails, it may take more than my target of 24 hours. If I am at sea on "It-Girl", may be even longer., </em></p>
+                        <p><em>I will do my best to respond but depending on volume of emails, it may take more than my target of 24 hours. If I am at sea on "It-Girl", may be even longer.</em></p>
                     </div>
                 </div>
 
@@ -735,8 +783,17 @@
                     <p>Whether you want to dive deep into the mysteries of cosmic consciousness, share your thoughts on the latest book, or just say hello from wherever you are in the universe, I'm looking forward to hearing from you.</p>
                     <p><em>After all, meaningful connections are what make any adventure—literary or otherwise—truly worthwhile.</em></p>
                     
+                    <!-- Success/Error messages -->
+                    <div id="successMessage" class="message success">
+                        <strong>✅ Message Sent!</strong> Thank you for reaching out. Derek will respond within 24-48 hours.
+                    </div>
+                    
+                    <div id="errorMessage" class="message error">
+                        <strong>❌ Oops!</strong> Something went wrong. Please try again or email directly to <a href="mailto:derekdevon17@gmail.com" style="color: #ef4444;">derekdevon17@gmail.com</a>
+                    </div>
+                    
                     <!-- Contact Form -->
-                    <form action="https://formspree.io/f/xwpbkeqj" method="POST" class="contact-form" style="margin-top: 2rem;" id="contactForm">
+                    <form id="contactForm" class="contact-form" style="margin-top: 2rem;">
                         <div class="form-group">
                             <label for="name">Your Name:</label>
                             <input type="text" id="name" name="name" required>
@@ -766,7 +823,7 @@
                             <textarea id="message" name="message" rows="6" placeholder="Share your thoughts, questions, or cosmic theories..." required></textarea>
                         </div>
                         
-                        <button type="submit" class="submit-button">
+                        <button type="submit" class="submit-button" id="submitButton">
                             <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; margin-right: 0.5rem; fill: currentColor;">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                             </svg>
@@ -794,6 +851,9 @@
     </footer>
 
     <script>
+        // Configuration - Same Google Sheets URL as feedback form
+        const CONTACT_FORM_URL = 'https://script.google.com/macros/s/AKfycbxGUQBqzQQlLOf7rtLvoZMZnGmYBztfPlDBfvlpFaZfD_imK-5UMOAdveQgO81S2pmq9w/exec';
+
         // Mobile hamburger menu
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
@@ -804,7 +864,106 @@
                     navLinks.classList.toggle('active');
                 });
             }
+            
+            // Setup contact form submission
+            setupContactForm();
         });
+
+        function setupContactForm() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', handleContactSubmit);
+            }
+        }
+
+        async function handleContactSubmit(e) {
+            e.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide messages
+            successMessage.classList.remove('show');
+            errorMessage.classList.remove('show');
+            
+            // Disable button and show loading
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="loading-spinner"></span> Sending...';
+            
+            // Track form submission attempt
+            trackEvent('contact_form_submit_attempt', {
+                page: 'contact'
+            });
+            
+            try {
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Detect device
+                const device = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+                
+                // Create form data
+                const formData = new URLSearchParams({
+                    action: 'contact',
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    device: device,
+                    userAgent: navigator.userAgent
+                });
+                
+                // Submit to Google Apps Script
+                const response = await fetch(CONTACT_FORM_URL, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Track successful submission
+                    trackEvent('contact_form_submit_success', {
+                        page: 'contact',
+                        subject: subject
+                    });
+                    
+                    // Show success message
+                    successMessage.classList.add('show');
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                
+                // Track failure
+                trackEvent('contact_form_submit_error', {
+                    page: 'contact',
+                    error: error.message
+                });
+                
+                errorMessage.classList.add('show');
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; margin-right: 0.5rem; fill: currentColor;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>Send Your Message';
+            }
+        }
 
         // Generate floating particles
         function createParticles() {
@@ -832,18 +991,6 @@
                 quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
-
-        // Track form submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function() {
-                const subject = document.getElementById('subject').value;
-                trackEvent('contact_form_submit', {
-                    page: 'contact',
-                    subject: subject
-                });
-            });
-        }
     </script>
 </body>
 </html>
