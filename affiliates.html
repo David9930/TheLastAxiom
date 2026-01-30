@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    FILENAME: affiliates.html
+    LAST MODIFIED: 2025-01-30 2:15 pm
+    VERSION: 1.1 - Pre-launch corrections: copyright updated to 2025, JavaScript fixed, emoji encoding corrected, affiliate signup link remains placeholder
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>50% Affiliate Program | The Last Axiom Series</title>
+    <meta name="title" content="50% Affiliate Program | The Last Axiom Series">
+    <meta name="description" content="Earn 50% commission promoting The Last Axiom series. Industry-leading commissions on a 17-book sci-fi bundle worth $221 selling for $9.99. Free audiobooks included make this offer irresistible. Join now and start earning!">
+    <meta name="keywords" content="affiliate program, book affiliate, sci-fi affiliate, 50% commission, audiobook affiliate, The Last Axiom affiliate, high commission affiliate program, book marketing">
+    <meta name="author" content="Derek Devon">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thelastaxiom.com/affiliates.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelastaxiom.com/affiliates.html">
+    <meta property="og:title" content="Earn 50% Commission - The Last Axiom Affiliate Program">
+    <meta property="og:description" content="Join our affiliate program and earn $4.45 per sale promoting a $221 value bundle for just $9.99. Free audiobooks included make conversions easy. 90-day cookie, instant approval, automated payments.">
+    <meta property="og:image" content="https://thelastaxiom.com/images/affiliate-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@thelastaxiom">
+    <meta name="twitter:title" content="50% Affiliate Program - The Last Axiom">
+    <meta name="twitter:description" content="Earn $4.45 per sale with our 50/50 revenue split. Promote $221 worth of books + audiobooks for $9.99. Industry-leading commissions, instant approval.">
+    <meta name="twitter:image" content="https://thelastaxiom.com/images/affiliate-twitter.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Structured Data - Offer Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Offer",
+      "name": "The Last Axiom Affiliate Program",
+      "description": "Earn 50% commission promoting The Last Axiom series - 17 books plus audiobooks worth $221 for $9.99",
+      "url": "https://thelastaxiom.com/affiliates.html",
+      "seller": {
+        "@type": "Person",
+        "name": "Derek Devon"
+      },
+      "offeredBy": {
+        "@type": "Organization",
+        "name": "The Last Axiom Series",
+        "url": "https://thelastaxiom.com"
+      },
+      "category": "Affiliate Marketing Program",
+      "validFrom": "2024-01-01",
+      "availability": "https://schema.org/InStock",
+      "eligibleRegion": {
+        "@type": "Place",
+        "name": "Worldwide"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Affiliate Marketing Program",
+      "name": "The Last Axiom Affiliate Program",
+      "description": "50% commission affiliate program for promoting science fiction books and audiobooks",
+      "provider": {
+        "@type": "Person",
+        "name": "Derek Devon"
+      },
+      "areaServed": "Worldwide",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://thelastaxiom.com/affiliates.html"
+      },
+      "termsOfService": "50% revenue split on net proceeds, 90-day cookie duration, automated payments via LemonSqueezy"
+    }
+    </script>
+    
+    <!-- Structured Data - Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://thelastaxiom.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Affiliates",
+        "item": "https://thelastaxiom.com/affiliates.html"
+      }]
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(45deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0f 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Simple background */
+        .quantum-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(100, 149, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            animation: quantum-pulse 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes quantum-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #64b5f6;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #64b5f6;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #e8e8e8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #64b5f6;
+        }
+
+        /* Main content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding-top: 100px;
+        }
+
+        /* Hero section */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .book-cover-left,
+        .book-cover-right {
+            width: 180px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-cover-left:hover,
+        .book-cover-right:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradient-shift 3s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #d0d0d0;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        /* Commission callout */
+        .commission-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+        }
+
+        .commission-box h2 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .commission-box p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+        }
+
+        /* Content container */
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section styling */
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(100, 181, 246, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Value proposition grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(187, 134, 252, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            /* REMOVED transform - causes Chrome crash */
+            box-shadow: 0 10px 30px rgba(187, 134, 252, 0.4);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-size: 1.3rem;
+            color: #bb86fc;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .value-description {
+            color: #d0d0d0;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .value-price {
+            font-size: 1.8rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .value-savings {
+            font-size: 1.1rem;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* Commission breakdown */
+        .commission-table {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .commission-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .commission-table th {
+            background: rgba(100, 181, 246, 0.3);
+            color: #64b5f6;
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .commission-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d0d0d0;
+        }
+
+        .commission-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .commission-amount {
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Benefits list */
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #64b5f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .benefits-list li::before {
+            content: "âœ“";
+            font-size: 1.5rem;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.2), rgba(187, 134, 252, 0.2));
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #0a0a0f;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            /* REMOVED transform - causes Chrome crash */
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.3rem;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            color: #d0d0d0;
+            line-height: 1.8;
+        }
+
+        /* Stats boxes */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #d0d0d0;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .book-cover-left,
+            .book-cover-right {
+                width: 140px;
+            }
+            
+            .hero-content {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.95);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            /* Show only Book 1 cover on mobile, centered at top */
+            .book-cover-left {
+                width: 180px;
+                order: 1;
+            }
+            
+            /* Hide Book 2 cover on mobile */
+            .book-cover-right {
+                display: none;
+            }
+            
+            .hero-text {
+                order: 2;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .commission-table {
+                overflow-x: auto;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1TV7FYGSN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D1TV7FYGSN', {
+            'send_page_view': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+    </script>
+</head>
+<body>
+    <!-- Background -->
+    <div class="quantum-field"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Last Axiom</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="affiliates.html" class="active">Affiliates</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Hero section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <img src="images/book-1-cover.jpg" alt="Finch's Raven - Book 1 Cover" class="book-cover-left">
+                <div class="hero-text">
+                    <h1 class="hero-title">Partner With Us</h1>
+                    <p class="hero-subtitle">Earn 50% Commission on Every Sale</p>
+                    <p class="hero-description">
+                        Join our affiliate program and earn industry-leading commissions promoting a 17-book 
+                        sci-fi series that readers absolutely love. With <span class="highlight">$221 worth of value 
+                        for just $9.99</span>, this product practically sells itself.
+                    </p>
+                </div>
+                <img src="images/book-2-cover.jpg" alt="The Last Axiom - Book 2 Cover" class="book-cover-right">
+            </div>
+
+            <!-- Commission callout -->
+            <div class="commission-box">
+                <h2>50/50 Split</h2>
+                <p>We share NET proceeds equally with our affiliates.<br>
+                You succeed = We succeed = True partnership.</p>
+            </div>
+        </section>
+
+        <!-- Content container -->
+        <div class="content-container">
+            <!-- The Mission Section -->
+            <section class="content-section" style="border: 3px solid #ffd700;">
+                <h2 class="section-title" style="color: #ffd700;">ðŸš€ Why This Value Exists: The Mission</h2>
+                <p style="text-align: center; color: #d0d0d0; margin-bottom: 2rem; font-size: 1.3rem; line-height: 1.8;">
+                    You might be wondering: <strong style="color: #ffd700;">"Why is $221 worth of content 
+                    selling for $9.99? What's the catch?"</strong>
+                </p>
+                
+                <div style="background: rgba(255, 69, 0, 0.1); border: 2px solid rgba(255, 69, 0, 0.4); border-radius: 15px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="color: #ff6b35; font-size: 1.6rem; margin-bottom: 1rem; text-align: center;">
+                        ðŸ’” The Traditional Publishing Problem
+                    </h3>
+                    <p style="color: #d0d0d0; line-height: 1.8; margin-bottom: 1.5rem;">
+                        Traditional book retailers like Amazon take <strong style="color: #ff6b35;">60-90% of what readers pay</strong>. 
+                        That means when you buy a $14.95 audiobook on Audible, the author gets maybe $3-5. 
+                        <strong>The platforms pocket $10-12.</strong>
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                        <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; color: #ff6b35; font-weight: bold; margin-bottom: 0.5rem;">65-90%</div>
+                            <div style="color: #d0d0d0;">Taken by Amazon/Audible</div>
+                        </div>
+                        <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; color: #22c55e; font-weight: bold; margin-bottom: 0.5rem;">10-35%</div>
+                            <div style="color: #d0d0d0;">Goes to the Author</div>
+                        </div>
+                    </div>
+                    <p style="color: #d0d0d0; line-height: 1.8; margin-top: 1.5rem; font-style: italic; text-align: center;">
+                        For 17 books sold traditionally, I might earn <strong style="color: #ff6b35;">$103</strong> while 
+                        Amazon pockets <strong style="color: #ff6b35;">$118</strong>. That's broken.
+                    </p>
+                </div>
+
+                <div style="background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.4); border-radius: 15px; padding: 2rem;">
+                    <h3 style="color: #22c55e; font-size: 1.6rem; margin-bottom: 1rem; text-align: center;">
+                        âœ¨ The Direct-to-Reader Revolution
+                    </h3>
+                    <p style="color: #d0d0d0; line-height: 1.8; margin-bottom: 1.5rem;">
+                        We built this affiliate program to <strong style="color: #22c55e;">bypass the exploitative middlemen</strong>. 
+                        By selling directly to readers through passionate affiliates like you, we can:
+                    </p>
+                    <ul style="list-style: none; padding: 0; color: #d0d0d0; line-height: 2;">
+                        <li style="margin-bottom: 1rem;">âœ… <strong>Give readers 95% off</strong> ($221 value for $9.99)</li>
+                        <li style="margin-bottom: 1rem;">âœ… <strong>Pay affiliates 50%</strong> ($4.45 per complete series sale)</li>
+                        <li style="margin-bottom: 1rem;">âœ… <strong>Author still earns more</strong> than selling through Amazon</li>
+                        <li style="margin-bottom: 1rem;">âœ… <strong>Cut out the middleman</strong> who contributes nothing but takes 90%</li>
+                    </ul>
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 10px; margin-top: 1.5rem; text-align: center;">
+                        <p style="color: #ffd700; font-size: 1.3rem; margin-bottom: 1rem; font-weight: bold;">
+                            ðŸŽ¯ The Math That Changes Everything
+                        </p>
+                        <p style="color: #d0d0d0; line-height: 1.8;">
+                            Sell just <strong style="color: #22c55e;">23 complete series</strong> at $9.99 through this program, 
+                            and I earn the same as selling 17 books traditionally through Amazon.<br><br>
+                            <strong style="color: #ffd700;">Every sale after that? Pure upside.</strong><br>
+                            And YOU get paid incredibly well for bringing those readers to me.
+                        </p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; color: #d0d0d0; margin-top: 2rem; font-size: 1.2rem; line-height: 1.8;">
+                    <strong style="color: #ffd700;">This isn't a "discount" - it's a revolution.</strong><br>
+                    When you promote The Last Axiom, you're not just sharing books.<br>
+                    You're helping prove that authors and readers don't need exploitative platforms.<br>
+                    <em>We can do better. Together.</em>
+                </p>
+            </section>
+
+            <!-- The Offer Section -->
+            <section class="content-section">
+                <h2 class="section-title">ðŸŽ The Unbelievable Value Proposition</h2>
+                <p style="text-align: center; color: #d0d0d0; margin-bottom: 2rem; font-size: 1.2rem;">
+                    This is what makes The Last Axiom affiliate program so powerful - 
+                    your audience gets <strong style="color: #ffd700;">INSANE value</strong>, 
+                    AND they're supporting a fair model for authors and promoters.
+                </p>
+
+                <div class="value-grid">
+                    <!-- Complete Series -->
+                    <div class="value-card">
+                        <div class="value-icon">ðŸŒŒ</div>
+                        <h3 class="value-title">Complete Series Bundle</h3>
+                        <div class="value-description">
+                            <strong>17 Books (PDF)</strong><br>
+                            Retail Value: $51<br><br>
+                            <strong style="color: #ffd700;">+ 17 FREE Audiobooks</strong><br>
+                            (~29 hours of narration)<br>
+                            Retail Value: <strong>$170</strong><br><br>
+                            <strong>Total Value: $221</strong>
+                        </div>
+                        <div class="value-price">Customer Pays: $9.99</div>
+                        <div class="value-savings">SAVES $211 (95% OFF!)</div>
+                    </div>
+
+                    <!-- Individual Bundle -->
+                    <div class="value-card">
+                        <div class="value-icon">ðŸ“š</div>
+                        <h3 class="value-title">Individual Bundle</h3>
+                        <div class="value-description">
+                            <strong>4 Books (PDF)</strong><br>
+                            Retail Value: $12<br><br>
+                            <strong style="color: #ffd700;">+ 4 FREE Audiobooks</strong><br>
+                            (~6.5 hours of narration)<br>
+                            Retail Value: <strong>$40</strong><br><br>
+                            <strong>Total Value: $52</strong>
+                        </div>
+                        <div class="value-price">Customer Pays: $3.99</div>
+                        <div class="value-savings">SAVES $48 (92% OFF!)</div>
+                    </div>
+
+                    <!-- Free Books -->
+                    <div class="value-card">
+                        <div class="value-icon">ðŸŽ</div>
+                        <h3 class="value-title">FREE Starter Pack</h3>
+                        <div class="value-description">
+                            <strong>Books 1-2 (PDF)</strong><br>
+                            Retail Value: $6<br><br>
+                            <strong style="color: #ffd700;">+ 2 FREE Audiobooks</strong><br>
+                            (~2.5 hours of narration)<br>
+                            Retail Value: <strong>$20</strong><br><br>
+                            <strong>Total Value: $26</strong>
+                        </div>
+                        <div class="value-price">Customer Pays: $0</div>
+                        <div class="value-savings">100% FREE!</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 2rem; margin-top: 2rem; text-align: center;">
+                    <p style="font-size: 1.3rem; color: #ffd700; margin-bottom: 1rem;"><strong>ðŸŽ§ The FREE Audiobook Hook</strong></p>
+                    <p style="color: #d0d0d0; line-height: 1.8;">
+                        Audiobooks on Audible cost <strong>$10-15 EACH</strong>. Your customers get 
+                        <strong style="color: #ffd700;">17 audiobooks (worth $170)</strong> completely FREE when they 
+                        buy the $9.99 complete series. That's like buying a $10 item and getting $170 in bonus content. 
+                        <strong>This is your strongest sales angle!</strong>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Commission Breakdown -->
+            <section class="content-section">
+                <h2 class="section-title">ðŸ’° Your Commission Structure</h2>
+                <p style="text-align: center; color: #d0d0d0; margin-bottom: 2rem;">
+                    We split NET proceeds 50/50 after payment processing fees (LemonSqueezy 5% + credit card processing 2.9% + $0.30)
+                </p>
+
+                <div class="commission-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Total Fees</th>
+                                <th>Net Proceeds</th>
+                                <th>Your 50%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Bundle (4 books + audiobooks)</strong></td>
+                                <td>$3.99</td>
+                                <td>$0.62</td>
+                                <td>$3.37</td>
+                                <td class="commission-amount">$1.69</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Complete Series (17 books + audiobooks)</strong></td>
+                                <td>$9.99</td>
+                                <td>$1.09</td>
+                                <td>$8.90</td>
+                                <td class="commission-amount">$4.45</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="background: rgba(100, 181, 246, 0.1); border: 2px solid rgba(100, 181, 246, 0.3); border-radius: 15px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
+                    <p style="color: #d0d0d0; font-size: 0.95rem; line-height: 1.6;">
+                        <strong style="color: #64b5f6;">Fee Breakdown:</strong> LemonSqueezy charges 5% platform fee + standard credit card processing 
+                        (2.9% + $0.30 for US cards). These fees are deducted first, then we split what remains 50/50. 
+                        All payment processing and tax compliance is handled automatically.
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">$4.45</div>
+                        <div class="stat-label">Per Complete Series Sale</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">$1.69</div>
+                        <div class="stat-label">Per Bundle Sale</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50%</div>
+                        <div class="stat-label">Commission Rate</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 15px; padding: 2rem; margin-top: 2rem; text-align: center;">
+                    <p style="font-size: 1.2rem; color: #22c55e; margin-bottom: 1rem;"><strong>ðŸ’¡ Quick Math Example</strong></p>
+                    <p style="color: #d0d0d0; line-height: 1.8;">
+                        Send an email to your list of 1,000 subscribers.<br>
+                        Get a modest 2% conversion rate (20 sales).<br>
+                        If all 20 buy the Complete Series:<br>
+                        <strong style="color: #22c55e; font-size: 1.4rem;">You earn $89 from ONE email!</strong>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Why This Works -->
+            <section class="content-section">
+                <h2 class="section-title">âš¡ Why This Offer Converts Like Crazy</h2>
+                <ul class="benefits-list">
+                    <li>
+                        <strong>FREE entry point (Books 1-2)</strong> - No-risk trial makes it easy to get readers hooked
+                    </li>
+                    <li>
+                        <strong>Insane value ($221 for $9.99)</strong> - 95% off is almost impossible to resist
+                    </li>
+                    <li>
+                        <strong>FREE audiobooks included</strong> - Audiobooks alone worth $170, making books feel "free"
+                    </li>
+                    <li>
+                        <strong>Bundle options ($3.99)</strong> - Lower barrier to entry, buyers can test before committing to complete series
+                    </li>
+                    <li>
+                        <strong>Quality content</strong> - 17-book series with professional narration, not cheap filler
+                    </li>
+                    <li>
+                        <strong>Instant delivery</strong> - Digital download via BookFunnel, no shipping delays
+                    </li>
+                    <li>
+                        <strong>Multi-format</strong> - PDFs for reading, MP3s for listening, maximum flexibility
+                    </li>
+                </ul>
+            </section>
+
+            <!-- What You Get -->
+            <section class="content-section">
+                <h2 class="section-title">ðŸŽ¯ What We Provide You</h2>
+                <div class="value-grid">
+                    <div class="value-card">
+                        <div class="value-icon">ðŸ“§</div>
+                        <h3 class="value-title">Email Swipe Files</h3>
+                        <p class="value-description">
+                            Pre-written email templates emphasizing the FREE audiobook value. 
+                            Copy, paste, send. Multiple angles including value-focused, story-focused, 
+                            and urgency-based messaging.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">ðŸ“±</div>
+                        <h3 class="value-title">Social Media Posts</h3>
+                        <p class="value-description">
+                            Ready-to-post content for Twitter, Facebook, Instagram, and TikTok. 
+                            Includes graphics and copy highlighting the audiobook bonus.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">ðŸŽ¨</div>
+                        <h3 class="value-title">Banner Ads</h3>
+                        <p class="value-description">
+                            Professional banner images in 5 standard sizes. Prominently features 
+                            "$221 value for $9.99" and "FREE Audiobooks Included" messaging.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">ðŸ“Š</div>
+                        <h3 class="value-title">Real-Time Dashboard</h3>
+                        <p class="value-description">
+                            Track clicks, conversions, and commissions in real-time via LemonSqueezy. 
+                            See exactly what's working and optimize your promotions.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">ðŸ’³</div>
+                        <h3 class="value-title">Automated Payments</h3>
+                        <p class="value-description">
+                            Get paid automatically via PayPal or bank transfer. Weekly, bi-weekly, 
+                            or monthly - you choose. No chasing payments or invoicing.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">ðŸŽ“</div>
+                        <h3 class="value-title">Best Practices Guide</h3>
+                        <p class="value-description">
+                            Step-by-step guide on how to promote effectively. Learn which angles 
+                            work best (spoiler: the FREE audiobook angle crushes!).
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Selling Points -->
+            <section class="content-section">
+                <h2 class="section-title">ðŸŽ¤ Your Best Sales Angles</h2>
+                <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 2rem;">
+                    <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.4rem;">ðŸŽ§ Angle #1: The Audiobook Bonus (STRONGEST)</h3>
+                        <p style="color: #d0d0d0; line-height: 1.8;">
+                            "Get 17 audiobooks (worth $170) completely FREE when you buy the $9.99 complete series. 
+                            That's 29 hours of professional narration at no extra cost. Audible charges $10-15 PER audiobook - 
+                            you're getting 17 for free!"
+                        </p>
+                    </div>
+                    <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.4rem;">ðŸ’° Angle #2: The Insane Value</h3>
+                        <p style="color: #d0d0d0; line-height: 1.8;">
+                            "$221 worth of books and audiobooks for just $9.99. That's 95% off. 
+                            You're essentially getting everything for the price of ONE audiobook on Audible."
+                        </p>
+                    </div>
+                    <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.4rem;">ðŸŽ Angle #3: The Free Trial</h3>
+                        <p style="color: #d0d0d0; line-height: 1.8;">
+                            "Start completely FREE with Books 1-2 + audiobooks (worth $26). No credit card required. 
+                            If you love it, grab the complete series. If not, you got two free books!"
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.4rem;">ðŸ“š Angle #4: The Bundle Option</h3>
+                        <p style="color: #d0d0d0; line-height: 1.8;">
+                            "Not ready for all 17 books? Try a bundle of 4 books + FREE audiobooks for just $3.99. 
+                            That's $52 worth of content for less than a latte."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="content-section">
+                <h2 class="section-title">â“ Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I get paid?</h3>
+                    <p class="faq-answer">
+                        LemonSqueezy handles all payments automatically via PayPal or bank transfer. 
+                        You choose the frequency (weekly, bi-weekly, or monthly) and set your minimum payout threshold.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Is the 50% commission really true?</h3>
+                    <p class="faq-answer">
+                        Yes! We split NET proceeds 50/50. Here's exactly how it works:<br><br>
+                        <strong>For a $9.99 complete series sale:</strong><br>
+                        â€¢ LemonSqueezy platform fee (5%): $0.50<br>
+                        â€¢ Credit card processing (2.9% + $0.30): $0.59<br>
+                        â€¢ Total fees: $1.09<br>
+                        â€¢ Net proceeds: $8.90<br>
+                        â€¢ <strong style="color: #22c55e;">You get: $4.45 | I get: $4.45</strong><br><br>
+                        True 50/50 partnership on what remains after necessary payment processing.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">How long do cookies last?</h3>
+                    <p class="faq-answer">
+                        90 days! If someone clicks your affiliate link and buys within 90 days, you get credited. 
+                        This is very affiliate-friendly and gives readers time to decide.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I promote to my email list?</h3>
+                    <p class="faq-answer">
+                        Absolutely! Email is one of the best channels. We provide pre-written email templates 
+                        that you can customize for your audience. Just copy, paste, and send.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What if my audience hasn't heard of The Last Axiom?</h3>
+                    <p class="faq-answer">
+                        That's perfect! Start by promoting the FREE Books 1-2. No risk for them to try. 
+                        The free audiobooks included make it a no-brainer. Once they're hooked, many will 
+                        upgrade to the complete series.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you provide marketing materials?</h3>
+                    <p class="faq-answer">
+                        Yes! You get email swipe files, social media posts, banner ads, blog post templates, 
+                        and more. Everything emphasizes the FREE audiobook value proposition because that's 
+                        what converts best.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What's the best way to promote this?</h3>
+                    <p class="faq-answer">
+                        Lead with the audiobook value! Most people don't realize they're getting $170 worth 
+                        of audiobooks FREE. Frame it as "Get 17 audiobooks free when you buy the series for $9.99." 
+                        This angle converts 3x better than just promoting the books alone.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What about taxes? Do I get a 1099?</h3>
+                    <p class="faq-answer">
+                        <strong>US Affiliates:</strong> If you earn $600+ in a calendar year, LemonSqueezy will issue you a 1099-NEC form 
+                        in January. You'll report this as self-employment income on your tax return. <strong>Important:</strong> No taxes 
+                        are withheld from your payments, so set aside 25-50% for taxes (federal, state, and self-employment tax).<br><br>
+                        
+                        <strong>International Affiliates:</strong> You'll complete a W-8BEN form during signup to certify your non-US status 
+                        and avoid 30% backup withholding. You're responsible for reporting income under your country's tax laws.<br><br>
+                        
+                        <strong>Required Forms:</strong> You'll need to provide a W-9 (US) or W-8BEN (international) when joining. Without these, 
+                        LemonSqueezy may withhold 30% of your earnings.<br><br>
+                        
+                        <em>This is not tax advice. Consult a tax professional for personalized guidance.</em>
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Is there a minimum sales requirement?</h3>
+                    <p class="faq-answer">
+                        Nope! Promote as much or as little as you want. Some affiliates make one sale a month, 
+                        others make 50+. It's completely up to you.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2 style="font-size: 2.5rem; color: #ffd700; margin-bottom: 1rem;">Ready to Start Earning?</h2>
+                <p style="font-size: 1.2rem; color: #d0d0d0; margin-bottom: 2rem;">
+                    Join now and get instant access to all marketing materials. Start promoting within minutes.
+                </p>
+                <a href="#" class="cta-button">
+                    Join The Affiliate Program â†’
+                </a>
+                <p style="margin-top: 2rem; color: #b0b0b0; font-style: italic;">
+                    No approval wait time. No monthly fees. Just promote and earn.
+                </p>
+            </section>
+
+            <!-- Contact -->
+            <section class="content-section">
+                <h2 class="section-title">ðŸ“¬ Questions?</h2>
+                <p style="text-align: center; color: #d0d0d0; margin-bottom: 1rem;">
+                    Have questions about the affiliate program? Want to discuss a custom partnership?
+                </p>
+                <p style="text-align: center;">
+                    <a href="/cdn-cgi/l/email-protection#acc8c9dec9c7c8c9dac3c29d9beccbc1cdc5c082cfc3c1" style="color: #64b5f6; font-size: 1.2rem; text-decoration: none;">
+                        <span class="__cf_email__" data-cfemail="c0a4a5b2a5aba4a5b6afaef1f780a7ada1a9aceea3afad">[email&#160;protected]</span>
+                    </a>
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Derek Devon & The Last Axiom Series. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <a href="index.html" style="color: #64b5f6; text-decoration: none;">Back to Home</a> • 
+            <a href="contact.html" style="color: #64b5f6; text-decoration: none;">Contact</a>
+        </p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile hamburger menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const quantumField = document.querySelector('.quantum-field');
+            if (quantumField) {
+                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
