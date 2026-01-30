@@ -791,7 +791,18 @@
             box-shadow: 0 5px 20px rgba(100, 181, 246, 0.4);
         }
 
-        /* Responsive design */
+       /* Responsive design */
+        @media (max-width: 1024px) {
+            .book-cover-left,
+            .book-cover-right {
+                width: 140px;
+            }
+            
+           .header-content {
+                gap: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -813,6 +824,26 @@
                 display: flex;
             }
 
+                .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            /* Show only Book 1 cover on mobile, centered at top */
+            .book-cover-left {
+                width: 180px;
+                order: 1;
+            }
+            
+            /* Hide Book 2 cover on mobile */
+            .book-cover-right {
+                display: none;
+            }
+            
+            .header-text {
+                order: 2;
+            }
+            
             .free-books-section::before,
             .free-books-section::after,
             .complete-series-section::before {
