@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- 
+    FILENAME: index.html
+    LAST MODIFIED: 2025-01-30 10:05 am (Book covers added)
+    VERSION: 1.1 - Book covers added to header
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -459,7 +464,7 @@
         }
 
         .bundle-card:hover {
-            /* REMOVED transform - causes Chrome crash */
+            transform: translateY(-10px);
             border-color: #64b5f6;
             box-shadow: 0 25px 50px rgba(100, 181, 246, 0.3);
         }
@@ -558,7 +563,7 @@
         }
 
         .complete-series-section::before {
-            content: 'â­ BEST VALUE';
+            content: '⭐ BEST VALUE';
             position: absolute;
             top: 20px;
             right: 30px;
@@ -678,11 +683,26 @@
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
-            /* REMOVED overflow: hidden and ::before expanding circle - causes Chrome crash */
+            overflow: hidden;
         }
 
-        /* REMOVED .cta-button::before expanding circle animation */
-        /* REMOVED .cta-button:hover::before - causes Chrome rendering crash */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
 
         .free-button {
             background: linear-gradient(45deg, #22c55e, #16a34a);
@@ -906,430 +926,6 @@
             z-index: 10;
         }
     </style>
-</head>
-<body>
-    <!-- Animated background -->
-    <div class="particles" id="particles"></div>
-    <div class="quantum-field"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">The Last Axiom</a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="affiliates.html">Affiliates</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main content -->
-    <div class="main-content">
-        <!-- Page header -->
-        <section class="page-header">
-            <div class="header-content">
-                <img src="images/book-1-cover.jpg" alt="Finch's Raven - Book 1 Cover" class="book-cover-left">
-                <div class="header-text">
-                    <h1 class="page-title">Get The Last Axiom Series</h1>
-                    <p class="page-subtitle">17 interconnected books exploring the boundaries of reality itself</p>
-                    <p class="value-proposition">🎁 Start FREE • Save with Bundles • Best Value: Complete Series</p>
-                </div>
-                <img src="images/book-2-cover.jpg" alt="The Last Axiom - Book 2 Cover" class="book-cover-right">
-            </div>
-        </section>
-
-        <!-- Main container -->
-        <div class="books-container">
-
-            <!-- AUDIOBOOK VALUE CALLOUT -->
-            <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 140, 0, 0.1)); border: 3px solid rgba(255, 107, 53, 0.4); border-radius: 20px; padding: 2.5rem; margin: 3rem 0; text-align: center;">
-                <h3 style="font-size: 2rem; color: #ff6b35; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);">
-                     FREE Audiobooks Included with Every Purchase!
-                </h3>
-                <p style="font-size: 1.2rem; color: #d0d0d0; margin-bottom: 1rem;">
-                    Every bundle includes professionally narrated audiobooks at no extra cost
-                </p>
-                <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 1.5rem;">
-                    <div>
-                        <div style="font-size: 2.5rem; color: #ffd700; font-weight: bold;">$169.83</div>
-                        <div style="color: #888; font-size: 0.95rem;">Audible Value (17 audiobooks)</div>
-                    </div>
-                    <div style="font-size: 3rem; color: #64b5f6;">â†’</div>
-                    <div>
-                        <div style="font-size: 2.5rem; color: #22c55e; font-weight: bold;">FREE</div>
-                        <div style="color: #888; font-size: 0.95rem;">Included with Your Purchase</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FREE BOOKS SECTION -->
-            <section class="free-books-section">
-                <div class="section-header">
-                    <h2 class="section-title"> Start Your Journey FREE</h2>
-                    <p class="section-subtitle">Get Books 1 & 2 at no cost - the perfect introduction to the series</p>
-                </div>
-
-                <div class="free-books-grid">
-                    <!-- Book 1 -->
-                    <div class="book-mini-card">
-                        <div class="book-mini-title">Book 1: Finch's Raven</div>
-                        <div class="book-mini-subtitle">Where It All Begins</div>
-                        <p class="book-mini-description">
-                            Professor Alistair Finch discovers that the fundamental constants of the universe 
-                            aren't constant at all. As reality's source code begins to rewrite itself, young Derek Devon 
-                            inherits a legacy that will reshape humanity's understanding of existence itself.
-                        </p>
-                    </div>
-
-                    <!-- Book 2 -->
-                    <div class="book-mini-card">
-                        <div class="book-mini-title">Book 2: The Last Axiom</div>
-                        <div class="book-mini-subtitle">Contact Protocols</div>
-                        <p class="book-mini-description">
-                            Derek Devon and Dr. Nancy Hammond make humanity's first confirmed contact with cosmic intelligence. 
-                            But the entities reaching out to Earth have been preparing for this moment far longer than anyone realizes.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="time-info" style="max-width: 400px; margin: 2rem auto;">
-                    <div style="font-size: 0.95rem; color: #b0b0b0; margin-bottom: 0.5rem;">
-                         ~1 hour reading â€¢  ~2.5 hours listening
-                    </div>
-                    <div style="font-size: 0.85rem; color: #ff6b35; font-weight: bold;">
-                        Audible value: $28 â€¢ Yours FREE
-                    </div>
-                </div>
-
-                <!-- Sample Previews and CTA -->
-                <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem;">
-                    
-                    <!-- PDF Sample Box (Left) -->
-                    <div style="background: rgba(100, 181, 246, 0.1); border: 2px solid rgba(100, 181, 246, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
-                        <h4 style="color: #64b5f6; font-size: 1.1rem; margin-bottom: 0.5rem;">Try Before You Download</h4>
-                        <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">Read a sample chapter from Book 1</p>
-                        <a href="Book1ReaderSample.pdf" target="_blank" 
-                           onclick="trackEvent('sample_pdf_click', {button_name: 'Read Sample PDF', book: 'Book 1'}); return true;"
-                           style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
-                            Read Sample
-                        </a>
-                    </div>
-
-                    <!-- Main CTA Button (Center) -->
-                    <div style="text-align: center;">
-                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button"
-                           onclick="trackEvent('free_books_click', {button_name: 'Get Books 1 & 2 FREE', books: 'Book 1-2', value: 'free'}); return true;">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                            </svg>
-                            Get Books 1 & 2 FREE
-                        </a>
-                        <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
-                             Ebooks +  Audiobooks included â€¢ Delivered instantly via BookFunnel
-                        </p>
-                    </div>
-
-                    <!-- Audio Sample Box (Right) -->
-                    <div style="background: rgba(255, 107, 53, 0.1); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
-                        <h4 style="color: #ff6b35; font-size: 1.1rem; margin-bottom: 0.5rem;">Listen to a Preview</h4>
-                        <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">3-minute audio sample from Book 1</p>
-                        <audio id="audioSample" controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
-                            <source src="Book1Sample.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- BUNDLE PACKAGES SECTION -->
-            <div class="section-header">
-                <h2 class="section-title"> Continue with Bundle Packages</h2>
-                <p class="section-subtitle">Save 60% â€¢ Audiobooks included FREE with every bundle</p>
-            </div>
-
-            <div class="bundles-grid">
-                <!-- Bundle 1: Books 3-6 -->
-                <div class="bundle-card">
-                    <div class="bundle-number">Bundle 1</div>
-                    <h3 class="bundle-title">The Discovery Arc</h3>
-                    <p class="bundle-books">Books 3-6</p>
-                    
-                    <div class="time-info">
-                        <div class="time-row">
-                            <div class="time-item"> <span class="time-value">~2 hrs</span> reading</div>
-                            <div class="time-item"> <span class="time-value">~4 hrs</span> listening</div>
-                        </div>
-                        <div class="audio-value">Audible value: $56</div>
-                    </div>
-
-                    <div class="bundle-books-list">
-                        â€¢ Quantum Ghosts<br>
-                        â€¢ The Constants<br>
-                        â€¢ The Observer Effect<br>
-                        â€¢ Harmonic Convergence
-                    </div>
-                    <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Ebooks alone: $15.96</p>
-                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button"
-                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 1', books: 'Books 3-6', price: '$3.99', bundle_number: 1}); return true;">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                        </svg>
-                        Buy Bundle 1
-                    </a>
-                </div>
-
-                <!-- Bundle 2: Books 7-10 -->
-                <div class="bundle-card">
-                    <div class="bundle-number">Bundle 2</div>
-                    <h3 class="bundle-title">The Integration Arc</h3>
-                    <p class="bundle-books">Books 7-10</p>
-                    
-                    <div class="time-info">
-                        <div class="time-row">
-                            <div class="time-item"> <span class="time-value">~2 hrs</span> reading</div>
-                            <div class="time-item"> <span class="time-value">~4 hrs</span> listening</div>
-                        </div>
-                        <div class="audio-value">Audible value: $56</div>
-                    </div>
-
-                    <div class="bundle-books-list">
-                        â€¢ The Recursive Code<br>
-                        â€¢ Quantum Memory<br>
-                        â€¢ The Protocol Sleepers<br>
-                        â€¢ Critical Mass
-                    </div>
-                    <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Ebooks alone: $15.96</p>
-                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button"
-                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 2', books: 'Books 7-10', price: '$3.99', bundle_number: 2}); return true;">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                        </svg>
-                        Buy Bundle 2
-                    </a>
-                </div>
-
-                <!-- Bundle 3: Books 11-14 -->
-                <div class="bundle-card">
-                    <div class="bundle-number">Bundle 3</div>
-                    <h3 class="bundle-title">The Revelation Arc</h3>
-                    <p class="bundle-books">Books 11-13b</p>
-                    
-                    <div class="time-info">
-                        <div class="time-row">
-                            <div class="time-item"> <span class="time-value">~2.5 hrs</span> reading</div>
-                            <div class="time-item"> <span class="time-value">~5 hrs</span> listening</div>
-                        </div>
-                        <div class="audio-value">Audible value: $56</div>
-                    </div>
-
-                    <div class="bundle-books-list">
-                        â€¢ Beyond the Axiom<br>
-                        â€¢ The Raven's Code<br>
-                        â€¢ The Architect's Test (Parts 1 & 2)<br>
-                        â€¢ The Resistance
-                    </div>
-                    <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Ebooks alone: $15.96</p>
-                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button"
-                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 3', books: 'Books 11-14', price: '$3.99', bundle_number: 3}); return true;">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                        </svg>
-                        Buy Bundle 3
-                    </a>
-                </div>
-
-                <!-- Bundle 4: Books 15-17 -->
-                <div class="bundle-card">
-                    <div class="bundle-number">Bundle 4</div>
-                    <h3 class="bundle-title">The Convergence Arc</h3>
-                    <p class="bundle-books">Books 14-15 pt2 (Series Finale)</p>
-                    
-                    <div class="time-info">
-                        <div class="time-row">
-                            <div class="time-item"> <span class="time-value">~1.5 hrs</span> reading</div>
-                            <div class="time-item"> <span class="time-value">~3 hrs</span> listening</div>
-                        </div>
-                        <div class="audio-value">Audible value: $42</div>
-                    </div>
-
-                    <div class="bundle-books-list">
-                        â€¢ The Crucible (Part 1)<br>
-                        â€¢ The Convergence (Part 2)<br>
-                         <strong>EPIC SERIES FINALE</strong>
-                    </div>
-                    <div class="bundle-price">$3.99</div>
-                    <p class="bundle-value">Ebooks alone: $15.96</p>
-                    <p class="audio-bonus">+ Audiobooks FREE ($42 value)</p>
-                    <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button"
-                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 4', books: 'Books 15-17', price: '$3.99', bundle_number: 4}); return true;">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                        </svg>
-                        Buy Bundle 4
-                    </a>
-                </div>
-            </div>
-
-            <!-- COMPLETE SERIES SECTION -->
-            <section class="complete-series-section">
-                <h2 class="complete-title">â­ Complete Series Deal</h2>
-                <p class="complete-description">
-                    Get the entire cosmic journey in one purchase - all 17 books plus audiobooks. 
-                    The complete story from Finch's discovery to the universe-changing finale.
-                </p>
-
-                <div class="complete-time-info">
-                    <div class="complete-time-stats">
-                        <div class="time-stat">
-                            <div class="time-stat-value">~over 8 hrs</div>
-                            <div class="time-stat-label">Total Reading Time</div>
-                        </div>
-                        <div class="time-stat">
-                            <div class="time-stat-value">~over 18 hrs</div>
-                            <div class="time-stat-label">Total Listening Time</div>
-                        </div>
-                        <div class="time-stat">
-                            <div class="time-stat-value">17</div>
-                            <div class="time-stat-label">Complete Books</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="complete-features">
-                    <div class="feature-item">
-                        <span class="feature-icon"></span>
-                        <span>All 17 Books</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon"></span>
-                        <span>All Audiobooks</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon"></span>
-                        <span>DRM-Free Files</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon"></span>
-                        <span>Instant Access</span>
-                    </div>
-                </div>
-
-                <!-- Value Breakdown Box -->
-                <div style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin: 2rem auto 3rem; max-width: 650px;">
-                    <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.5rem; text-align: center;"> Total Value Breakdown</h3>
-                    <div style="color: #d0d0d0; font-size: 1.1rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <span> 17 Ebooks Ã— $2.99 retail each</span>
-                            <span style="color: #ffd700; font-weight: bold;">$50.83</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 2px solid rgba(255, 215, 0, 0.3);">
-                            <span> 17 Audiobooks Ã— $9.99 typical Audible price</span>
-                            <span style="color: #ffd700; font-weight: bold;">$169.83</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 1rem 1rem; font-size: 1.3rem;">
-                            <span style="color: #fff; font-weight: bold;">TOTAL RETAIL VALUE:</span>
-                            <span style="color: #ffd700; font-weight: bold; font-size: 1.6rem;">$220.66</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="complete-price-section">
-                    <div class="complete-price">$9.99</div>
-                    <div class="complete-savings" style="font-size: 1.5rem;">You Save $210.67 â€” That's 95.3% OFF!</div>
-                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255, 107, 53, 0.15); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 10px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                        <div style="color: #ff6b35; font-weight: bold; font-size: 1.2rem; margin-bottom: 0.5rem;"> Audiobook Value Highlight</div>
-                        <div style="color: #d0d0d0; font-size: 1rem;">
-                            These professionally narrated audiobooks would cost <strong style="color: #fff;">$169.83</strong> on Audible alone.
-                            You're getting them + all 17 ebooks for just $9.99!
-                        </div>
-                    </div>
-                </div>
-
-                <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button"
-                   onclick="trackEvent('complete_series_click', {button_name: 'Complete Series', books: 'All 17 Books', price: '$9.99', savings: '$210.67'}); return true;">
-                    <svg class="icon" viewBox="0 0 24 24" style="width: 28px; height: 28px;">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    Get Complete Series
-                </a>
-
-                <p style="margin-top: 1.5rem; color: #888; font-size: 0.95rem;">
-                     All Ebooks +  All Audiobooks â€¢ One-time payment â€¢ Lifetime access
-                </p>
-            </section>
-
-            <!-- Reading Order Note -->
-            <div style="background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 15px; padding: 2rem; margin: 3rem 0; text-align: center;">
-                <h3 style="color: #bb86fc; margin-bottom: 1rem;"> Reading Order Note</h3>
-                <p style="color: #d0d0d0; line-height: 1.6;">
-                    Books 1 & 2 should be read in order. After that, Books 3-13b can be enjoyed in any sequence but Derek Devon suggests reading them in order! 
-                    However, <strong style="color: #ffd700;">save Books 14-15 (The Finale) for last</strong> to experience 
-                    the full impact of the series conclusion.
-                </p>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 The Last Axiom Series by Derek Devon. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-            Questions? <a href="contact.html" style="color: #64b5f6; text-decoration: none;">Contact us</a> â€¢ 
-            <a href="feedback.html" style="color: #64b5f6; text-decoration: none;">Leave feedback</a>
-        </p>
-    </footer>
-
-    <script>
-        // Generate floating particles
-        function createParticles() {
-            const particleContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particleContainer.appendChild(particle);
-            }
-        }
-
-        // Mobile hamburger menu
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
-
-        // Initialize particles on load
-        document.addEventListener('DOMContentLoaded', createParticles);
-
-        // Add parallax effect to quantum field
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const quantumField = document.querySelector('.quantum-field');
-            if (quantumField) {
-                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-    </script>
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D1TV7FYGSN"></script>
@@ -1386,6 +982,432 @@
                 page_title: document.title,
                 page_location: window.location.href
             });
+        });
+    </script>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="particles" id="particles"></div>
+    <div class="quantum-field"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Last Axiom</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html" class="active">Books</a></li>
+                <li><a href="audiobooks.html">Audiobooks</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="affiliates.html">Affiliates</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Page header -->
+        <section class="page-header">
+            <div class="header-content">
+                <img src="images/book-1-cover.jpg" alt="Finch's Raven - Book 1 Cover" class="book-cover-left">
+                <div class="header-text">
+                    <h1 class="page-title">Get The Last Axiom Series</h1>
+                    <p class="page-subtitle">17 interconnected books exploring the boundaries of reality itself</p>
+                    <p class="value-proposition"> Start FREE • Save with Bundles • Best Value: Complete Series</p>
+                </div>
+                <img src="images/book-2-cover.jpg" alt="The Last Axiom - Book 2 Cover" class="book-cover-right">
+            </div>
+        </section>
+
+        <!-- Main container -->
+        <div class="books-container">
+
+            <!-- AUDIOBOOK VALUE CALLOUT -->
+            <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 140, 0, 0.1)); border: 3px solid rgba(255, 107, 53, 0.4); border-radius: 20px; padding: 2.5rem; margin: 3rem 0; text-align: center;">
+                <h3 style="font-size: 2rem; color: #ff6b35; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);">
+                     FREE Audiobooks Included with Every Purchase!
+                </h3>
+                <p style="font-size: 1.2rem; color: #d0d0d0; margin-bottom: 1rem;">
+                    Every bundle includes professionally narrated audiobooks at no extra cost
+                </p>
+                <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2.5rem; color: #ffd700; font-weight: bold;">$169.83</div>
+                        <div style="color: #888; font-size: 0.95rem;">Audible Value (17 audiobooks)</div>
+                    </div>
+                    <div style="font-size: 3rem; color: #64b5f6;">→</div>
+                    <div>
+                        <div style="font-size: 2.5rem; color: #22c55e; font-weight: bold;">FREE</div>
+                        <div style="color: #888; font-size: 0.95rem;">Included with Your Purchase</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FREE BOOKS SECTION -->
+            <section class="free-books-section">
+                <div class="section-header">
+                    <h2 class="section-title"> Start Your Journey FREE</h2>
+                    <p class="section-subtitle">Get Books 1 & 2 at no cost - the perfect introduction to the series</p>
+                </div>
+
+                <div class="free-books-grid">
+                    <!-- Book 1 -->
+                    <div class="book-mini-card">
+                        <div class="book-mini-title">Book 1: Finch's Raven</div>
+                        <div class="book-mini-subtitle">Where It All Begins</div>
+                        <p class="book-mini-description">
+                            Professor Alistair Finch discovers that the fundamental constants of the universe 
+                            aren't constant at all. As reality's source code begins to rewrite itself, young Derek Devon 
+                            inherits a legacy that will reshape humanity's understanding of existence itself.
+                        </p>
+                    </div>
+
+                    <!-- Book 2 -->
+                    <div class="book-mini-card">
+                        <div class="book-mini-title">Book 2: The Last Axiom</div>
+                        <div class="book-mini-subtitle">Contact Protocols</div>
+                        <p class="book-mini-description">
+                            Derek Devon and Dr. Nancy Hammond make humanity's first confirmed contact with cosmic intelligence. 
+                            But the entities reaching out to Earth have been preparing for this moment far longer than anyone realizes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="time-info" style="max-width: 400px; margin: 2rem auto;">
+                    <div style="font-size: 0.95rem; color: #b0b0b0; margin-bottom: 0.5rem;">
+                         ~1 hour reading •  ~2.5 hours listening
+                    </div>
+                    <div style="font-size: 0.85rem; color: #ff6b35; font-weight: bold;">
+                        Audible value: $28 • Yours FREE
+                    </div>
+                </div>
+
+                <!-- Sample Previews and CTA -->
+                <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem;">
+                    
+                    <!-- PDF Sample Box (Left) -->
+                    <div style="background: rgba(100, 181, 246, 0.1); border: 2px solid rgba(100, 181, 246, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
+                        <h4 style="color: #64b5f6; font-size: 1.1rem; margin-bottom: 0.5rem;">Try Before You Download</h4>
+                        <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">Read a sample chapter from Book 1</p>
+                        <a href="Book1ReaderSample.pdf" target="_blank" 
+                           onclick="trackEvent('sample_pdf_click', {button_name: 'Read Sample PDF', book: 'Book 1'}); return true;"
+                           style="display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #64b5f6, #4a9fd8); border: none; border-radius: 10px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease;">
+                            Read Sample
+                        </a>
+                    </div>
+
+                    <!-- Main CTA Button (Center) -->
+                    <div style="text-align: center;">
+                        <a href="https://bookfunnel.com/YOURLINK" class="cta-button free-button"
+                           onclick="trackEvent('free_books_click', {button_name: 'Get Books 1 & 2 FREE', books: 'Book 1-2', value: 'free'}); return true;">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Get Books 1 & 2 FREE
+                        </a>
+                        <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">
+                             Ebooks +  Audiobooks included • Delivered instantly via BookFunnel
+                        </p>
+                    </div>
+
+                    <!-- Audio Sample Box (Right) -->
+                    <div style="background: rgba(255, 107, 53, 0.1); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 15px; padding: 1.5rem; text-align: center; max-width: 250px; transition: all 0.3s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
+                        <h4 style="color: #ff6b35; font-size: 1.1rem; margin-bottom: 0.5rem;">Listen to a Preview</h4>
+                        <p style="color: #b0b0b0; font-size: 0.85rem; margin-bottom: 1rem;">3-minute audio sample from Book 1</p>
+                        <audio id="audioSample" controls preload="metadata" style="width: 100%; max-width: 220px; height: 35px; border-radius: 8px;">
+                            <source src="Book1Sample.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- BUNDLE PACKAGES SECTION -->
+            <div class="section-header">
+                <h2 class="section-title"> Continue with Bundle Packages</h2>
+                <p class="section-subtitle">Save 60% • Audiobooks included FREE with every bundle</p>
+            </div>
+
+            <div class="bundles-grid">
+                <!-- Bundle 1: Books 3-6 -->
+                <div class="bundle-card">
+                    <div class="bundle-number">Bundle 1</div>
+                    <h3 class="bundle-title">The Discovery Arc</h3>
+                    <p class="bundle-books">Books 3-6</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item"> <span class="time-value">~2 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~4 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $56</div>
+                    </div>
+
+                    <div class="bundle-books-list">
+                        • Quantum Ghosts<br>
+                        • The Constants<br>
+                        • The Observer Effect<br>
+                        • Harmonic Convergence
+                    </div>
+                    <div class="bundle-price">$3.99</div>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
+                    <a href="https://lemonsqueezy.com/YOURLINK1" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 1', books: 'Books 3-6', price: '$3.99', bundle_number: 1}); return true;">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        Buy Bundle 1
+                    </a>
+                </div>
+
+                <!-- Bundle 2: Books 7-10 -->
+                <div class="bundle-card">
+                    <div class="bundle-number">Bundle 2</div>
+                    <h3 class="bundle-title">The Integration Arc</h3>
+                    <p class="bundle-books">Books 7-10</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item"> <span class="time-value">~2 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~4 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $56</div>
+                    </div>
+
+                    <div class="bundle-books-list">
+                        • The Recursive Code<br>
+                        • Quantum Memory<br>
+                        • The Protocol Sleepers<br>
+                        • Critical Mass
+                    </div>
+                    <div class="bundle-price">$3.99</div>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
+                    <a href="https://lemonsqueezy.com/YOURLINK2" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 2', books: 'Books 7-10', price: '$3.99', bundle_number: 2}); return true;">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        Buy Bundle 2
+                    </a>
+                </div>
+
+                <!-- Bundle 3: Books 11-14 -->
+                <div class="bundle-card">
+                    <div class="bundle-number">Bundle 3</div>
+                    <h3 class="bundle-title">The Revelation Arc</h3>
+                    <p class="bundle-books">Books 11-13b</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item"> <span class="time-value">~2.5 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~5 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $56</div>
+                    </div>
+
+                    <div class="bundle-books-list">
+                        • Beyond the Axiom<br>
+                        • The Raven's Code<br>
+                        • The Architect's Test (Parts 1 & 2)<br>
+                        • The Resistance
+                    </div>
+                    <div class="bundle-price">$3.99</div>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($56 value)</p>
+                    <a href="https://lemonsqueezy.com/YOURLINK3" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 3', books: 'Books 11-14', price: '$3.99', bundle_number: 3}); return true;">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        Buy Bundle 3
+                    </a>
+                </div>
+
+                <!-- Bundle 4: Books 15-17 -->
+                <div class="bundle-card">
+                    <div class="bundle-number">Bundle 4</div>
+                    <h3 class="bundle-title">The Convergence Arc</h3>
+                    <p class="bundle-books">Books 14-15 pt2 (Series Finale)</p>
+                    
+                    <div class="time-info">
+                        <div class="time-row">
+                            <div class="time-item"> <span class="time-value">~1.5 hrs</span> reading</div>
+                            <div class="time-item"> <span class="time-value">~3 hrs</span> listening</div>
+                        </div>
+                        <div class="audio-value">Audible value: $42</div>
+                    </div>
+
+                    <div class="bundle-books-list">
+                        • The Crucible (Part 1)<br>
+                        • The Convergence (Part 2)<br>
+                         <strong>EPIC SERIES FINALE</strong>
+                    </div>
+                    <div class="bundle-price">$3.99</div>
+                    <p class="bundle-value">Ebooks alone: $15.96</p>
+                    <p class="audio-bonus">+ Audiobooks FREE ($42 value)</p>
+                    <a href="https://lemonsqueezy.com/YOURLINK4" class="cta-button bundle-button"
+                       onclick="trackEvent('bundle_click', {button_name: 'Bundle 4', books: 'Books 15-17', price: '$3.99', bundle_number: 4}); return true;">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        Buy Bundle 4
+                    </a>
+                </div>
+            </div>
+
+            <!-- COMPLETE SERIES SECTION -->
+            <section class="complete-series-section">
+                <h2 class="complete-title">⭐ Complete Series Deal</h2>
+                <p class="complete-description">
+                    Get the entire cosmic journey in one purchase - all 17 books plus audiobooks. 
+                    The complete story from Finch's discovery to the universe-changing finale.
+                </p>
+
+                <div class="complete-time-info">
+                    <div class="complete-time-stats">
+                        <div class="time-stat">
+                            <div class="time-stat-value">~over 8 hrs</div>
+                            <div class="time-stat-label">Total Reading Time</div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-value">~over 18 hrs</div>
+                            <div class="time-stat-label">Total Listening Time</div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-value">17</div>
+                            <div class="time-stat-label">Complete Books</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="complete-features">
+                    <div class="feature-item">
+                        <span class="feature-icon"></span>
+                        <span>All 17 Books</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"></span>
+                        <span>All Audiobooks</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"></span>
+                        <span>DRM-Free Files</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon"></span>
+                        <span>Instant Access</span>
+                    </div>
+                </div>
+
+                <!-- Value Breakdown Box -->
+                <div style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin: 2rem auto 3rem; max-width: 650px;">
+                    <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.5rem; text-align: center;"> Total Value Breakdown</h3>
+                    <div style="color: #d0d0d0; font-size: 1.1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <span> 17 Ebooks × $2.99 retail each</span>
+                            <span style="color: #ffd700; font-weight: bold;">$50.83</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 2px solid rgba(255, 215, 0, 0.3);">
+                            <span> 17 Audiobooks × $9.99 typical Audible price</span>
+                            <span style="color: #ffd700; font-weight: bold;">$169.83</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 1rem 1rem; font-size: 1.3rem;">
+                            <span style="color: #fff; font-weight: bold;">TOTAL RETAIL VALUE:</span>
+                            <span style="color: #ffd700; font-weight: bold; font-size: 1.6rem;">$220.66</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="complete-price-section">
+                    <div class="complete-price">$9.99</div>
+                    <div class="complete-savings" style="font-size: 1.5rem;">You Save $210.67 — That's 95.3% OFF!</div>
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(255, 107, 53, 0.15); border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 10px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        <div style="color: #ff6b35; font-weight: bold; font-size: 1.2rem; margin-bottom: 0.5rem;"> Audiobook Value Highlight</div>
+                        <div style="color: #d0d0d0; font-size: 1rem;">
+                            These professionally narrated audiobooks would cost <strong style="color: #fff;">$169.83</strong> on Audible alone.
+                            You're getting them + all 17 ebooks for just $9.99!
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://lemonsqueezy.com/YOURLINK_COMPLETE" class="cta-button complete-button"
+                   onclick="trackEvent('complete_series_click', {button_name: 'Complete Series', books: 'All 17 Books', price: '$9.99', savings: '$210.67'}); return true;">
+                    <svg class="icon" viewBox="0 0 24 24" style="width: 28px; height: 28px;">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Get Complete Series
+                </a>
+
+                <p style="margin-top: 1.5rem; color: #888; font-size: 0.95rem;">
+                     All Ebooks +  All Audiobooks • One-time payment • Lifetime access
+                </p>
+            </section>
+
+            <!-- Reading Order Note -->
+            <div style="background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 15px; padding: 2rem; margin: 3rem 0; text-align: center;">
+                <h3 style="color: #bb86fc; margin-bottom: 1rem;"> Reading Order Note</h3>
+                <p style="color: #d0d0d0; line-height: 1.6;">
+                    Books 1 & 2 should be read in order. After that, Books 3-13b can be enjoyed in any sequence but Derek Devon suggests reading them in order! 
+                    However, <strong style="color: #ffd700;">save Books 14-15 (The Finale) for last</strong> to experience 
+                    the full impact of the series conclusion.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 The Last Axiom Series by Derek Devon. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            Questions? <a href="contact.html" style="color: #64b5f6; text-decoration: none;">Contact us</a> • 
+            <a href="feedback.html" style="color: #64b5f6; text-decoration: none;">Leave feedback</a>
+        </p>
+    </footer>
+
+    <script>
+        // Generate floating particles
+        function createParticles() {
+            const particleContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Mobile hamburger menu
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', createParticles);
+
+        // Add parallax effect to quantum field
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const quantumField = document.querySelector('.quantum-field');
+            if (quantumField) {
+                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
         });
     </script>
     
