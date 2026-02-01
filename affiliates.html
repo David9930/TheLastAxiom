@@ -72,6 +72,21 @@
             letter-spacing: 1px;
         }
 
+         .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #64b5f6;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -457,8 +472,24 @@
                 overflow-x: auto;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.95);
+                padding: 1rem;
                 gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .content-section {
@@ -480,18 +511,23 @@
     <!-- Background -->
     <div class="quantum-field"></div>
 
-    <!-- Navigation -->
+   <!-- Navigation -->
     <nav>
-     <div class="nav-container">
-        <a href="index.html" class="logo">The Last Axiom</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="affiliates.html" class="active">Affiliates</a></li>
-            <li><a href="#fyi">FYI</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-     </div>
-   </nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">The Last Axiom</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="affiliates.html" class="active">Affiliates</a></li>
+                <li><a href="#fyi">FYI</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Main content -->
     <div class="main-content">
@@ -975,4 +1011,37 @@
         </div>
     </div>
 
-    <!
+   <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Derek Devon & The Last Axiom Series. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <a href="index.html" style="color: #64b5f6; text-decoration: none;">Back to Home</a> • 
+            <a href="contact.html" style="color: #64b5f6; text-decoration: none;">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        // Mobile hamburger menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const quantumField = document.querySelector('.quantum-field');
+            if (quantumField) {
+                quantumField.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
+   
