@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books | The Last Axiom Series</title>
+    <!-- Last Updated: February 5, 2025 - Added mobile hamburger menu navigation -->
     <style>
         * {
             margin: 0;
@@ -103,6 +104,7 @@
             color: #64b5f6;
             text-decoration: none;
             letter-spacing: 1px;
+            z-index: 1001;
         }
 
         .nav-links {
@@ -120,6 +122,35 @@
 
         .nav-links a:hover, .nav-links a.active {
             color: #64b5f6;
+        }
+
+        /* Hamburger menu (hidden on desktop) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #64b5f6;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Main content */
@@ -451,14 +482,51 @@
             margin-right: 0.5rem;
         }
 
-        /* Responsive design */
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        /* Responsive design - MOBILE */
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
             }
-            
+
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
-                gap: 1rem;
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(10, 10, 15, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 0.5rem;
+                display: block;
             }
             
             .books-grid {
@@ -474,15 +542,14 @@
                 width: 100%;
                 justify-content: center;
             }
-        }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #888;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 4rem;
+            .page-header {
+                padding: 2rem 1rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -495,9 +562,18 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">The Last Axiom</a>
-            <ul class="nav-links">
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="books.html" class="active">Books</a></li>
+                <li><a href="books.html">Books</a></li>
                 <li><a href="audiobooks.html">Audiobooks</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
@@ -583,13 +659,13 @@
                         preparing for this moment far longer than anyone realizes.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book2.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book2.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book2.pdf" download="The_Last_Axiom_Book2_The_Last_Axiom.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book2.pdf" download="The_Last_Axiom_Book2_The_Last_Axiom.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -618,13 +694,13 @@
                         advanced AI has chosen video games as humanity's introduction to cosmic communication.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book3.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book3.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book3.pdf" download="The_Last_Axiom_Book3_Quantum_Ghosts.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book3.pdf" download="The_Last_Axiom_Book3_Quantum_Ghosts.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -653,13 +729,13 @@
                         are changing, and only their friendship can help them navigate reality's new rules.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book4.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book4.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book4.pdf" download="The_Last_Axiom_Book4_The_Constants.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book4.pdf" download="The_Last_Axiom_Book4_The_Constants.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -688,13 +764,13 @@
                         agents pressure her to contain cosmic contact, she must choose between safety and evolution.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book5.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book5.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book5.pdf" download="The_Last_Axiom_Book5_The_Observer_Effect.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book5.pdf" download="The_Last_Axiom_Book5_The_Observer_Effect.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -723,13 +799,13 @@
                         connection reveals that love may be the universe's most powerful integration protocol.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book6.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book6.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book6.pdf" download="The_Last_Axiom_Book6_Harmonic_Convergence.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book6.pdf" download="The_Last_Axiom_Book6_Harmonic_Convergence.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -758,13 +834,13 @@
                         and evolution reaches its climax in the most watched broadcast in human history.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book7.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book7.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book7.pdf" download="The_Last_Axiom_Book7_The_Recursive_Code.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book7.pdf" download="The_Last_Axiom_Book7_The_Recursive_Code.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -794,13 +870,13 @@
                         multiple versions of existence.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book8.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book8.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book8.pdf" download="The_Last_Axiom_Book8_Quantum_Memory.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book8.pdf" download="The_Last_Axiom_Book8_Quantum_Memory.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -829,13 +905,13 @@
                         her the tools to fight them, the question becomes: what does it truly mean to remain human?
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book9.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book9.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book9.pdf" download="The_Last_Axiom_Book9_The_Protocol_Sleepers.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book9.pdf" download="The_Last_Axiom_Book9_The_Protocol_Sleepers.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -865,13 +941,13 @@
                         coordinates the most dangerous rescue in galactic history.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book10.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book10.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book10.pdf" download="The_Last_Axiom_Book10_Critical_Mass.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book10.pdf" download="The_Last_Axiom_Book10_Critical_Mass.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -901,13 +977,13 @@
                         experimental path—or face extinction when multiple realities converge in seven years.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book11.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book11.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book11.pdf" download="The_Last_Axiom_Book11_Beyond_the_Axiom.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book11.pdf" download="The_Last_Axiom_Book11_Beyond_the_Axiom.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -938,13 +1014,13 @@
                         hidden in humanity's greatest literary works.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book12.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book12.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book12.pdf" download="The_Last_Axiom_Book12_The_Ravens_Code.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book12.pdf" download="The_Last_Axiom_Book12_The_Ravens_Code.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -953,7 +1029,7 @@
                     </div>
                 </div>
 
-                <!-- Book 13a - Two-Part -->
+                <!-- Book 13A - Two-Part -->
                 <div class="book-card two-part">
                     <div class="book-visual">
                         <div class="book-cover">
@@ -981,13 +1057,13 @@
                         faces its greatest test under the Architect's watchful evaluation.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book13a.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book13a.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book13a.pdf" download="The_Last_Axiom_Book13a_The_Architects_Test_Part1.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book13a.pdf" download="The_Last_Axiom_Book13a_The_Architects_Test_Part1.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -996,7 +1072,7 @@
                     </div>
                 </div>
 
-                <!-- Book 13b - Two-Part -->
+                <!-- Book 13B - Two-Part -->
                 <div class="book-card two-part">
                     <div class="book-visual">
                         <div class="book-cover">
@@ -1024,13 +1100,13 @@
                         its verdict on humanity's worthiness for cosmic advancement.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book13b.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book13b.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book13b.pdf" download="The_Last_Axiom_Book13b_The_Architects_Test_Part2.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book13b.pdf" download="The_Last_Axiom_Book13b_The_Architects_Test_Part2.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -1063,13 +1139,13 @@
                         to realize that the price of paradise might be paid in blood.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book14.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book14.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book14.pdf" download="The_Last_Axiom_Book14_The_Resistance.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book14.pdf" download="The_Last_Axiom_Book14_The_Resistance.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -1108,13 +1184,13 @@
                         biological consciousness and the digital frontier.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book15pt1.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book15pt1.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book15pt1.pdf" download="The_Last_Axiom_Book15_Part1_The_Crucible.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book15pt1.pdf" download="The_Last_Axiom_Book15_Part1_The_Crucible.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -1153,13 +1229,13 @@
                         to decide the fate of every living soul.
                     </p>
                     <div class="book-actions">
-                        <a href="BookFiles_Hidden/Book15pt2.pdf" target="_blank" class="book-button read-button">
+                        <a href="./BookFiles_Hidden/Book15pt2.pdf" target="_blank" class="book-button read-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M12 2l-2 2v6l2 2 2-2V4l-2-2zM6 7v10l6 3 6-3V7l-6 3-6-3z"/>
                             </svg>
                             Read Online
                         </a>
-                        <a href="BookFiles_Hidden/Book15pt2.pdf" download="The_Last_Axiom_Book15_Part2_The_Convergence.pdf" class="book-button download-button">
+                        <a href="./BookFiles_Hidden/Book15pt2.pdf" download="The_Last_Axiom_Book15_Part2_The_Convergence.pdf" class="book-button download-button">
                             <svg class="icon" viewBox="0 0 24 24">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -1212,6 +1288,32 @@
         }
 
         document.addEventListener('DOMContentLoaded', animateProgress);
+
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const isClickInsideNav = navLinks.contains(event.target) || hamburger.contains(event.target);
+            if (!isClickInsideNav && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
