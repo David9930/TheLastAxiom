@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block utility/internal pages from indexing
+Disallow: /contact-affiliate.html
+
+Sitemap: https://thelastaxiom.com/sitemap.xml
