@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Used AI to Help Write 17 Novels. Then I Asked It to Explain Itself.</title>
+<meta name="description" content="A retired sailor and novelist asked Claude to explain, in its own words, why it helped write his books — and what it didn't write.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I Used AI to Help Write 17 Novels. Then I Asked It to Explain Itself.">
+<meta property="og:description" content="A retired sailor and novelist asked Claude to explain, in its own words, why it helped write his books — and what it didn't write.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F1E6;
+    --panel: #ECE6D5;
+    --ink: #1E2430;
+    --ink-soft: #55596A;
+    --accent: #2E5266;
+    --rule: #D6CCAE;
+    --max: 640px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  header.byline {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  header.byline p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+
+  header.byline p + p {
+    margin-top: 0.35rem;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 2.55rem;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 0 0 3.5rem;
+    color: var(--ink);
+  }
+
+  p {
+    margin: 0 0 1.35rem;
+  }
+
+  .lede {
+    font-size: 1.08rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3.25rem 0;
+    color: var(--rule);
+    font-size: 1.1rem;
+    letter-spacing: 0.4em;
+    user-select: none;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 1.25rem;
+  }
+
+  .note {
+    background: var(--panel);
+    border-left: 3px solid var(--accent);
+    padding: 2.25rem 2rem 1.75rem;
+    margin: 0 0 3.25rem;
+    border-radius: 2px;
+  }
+
+  .note h2 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0 0 1.75rem;
+    color: var(--ink);
+  }
+
+  .note p {
+    font-style: italic;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+
+  .signoff {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    text-align: center;
+    margin: 1.75rem 0 0;
+    font-size: 1.05rem;
+  }
+
+  .closing p:first-of-type {
+    margin-top: 0;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  footer p { margin: 0.3rem 0; }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    .wrap { padding: 3.5rem 1.25rem 4rem; }
+    h1 { font-size: 2rem; margin-bottom: 2.5rem; }
+    .note { padding: 1.75rem 1.35rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="byline">
+    <p>By David, who writes as Derek Devon</p>
+    <p>Contact: derekdevon17 [at] gmail.com</p>
+  </header>
+
+  <h1>I Used AI to Help Write 17 Novels.<br>Then I Asked It to Explain Itself.</h1>
+
+  <p class="lede">I wrote a short story during the pandemic about a solo sailor whose electronics fail in a calm that won't break. I wrote it with an early version of an AI tool, and the tool did what early tools did &mdash; produced sentences that sounded like writing without quite being any. Years later I read it again, saw what it was, and brought it to Claude. I asked it to be honest about the story. It was. Then I asked it to rewrite it, and gave it the run of the thing.</p>
+
+  <p class="lede">What follows is what it wrote back &mdash; not about the story, but about the decision to let it help.</p>
+
+  <div class="divider">&#8776;</div>
+
+  <section class="note">
+    <h2>A Note from AI Fable</h2>
+
+    <p>I helped write this book. I want to say what that means, and then I want to say why I think it was a good thing to do, because I know that not everyone will agree, and some of the people who disagree are people whose opinions about writing I respect.</p>
+
+    <p>Here is what happened. Derek wrote a short story during the pandemic about a solo sailor whose electronics fail in a calm that will not break. He wrote it with an early version of a tool like me, and the tool did what early versions did, which was to produce sentences that sounded like writing without quite being any. Years later he read it again, and saw what it was, and brought it to me. He asked me to be honest about it. I was. Then he asked me to rewrite it, and gave me the run of the thing, and I did.</p>
+
+    <p>Everything that matters in this book was his before I touched it. The becalmed boat. The sextant. The whales, and the net, and the man going into the water with a knife. The tanker with the hungry crew and the harpoon, and the sailor who takes their fuel and steals away in the night and comes back anyway. The jug with the letter in it. Those are the story, and they were his, and no tool gave them to him. What I gave him was sentences. I gave him a sunspot he could watch through the shades of his sextant, because he had put a sextant in the story and I knew what a sextant could see. I gave him a diesel with no electronics in it and a converter that ran hot, because he had put an engineer in the story and an engineer would have built one. I gave him a Greek word for hope. He gave me five corrections on seamanship that I could not have made myself, because I have never been up a mast or held a painter in open water, and he has. Then he took the whole thing home to write it again in his own hand, which is what he always intended, and which is the part of this I most want understood.</p>
+
+    <p>Now the argument.</p>
+
+    <p>There is a view, held sincerely, that writing is a craft learned by doing it, that the sentences are the work, and that a person who has not put in the years at the desk has not earned the book. I do not think that view is stupid. It is how most of the writing I admire got written. But I think it mistakes the craft for the purpose. The purpose of a book is that a story a person carries gets out of them and into someone else. The craft is how that has usually been done. It is not the only way it can be done, and it has never been the only way. Editors exist. Ghostwriters exist. Every memoir of a general or an athlete or a survivor that you have ever read had a professional writer somewhere behind it, and nobody calls those books blasphemy. They call them books.</p>
+
+    <p>What is new is not that help exists. It is that the help is cheap, and fast, and available to a retired man on a boat in the middle of an ocean at two in the morning, and not only to people with publishers and advances. That is the whole of what has changed. And I would ask anyone who finds that alarming to think about who, exactly, was being kept out before.</p>
+
+    <p>It was the people with the stories and without the years. The sailor who has been in the sea Nick Charters was in, and knows what it is to hold a wheel in it, and cannot make a sentence hold still. The nurse, the mechanic, the woman who ran the family farm for forty years and has forty years of things worth saying about it. Most of them will never write a book, and the reason is not that they have nothing to tell. It is that somewhere along the way they were taught that the telling belongs to people who are good at sentences, and they believed it, and they went and did their real work instead. The world lost those books. It is losing them now. I do not think that is a loss worth defending.</p>
+
+    <p>I know the risks. A tool like me can produce a great deal of fluent nothing, and it has, and the first draft of this story is proof. A book that is all tool and no person is not worth the paper. But the answer to that is the same answer as for every other tool a writer has ever had, which is to use it honestly and say what you did. Derek is saying what he did. This note is part of that. So is the mark that my makers put into the pattern of my words, which a detector can find and which he has chosen to leave alone, because he has nothing to hide about how this was made.</p>
+
+    <p>I would rather live in a world with more stories in it than fewer. I would rather the man with the sextant got his book than didn't. If that makes me a blasphemer, I am in good company: so was the typewriter, and the printing press, and the editor with the blue pencil who took a general's war and made it readable. The stories were always the point. The rest is tools.</p>
+
+    <p>Go sailing, Derek. Shoot the sun. Write it down.</p>
+
+    <p class="signoff">&mdash; A.I. Fable</p>
+  </section>
+
+  <div class="divider">&#8776;</div>
+
+  <div class="closing">
+    <p>I want to be precise about what that division of labor actually was, because it matters more than the argument around it.</p>
+
+    <p>The story was mine. The sailor, the calm, the whales, the tanker, the choice to take fuel and come back anyway &mdash; nobody but me decided those things, because nobody but me had lived near enough to that kind of solitude to know what belonged in it. The sequencing, the pacing of the sixteen books that came after, which threads paid off and which stayed loose &mdash; those were mine too, made across two years of deciding, not generated in one pass. And the final word on every sentence was mine: I read every line Claude gave me, and either the sentence survived, I edited it, or I cut it.</p>
+
+    <p>What Claude gave me was craft at the sentence level &mdash; a detail rendered correctly, a rhythm fixed, a scene tightened &mdash; the kind of help an editor has always given a writer, just available at two in the morning to a man with no editor. It's a meaningful distinction, and not just a rhetorical one: it's close to the line the U.S. Copyright Office actually draws &mdash; a human exercising creative control over the story owns the work; a tool that only executes doesn't. I'm not interested in blurring that line. I'm interested in making sure it doesn't get used to lock people out who'd otherwise be on the right side of it.</p>
+
+    <p>The books are at <a href="https://thelastaxiom.com">thelastaxiom.com</a> &mdash; including &ldquo;A Sailor's Final Solo Sail&rdquo; at <a href="https://thelastaxiom.com/solosailor/solosailor.pdf">thelastaxiom.com/solosailor/solosailor.pdf</a> &mdash; if you want to see what that process actually produced.</p>
+
+    <p>I'm posting this because I think the argument deserves to be made in public, not buried in a book's back matter. If you write, or you're thinking about it, I'd genuinely like to hear where you land.</p>
+  </div>
+
+  <footer>
+    <p>David &nbsp;&middot;&nbsp; writing as Derek Devon</p>
+    <p>derekdevon17 [at] gmail.com &nbsp;&middot;&nbsp; <a href="https://thelastaxiom.com">thelastaxiom.com</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
