@@ -992,5 +992,71 @@
             }
         });
     </script>
+    <script>
+    // Email fallback: if no mail app opens from a mailto: link, offer Copy / Gmail
+    (function () {
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+            if (!a) return;
+            var href = a.getAttribute('href');
+            var addr = href.slice(7).split('?')[0];
+            var subj = new URLSearchParams(href.split('?')[1] || '').get('subject') || '';
+            setTimeout(function () { if (!document.hidden) showMailHelp(addr, subj); }, 900);
+        });
+
+        function showMailHelp(addr, subj) {
+            var old = document.getElementById('mailHelp');
+            if (old) old.remove();
+            var box = document.createElement('div');
+            box.id = 'mailHelp';
+            box.setAttribute('role', 'status');
+            box.style.cssText = 'position:fixed;left:50%;bottom:20px;transform:translateX(-50%);width:calc(100% - 32px);max-width:440px;background:#1a1a2e;border:2px solid #64b5f6;border-radius:12px;padding:1rem 1.2rem;color:#e8e8e8;font:1rem/1.5 Georgia,serif;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.6);z-index:2000';
+
+            var msg = document.createElement('div');
+            msg.textContent = 'Nothing opened? No problem. My address is ' + addr;
+            box.appendChild(msg);
+
+            var row = document.createElement('div');
+            row.style.cssText = 'display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:.8rem';
+            var btnCss = 'background:rgba(100,181,246,.25);border:1px solid #64b5f6;border-radius:8px;color:#e8e8e8;padding:.5rem 1rem;font:inherit;font-size:.95rem;cursor:pointer;text-decoration:none';
+
+            var copy = document.createElement('button');
+            copy.type = 'button';
+            copy.textContent = 'Copy address';
+            copy.style.cssText = btnCss;
+            copy.onclick = function () {
+                var done = function () { copy.textContent = 'Copied ✓'; };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(addr).then(done, legacy);
+                } else { legacy(); }
+                function legacy() {
+                    var t = document.createElement('textarea');
+                    t.value = addr; t.style.position = 'fixed'; t.style.opacity = '0';
+                    document.body.appendChild(t); t.select();
+                    try { document.execCommand('copy'); done(); } catch (err) {}
+                    t.remove();
+                }
+            };
+
+            var gm = document.createElement('a');
+            gm.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(addr) + (subj ? '&su=' + encodeURIComponent(subj) : '');
+            gm.target = '_blank';
+            gm.rel = 'noopener';
+            gm.textContent = 'Open in Gmail';
+            gm.style.cssText = btnCss;
+
+            var x = document.createElement('button');
+            x.type = 'button';
+            x.textContent = 'Close';
+            x.style.cssText = btnCss + ';background:transparent;border-color:rgba(255,255,255,.3)';
+            x.onclick = function () { box.remove(); };
+
+            row.appendChild(copy); row.appendChild(gm); row.appendChild(x);
+            box.appendChild(row);
+            document.body.appendChild(box);
+            setTimeout(function () { if (box.parentNode) box.remove(); }, 25000);
+        }
+    })();
+    </script>
 </body>
 </html>
